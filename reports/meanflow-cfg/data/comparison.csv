@@ -1,0 +1,5 @@
+run,checkpoint_step,nfe,rho,fid,seed,reference_kind,generated_count,reference_count,source
+fastgen4,26000,4,1.0,26.107475982996675,1234,official_validation,3020,3020,runs/schedule_sweeps/official_validation/fid.csv
+archived_cfg_70000,62000,4,2.0,21.4729994248043,1234,official_validation,3020,3020,runs/schedule_sweeps/official_validation/fid.csv
+meanflow_cfg_100k,101000,4,1.0,20.39205670333024,1234,official_validation,3020,3020,runs/schedule_sweeps/meanflow_cfg_0101000_seed1234_20261016/comparison.json
+meanflow_cfg_100k,101000,4,2.0,19.87641130748989,1234,official_validation,3020,3020,runs/schedule_sweeps/meanflow_cfg_0101000_seed1234_20261016/comparison.json

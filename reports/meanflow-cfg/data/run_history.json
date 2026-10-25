@@ -1,0 +1,161 @@
+{
+  "scope": "Read-only audit of local completed results for an NFE=4 publication. No experiments run.",
+  "hardware_local": "1 x NVIDIA GRID A100D-20C, 20480 MiB",
+  "dataset": {
+    "training_images": 17079,
+    "validation_images": 3020,
+    "classes": 151,
+    "resolution": [
+      64,
+      64
+    ],
+    "channels": 3,
+    "generated_images": 3020,
+    "generated_per_class": 20,
+    "fid_seed": 1234,
+    "fid_batch": 32,
+    "evaluation_precision": "FP32, TF32 disabled"
+  },
+  "timing_definition": "Active optimizer update time includes data movement, forward/backward, optimizer/EMA, and first-update compilation; excludes FID, checkpoint saves, previews, setup and downtime between processes. CFG uses its restored cumulative training_seconds counter, not sum of metrics rows. Original MeanFlow has one row per optimizer step; sum seconds_per_update after keeping only the final occurrence of replayed steps. This reports the retained training trajectory, not failed/replayed work or all experimental compute.",
+  "runs": [
+    {
+      "id": "fastgen4",
+      "method": "Original MeanFlow, no CFG, practical FastGen training schedule",
+      "parameters": 56010243,
+      "effective_batch": 512,
+      "microbatch": 32,
+      "accumulation": 16,
+      "retained_steps": 26320,
+      "best_checkpoint_step": 26000,
+      "best_fid_nfe4": 26.107475982996732,
+      "rho": 1.0,
+      "sampling_times": [
+        1,
+        0.75,
+        0.5,
+        0.25,
+        0
+      ],
+      "active_update_seconds_at_best": 187481.352,
+      "active_update_hours_at_best": 52.07815333333334,
+      "active_update_seconds_total": 189557.916,
+      "active_update_hours_total": 52.65497666666666,
+      "duplicates_removed": 28,
+      "replayed_seconds_removed": 376.7870000000112,
+      "peak_train_gb": 12.371969024,
+      "evidence": [
+        "runs/fastgen4/train.csv",
+        "runs/fastgen4/fid.csv",
+        "runs/fastgen4/config.json",
+        "runs/fastgen4/console.log"
+      ]
+    },
+    {
+      "id": "meanflow_cfg_100k",
+      "method": "MeanFlow with built-in CFG, scale 2, label dropout 0.1",
+      "parameters": 56010243,
+      "effective_batch": 512,
+      "microbatch_history": [
+        {
+          "through_step": 84276,
+          "microbatch": 16,
+          "accumulation": 32
+        },
+        {
+          "from_step": 84277,
+          "microbatch": 32,
+          "accumulation": 16
+        }
+      ],
+      "retained_steps": 110600,
+      "last_logged_original_attempt": 110700,
+      "best_checkpoint_step": 101000,
+      "best_fid_nfe4": 19.87641130748989,
+      "rho": 2.0,
+      "sampling_times": [
+        1,
+        0.5625,
+        0.25,
+        0.0625,
+        0
+      ],
+      "uniform_fid_same_checkpoint": 20.39205670333024,
+      "best_timing": {
+        "step": 101000,
+        "active_update_seconds": 965680.934508177,
+        "active_update_hours": 268.24470403004915,
+        "process_elapsed_seconds": 987792.5101395936,
+        "process_elapsed_hours": 274.38680837210933
+      },
+      "latest_retained_timing": {
+        "step": 110600,
+        "active_update_seconds": 1046857.9239608641,
+        "active_update_hours": 290.7938677669067,
+        "process_elapsed_seconds": 1070510.628009493,
+        "process_elapsed_hours": 297.3640633359703
+      },
+      "last_failed_attempt_timing": {
+        "step": 110700,
+        "active_update_seconds": 1047702.6771140244,
+        "active_update_hours": 291.02852142056236,
+        "process_elapsed_seconds": 1071358.096225788,
+        "process_elapsed_hours": 297.59947117382995
+      },
+      "peak_train_gb": 12.431510528,
+      "planned_target": 125000,
+      "target_completed": false,
+      "evidence": [
+        "runs/meanflow_cfg_100k/metrics.jsonl",
+        "runs/meanflow_cfg_100k/fid.csv",
+        "runs/meanflow_cfg_100k/resume_changes.jsonl",
+        "runs/schedule_sweeps/meanflow_cfg_0101000_seed1234_20261016/fid.csv",
+        "runs/schedule_sweeps/meanflow_cfg_0101000_seed1234_20261016/config.json"
+      ]
+    },
+    {
+      "id": "archived_cfg_70000",
+      "method": "Separate earlier MeanFlow CFG run",
+      "parameters": 56010243,
+      "effective_batch": 512,
+      "microbatch": 16,
+      "accumulation_per_gpu": 4,
+      "world_size": 8,
+      "hardware": "1 x NVIDIA RTX PRO 6000 Blackwell Max-Q Workstation Edition + 7 x NVIDIA GeForce RTX 3090",
+      "retained_steps": 70000,
+      "best_checkpoint_step": 62000,
+      "local_rescore_fid_nfe4": 21.4729994248043,
+      "rho": 2.0,
+      "uniform_local_rescore": 22.276496679675347,
+      "original_environment_uniform_fid": 22.00151424302294,
+      "active_update_seconds": null,
+      "timing_note": "No active training timing logs retained in the portable reference material; do not infer duration from dated directory names. Original-environment FID is different from the local rescore; use local rescore if making a comparison. This is not the local single-GPU run at step 62000.",
+      "evidence": [
+        "meanflow_cfg_implementation_20260929/reference/original_run_config.json",
+        "meanflow_cfg_implementation_20260929/reference/original_environment.json",
+        "meanflow_cfg_implementation_20260929/reference/fid_every_1000.csv",
+        "runs/schedule_sweeps/official_validation/fid.csv",
+        "runs/schedule_sweeps/meanflow_cfg_0062000_seed1234/config.json"
+      ]
+    }
+  ],
+  "selected_evaluation": {
+    "nfe": 4,
+    "checkpoint_step": 101000,
+    "checkpoint_sha256": "ab99f610b9bc2a8ec26f627573608b52d490065773ede28ab18bf5a940d11b41",
+    "fid": 19.87641130748989,
+    "generation_seconds": 71.28,
+    "generation_note": "3,020 images including PNG saving, batch32; not single-image latency",
+    "full_evaluation_seconds": 89.03,
+    "backbone_calls_total": 380,
+    "batches": 95,
+    "calls_per_batch": 4,
+    "peak_gpu_gb": 2.304
+  },
+  "publication_notes": [
+    "Use local-validation result, not official TA score.",
+    "Comparisons are historical runs with unequal training budgets, not controlled evidence that CFG alone caused the improvement.",
+    "Do not call fastgen4 a distinct FastGen algorithm: it is original MeanFlow with a practical learning-rate/EMA schedule.",
+    "Current config states updates=125000, but that target was not reached.",
+    "Do not sum archived recovery metrics with live metrics; these are copied prefixes, not additional training."
+  ]
+}

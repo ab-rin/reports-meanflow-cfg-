@@ -1,0 +1,84 @@
+{
+  "checkpoint": {
+    "filename": "ema_0101000.ckpt",
+    "step": 101000,
+    "bytes": 224175708,
+    "sha256": "ab99f610b9bc2a8ec26f627573608b52d490065773ede28ab18bf5a940d11b41",
+    "original_path": "runs/meanflow_cfg_100k/checkpoints/ema_0101000.ckpt",
+    "weights_included": false
+  },
+  "evaluation": {
+    "rho": 2.0,
+    "fid": 19.87641130748989,
+    "nfe": 4,
+    "seed": 1234,
+    "generated_count": 3020,
+    "reference_count": 3020,
+    "reference_kind": "official_validation",
+    "held_out": true,
+    "official_validation_used": true,
+    "generation_seconds": 71.28,
+    "seconds": 89.03,
+    "backbone_calls": 380,
+    "peak_gpu_gb": 2.304,
+    "times": [
+      1.0,
+      0.5625,
+      0.25,
+      0.0625,
+      0.0
+    ]
+  },
+  "comparison": {
+    "step": 101000,
+    "rho": 2.0,
+    "times": [
+      1.0,
+      0.5625,
+      0.25,
+      0.0625,
+      0.0
+    ],
+    "fid": 19.87641130748989,
+    "uniform_baseline_fid": 20.39205670333024,
+    "reduction_vs_uniform": 0.5156453958403517,
+    "percent_reduction_vs_uniform": 2.528658111058221,
+    "prior_77000_rho2_fid": 20.86038044209522,
+    "prior_91250_rho2_fid": 20.77199606686031,
+    "reduction_vs_91250_rho2": 0.895584759370422,
+    "checkpoint_unchanged": true,
+    "full_image_counts_verified": true,
+    "reference_kind": "official_validation",
+    "seed": 1234,
+    "nfe": 4,
+    "reference_pngs_identical_to_training_evaluator": true
+  },
+  "environment": {
+    "python": "3.12.3",
+    "packages": {
+      "torch": "2.6.0+cu124",
+      "torchvision": "0.21.0+cu124",
+      "numpy": "2.4.6",
+      "scipy": "1.15.3",
+      "pillow": "12.3.0",
+      "clean-fid": "0.1.35"
+    },
+    "gpu": "GRID A100D-20C",
+    "precision": "FP32; TF32 disabled"
+  },
+  "parameter_count": 56010243,
+  "source_sha256": {
+    "model.py": "6eb5125a45a11d6c3e5a676717e786f3351533575c17f7505c46524b1b631fca",
+    "sweep_sampling_schedule.py": "fe941494a7dc84431044c9a022aa8af789b51f7ef6c06173206452dee3c2dfe6",
+    "src/sampling_schedule.py": "e134296f2d2ade98866638cd098c0f8111c691891099a044d5a0a4450bb6f569",
+    "evaluate.py": "f201320f3505ad478096313eedf657388a0c6aca4af456095509e13807228adb",
+    "dataset.py": "47aea2b4ae6833198cbfa0801e0cc63fd5425dbe72bb77aec7f19a97ad90d063"
+  },
+  "reference_manifest_sha256": "6dfba46a82c1bb329287d6da0f87be1b3b71d26c217150bf681f37cce4264df0",
+  "source_files": [
+    "runs/schedule_sweeps/meanflow_cfg_0101000_seed1234_20261016/config.json",
+    "runs/schedule_sweeps/meanflow_cfg_0101000_seed1234_20261016/comparison.json",
+    "runs/schedule_sweeps/meanflow_cfg_0101000_seed1234_20261016/rho_2.0/report.json",
+    "runs/schedule_sweeps/meanflow_cfg_0101000_seed1234_20261016/fid.csv"
+  ]
+}

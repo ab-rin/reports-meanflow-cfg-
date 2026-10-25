@@ -1,0 +1,4 @@
+step,fid,nfe,rho,schedule,seed,generated_count,reference_count,reference_kind,generation_seconds,evaluation_seconds,source_csv
+77000,20.86038044209522,4,2.0,rho2,1234,3020,3020,official_validation,72.02,89.97,runs/schedule_sweeps/meanflow_cfg_0077000_seed1234_20261013/fid.csv
+91250,20.77199606686031,4,2.0,rho2,1234,3020,3020,official_validation,71.43,90.69,runs/schedule_sweeps/meanflow_cfg_0091250_seed1234_20261014/fid.csv
+101000,19.87641130748989,4,2.0,rho2,1234,3020,3020,official_validation,71.28,89.03,runs/schedule_sweeps/meanflow_cfg_0101000_seed1234_20261016/fid.csv
