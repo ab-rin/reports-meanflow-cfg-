@@ -1,0 +1,9 @@
+# Matches the local CPU verification environment; CUDA wheel variant is chosen at install time.
+torch==2.6.0
+torchvision==0.21.0
+Pillow==12.3.0
+numpy==2.4.6
+scipy==1.15.3
+clean-fid==0.1.35
+kagglehub==1.0.2
+tqdm==4.70.1

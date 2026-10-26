@@ -1,40 +1,65 @@
-# Reproducing the selected sampler
+# Running the model
 
-The selected model uses the existing course directory layout. The following commands run from the MeanFlow CFG implementation root, where `model.py`, `evaluate.py`, `sweep_sampling_schedule.py`, and `src/` are located. In the original workspace this directory is `meanflow_cfg_implementation_20260929/`.
+The implementation is in [code/](code/). Its [README](code/README.md) covers data preparation, training, resume, sampling, and the existing CPU checks.
 
-## Checkpoint and environment
+## Checkpoint
 
-Use the EMA checkpoint from update 101,000:
+Download [ema_0101000.ckpt](https://github.com/ab-rin/reports-meanflow-cfg-/releases/download/meanflow-cfg-101k/ema_0101000.ckpt) and place it in `code/checkpoints/`. Access to this private repository requires GitHub authentication. With the GitHub CLI, run from the repository root:
+
+```bash
+gh release download meanflow-cfg-101k \
+  --repo ab-rin/reports-meanflow-cfg- \
+  --pattern ema_0101000.ckpt --dir code/checkpoints
+```
 
 ```text
 Filename: ema_0101000.ckpt
 Bytes: 224175708
 SHA256: ab99f610b9bc2a8ec26f627573608b52d490065773ede28ab18bf5a940d11b41
-Original path: runs/meanflow_cfg_100k/checkpoints/ema_0101000.ckpt
 ```
 
-The checkpoint is approximately 214 MiB and is not part of the report. Copy an existing verified copy to `checkpoints/ema_0101000.ckpt` before running these commands. No replacement checkpoint is downloaded automatically.
+This is the original EMA checkpoint at update 101,000. The sampler settings are separate from its weights.
 
-The selected evaluation recorded Python 3.12.3, PyTorch 2.6.0+cu124, torchvision 0.21.0+cu124, NumPy 2.4.6, SciPy 1.15.3, Pillow 12.3.0, and clean-fid 0.1.35. The historical export's `requirements.txt` describes the earlier environment; it is not a record of this local evaluation. Use course-approved dependencies for submission.
+## Selected four-step sampler
 
-## Load the exact four-call configuration
+Run from `code/` after installing its dependencies:
+
+```bash
+python sample.py \
+  --checkpoint checkpoints/ema_0101000.ckpt \
+  --output outputs/example --schedule best4 \
+  --classes 0 25 150 --samples-per-class 2 --device cuda
+```
+
+Or load it in Python:
 
 ```python
+import torch
 from model import Model
+from best_sampler import sample_best_four
+
+torch.backends.cuda.matmul.allow_tf32 = False
+torch.backends.cudnn.allow_tf32 = False
+torch.manual_seed(1234)
 
 model = Model.load_checkpoint(
     "checkpoints/ema_0101000.ckpt",
     evaluate_mode="few_nfe",
-    sampling_rho=2.0,
     device="cuda",
+)
+categories = torch.tensor([0, 1], device="cuda")
+images = sample_best_four(
+    model, (2, 3, 64, 64), device="cuda", category=categories,
 )
 ```
 
-Pass `sampling_rho=2.0` explicitly. The historical model default is `1.0`, which uses uniform intervals and is also used by periodic training evaluation. Leaving that default unchanged preserves the meaning of the original training logs.
+`sample_best_four` uses `[1, 0.6, 0.3, 0.018, 0]`, makes exactly four model calls, and returns RGB tensors in `[-1, 1]`. The class IDs come from [category_to_id.json](code/data/pokemon-generation-one-22k/category_to_id.json), not Pokédex numbers. Guidance scale 2 is already learned in the conditional model.
 
-## Full validation FID
+The original `ModelFewNFE.sample()` and course evaluator retain their uniform-interval default. Calling them directly does not select the tuned schedule. This preserves the meaning of the original training logs and the provided evaluator.
 
-Prepare the dataset with the unchanged course loader and original split files. Then use a fresh output directory:
+## Historical ρ = 2 evaluation
+
+The nonuniform markers in the training-history figure use the earlier power schedule `[1, 0.5625, 0.25, 0.0625, 0]`; the dense curve uses uniform intervals. After preparing the dataset, the power schedule's seed-1234 evaluation can be run from `code/`:
 
 ```bash
 python sweep_sampling_schedule.py \
@@ -42,19 +67,20 @@ python sweep_sampling_schedule.py \
   --data-root data/pokemon-generation-one-22k \
   --output outputs/selected_101k_rho2 \
   --reference official_validation \
-  --rhos 2 \
-  --seed 1234 \
-  --samples-per-class 20 \
-  --batch-size 32 \
-  --fid-batch-size 32
+  --rhos 2 --seed 1234 --samples-per-class 20 \
+  --batch-size 32 --fid-batch-size 32
 ```
 
-The script verifies protected source hashes, loads weights strictly, counts backbone calls, and records the schedule and reference set. For 3,020 images at batch size 32, its generation loop should report 380 backbone calls over 95 batches. Warm-up calls are outside that recorded generation loop.
+This script evaluates power schedules; it does not express the later tuned schedule. The tuned schedule's recorded confirmation data are in [data/best_schedule.json](data/best_schedule.json).
 
-Changing software, precision, batch size, preprocessing, or random seed can change FID. The README reports the saved measurement rather than promising bitwise agreement on another machine.
+## Evaluation conditions
+
+All reported FIDs use 3,020 generated images, 20 per class, against all 3,020 official validation images. Generation uses batch size 32, FP32, TF32 disabled, and the original PNG conversion and clean-fid pipeline. The recorded environment was Python 3.12.3, PyTorch 2.6.0+cu124, torchvision 0.21.0+cu124, NumPy 2.4.6, SciPy 1.15.3, Pillow 12.3.0, and clean-fid 0.1.35. The exported historical requirements describe the earlier training environment; see the code README for the distinction.
+
+Changing software, precision, batch size, preprocessing, or seed can change FID. The short loading example verifies how to use the selected sampler; it does not reproduce the full evaluation by itself.
 
 ## Training-time accounting
 
-`data/run_history.json` distinguishes active update time from process elapsed time and identifies the original logs. Time at a selected checkpoint is cumulative from initialization, not the duration of its latest resumed session. Repeated steps after a recovery are not counted twice in the reconstructed baseline trajectory.
+[data/run_history.json](data/run_history.json) distinguishes active update time from process elapsed time. Time at a selected checkpoint is cumulative from initialization, not the duration of its last resumed session. Repeated steps after recovery are not counted twice in the reconstructed trajectory.
 
 The local CFG run has a valid saved checkpoint at 110,600 updates. A log line at 110,700 precedes a failed save; the configured target of 125,000 was not completed. The selected checkpoint remains 101,000.

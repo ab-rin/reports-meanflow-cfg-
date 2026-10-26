@@ -1,0 +1,71 @@
+{
+  "verified_utc": "2026-10-26T11:51:04.562775+00:00",
+  "status": "passed",
+  "cpu_only": true,
+  "training_run": false,
+  "fid_run": false,
+  "cli_and_import_checks": {
+    "cli_help": [
+      {
+        "entrypoint": "train.py",
+        "help": "passed"
+      },
+      {
+        "entrypoint": "prepare_data.py",
+        "help": "passed"
+      },
+      {
+        "entrypoint": "download_dataset.py",
+        "help": "passed"
+      },
+      {
+        "entrypoint": "evaluate.py",
+        "help": "passed"
+      },
+      {
+        "entrypoint": "sweep_sampling_schedule.py",
+        "help": "passed"
+      },
+      {
+        "entrypoint": "sample.py",
+        "help": "passed"
+      }
+    ],
+    "extra_imports": "passed",
+    "protected_source_hashes": "passed"
+  },
+  "checkpoint_check": {
+    "status": "passed",
+    "device": "cpu",
+    "training_performed": false,
+    "gpu_used": false,
+    "checkpoint_sha256": "ab99f610b9bc2a8ec26f627573608b52d490065773ede28ab18bf5a940d11b41",
+    "strict_loading": true,
+    "all_weights_finite": true,
+    "parameters": 56010243,
+    "sampling_calls": 4,
+    "shape": [
+      1,
+      3,
+      64,
+      64
+    ],
+    "output_sha256": "2f47c667ab1cd915aa2d3315ab820411258eec3f6ec63d8e9f1a1b7ead37bf21",
+    "matches_previously_verified_reference_sampler": true,
+    "original_copies_checked": 32,
+    "elapsed_seconds": 5.640994345070794,
+    "scope": "CPU inference and source identity only; no new training, memory benchmark or FID."
+  },
+  "existing_unit_tests": {
+    "command": "OMP_NUM_THREADS=4 python -m unittest discover -s tests -v",
+    "count": 25,
+    "passed": 25,
+    "failures": 0,
+    "errors": 0,
+    "modules": [
+      "test_cfg",
+      "test_resume_options",
+      "test_sampling_schedule"
+    ]
+  }
+}

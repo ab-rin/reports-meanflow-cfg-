@@ -1,0 +1,9 @@
+.venv/
+__pycache__/
+*.py[cod]
+cache/
+outputs/
+checkpoints/
+results/
+data/pokemon-generation-one-22k/PokemonData/
+data/pokemon-generation-one-22k/.transparency_composited_on_white

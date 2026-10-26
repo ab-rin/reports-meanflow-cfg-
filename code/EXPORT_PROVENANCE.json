@@ -1,0 +1,218 @@
+{
+  "source_directory": "/root/AIC313-Project-FastGen/meanflow_cfg_implementation_20260929",
+  "export_purpose": "Runnable original MeanFlow CFG training and inference source; no weights, images, logs or caches.",
+  "original_files": [
+    {
+      "path": "build_cache.py",
+      "sha256": "9d7762617e6483f54baf6416d2e3d086188b133dfd1b50bfc7159dd9432cf025",
+      "source_relative_path": "build_cache.py",
+      "copy": "byte-identical"
+    },
+    {
+      "path": "data/pokemon-generation-one-22k/category_to_id.json",
+      "sha256": "7c27ec2a15fa4f70b5729319d596d3a80bc528cdeeb02f36b88877a6545b77e8",
+      "source_relative_path": "data/pokemon-generation-one-22k/category_to_id.json",
+      "copy": "byte-identical"
+    },
+    {
+      "path": "data/pokemon-generation-one-22k/train_split.txt",
+      "sha256": "c4068bdec8c5994fa14887d3335e762dd6a4da1bc6394a6df7fae96d293138c0",
+      "source_relative_path": "data/pokemon-generation-one-22k/train_split.txt",
+      "copy": "byte-identical"
+    },
+    {
+      "path": "data/pokemon-generation-one-22k/val_split.txt",
+      "sha256": "6dfba46a82c1bb329287d6da0f87be1b3b71d26c217150bf681f37cce4264df0",
+      "source_relative_path": "data/pokemon-generation-one-22k/val_split.txt",
+      "copy": "byte-identical"
+    },
+    {
+      "path": "dataset.py",
+      "sha256": "47aea2b4ae6833198cbfa0801e0cc63fd5425dbe72bb77aec7f19a97ad90d063",
+      "source_relative_path": "dataset.py",
+      "copy": "byte-identical"
+    },
+    {
+      "path": "download_dataset.py",
+      "sha256": "e8e882dec2a83dcf5bdbfc1eb592df50948966a66d2a147ea87332652a8190a0",
+      "source_relative_path": "download_dataset.py",
+      "copy": "byte-identical"
+    },
+    {
+      "path": "evaluate.py",
+      "sha256": "f201320f3505ad478096313eedf657388a0c6aca4af456095509e13807228adb",
+      "source_relative_path": "evaluate.py",
+      "copy": "byte-identical"
+    },
+    {
+      "path": "model.py",
+      "sha256": "6eb5125a45a11d6c3e5a676717e786f3351533575c17f7505c46524b1b631fca",
+      "source_relative_path": "model.py",
+      "copy": "byte-identical"
+    },
+    {
+      "path": "prepare_data.py",
+      "sha256": "38eddf882a1b1b08ce95c2e51f80e179425364f97729e55a3d86194ed5b0cd58",
+      "source_relative_path": "prepare_data.py",
+      "copy": "byte-identical"
+    },
+    {
+      "path": "provenance.json",
+      "sha256": "fbb2a6bc48697aebc325a068fd5826a522f66e3aa58b8f064476a3813872f24d",
+      "source_relative_path": "provenance.json",
+      "copy": "byte-identical"
+    },
+    {
+      "path": "reference/cache_identity.json",
+      "sha256": "a551bd6e870a397b31b3ca5753b368869ec833ed7d0fd2abd73d3f7943a35a77",
+      "source_relative_path": "reference/cache_identity.json",
+      "copy": "byte-identical"
+    },
+    {
+      "path": "src/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_relative_path": "src/__init__.py",
+      "copy": "byte-identical"
+    },
+    {
+      "path": "src/cfg_meanflow.py",
+      "sha256": "53042cc13f8425e85a1247478afd261fe59d9721b16640c03febfa5dff1d13e4",
+      "source_relative_path": "src/cfg_meanflow.py",
+      "copy": "byte-identical"
+    },
+    {
+      "path": "src/diagnostic_fid.py",
+      "sha256": "efd86c3d53ee0cd1fd639dd57e5870882aaa9be3fb397dae135fb381598e14dd",
+      "source_relative_path": "src/diagnostic_fid.py",
+      "copy": "byte-identical"
+    },
+    {
+      "path": "src/imf_objective.py",
+      "sha256": "1d3a492ffa044c6132ca2e734f32592ce8932887a8f7b522b066fde23d4e4fce",
+      "source_relative_path": "src/imf_objective.py",
+      "copy": "byte-identical"
+    },
+    {
+      "path": "src/original_meanflow/LICENSE",
+      "sha256": "37ea6e9c724977e696b7697555b621248eb263f397cc1bbe5067eda2c793d2d8",
+      "source_relative_path": "src/original_meanflow/LICENSE",
+      "copy": "byte-identical"
+    },
+    {
+      "path": "src/original_meanflow/UPSTREAM.md",
+      "sha256": "a72f14a990404b76769046488d558e3577a380b603fc5b39610dc2cb43fadc36",
+      "source_relative_path": "src/original_meanflow/UPSTREAM.md",
+      "copy": "byte-identical"
+    },
+    {
+      "path": "src/original_meanflow/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_relative_path": "src/original_meanflow/__init__.py",
+      "copy": "byte-identical"
+    },
+    {
+      "path": "src/original_meanflow/augment.py",
+      "sha256": "092466c67c2b7f67938ec8071bac5b21a1712eed0c920e48f6b293ff48dc6fc9",
+      "source_relative_path": "src/original_meanflow/augment.py",
+      "copy": "byte-identical"
+    },
+    {
+      "path": "src/original_meanflow/groupnorm.py",
+      "sha256": "b8095075b8adbf3d6cb624d416649d41645dea288e3dd67ca2e83cd2093b4308",
+      "source_relative_path": "src/original_meanflow/groupnorm.py",
+      "copy": "byte-identical"
+    },
+    {
+      "path": "src/original_meanflow/recipe.py",
+      "sha256": "e63960c4258e42802d49a2f4ed7104758665d3b6c836e7fc80a80e8d2d1516ac",
+      "source_relative_path": "src/original_meanflow/recipe.py",
+      "copy": "byte-identical"
+    },
+    {
+      "path": "src/original_meanflow/unet.py",
+      "sha256": "d4212c4831b8c9c963a532fe594d5912a4fae225070114f4558d7ff2c7932aef",
+      "source_relative_path": "src/original_meanflow/unet.py",
+      "copy": "byte-identical"
+    },
+    {
+      "path": "src/runtime.py",
+      "sha256": "b5c0a417203e01b49ef3fddfeb6e93c9f7569afbc6c881d60a48e824025f73d9",
+      "source_relative_path": "src/runtime.py",
+      "copy": "byte-identical"
+    },
+    {
+      "path": "src/sampling_schedule.py",
+      "sha256": "e134296f2d2ade98866638cd098c0f8111c691891099a044d5a0a4450bb6f569",
+      "source_relative_path": "src/sampling_schedule.py",
+      "copy": "byte-identical"
+    },
+    {
+      "path": "src/training_data.py",
+      "sha256": "f05fcad34a9d8ac47ff523b172613e1b4ff1d3acc4634255672953e1c85beb52",
+      "source_relative_path": "src/training_data.py",
+      "copy": "byte-identical"
+    },
+    {
+      "path": "src/utils.py",
+      "sha256": "f5a02c07d8ad190969468b5ef947f0037a6943deb98e7903cd193361f742988f",
+      "source_relative_path": "src/utils.py",
+      "copy": "byte-identical"
+    },
+    {
+      "path": "sweep_sampling_schedule.py",
+      "sha256": "fe941494a7dc84431044c9a022aa8af789b51f7ef6c06173206452dee3c2dfe6",
+      "source_relative_path": "sweep_sampling_schedule.py",
+      "copy": "byte-identical"
+    },
+    {
+      "path": "tests/test_cfg.py",
+      "sha256": "44be7b85c18bf04fac3c4ef1911d87d4932c90248b2656c3f1df3b2f9cc367c2",
+      "source_relative_path": "tests/test_cfg.py",
+      "copy": "byte-identical"
+    },
+    {
+      "path": "tests/test_resume_options.py",
+      "sha256": "b5b7b31701c7d74221373065623a850034db62634453cecb2b3069b5c5259770",
+      "source_relative_path": "tests/test_resume_options.py",
+      "copy": "byte-identical"
+    },
+    {
+      "path": "tests/test_sampling_schedule.py",
+      "sha256": "c447eaf60e2345aadc7cdf27b60e7cadebc70548930e8990df2eb478bd4936f4",
+      "source_relative_path": "tests/test_sampling_schedule.py",
+      "copy": "byte-identical"
+    },
+    {
+      "path": "train.py",
+      "sha256": "dd84a166ff0c927be7c8a5aeacc841a8f02ffc16e6a9c44d4d8dbaf59509129c",
+      "source_relative_path": "train.py",
+      "copy": "byte-identical"
+    },
+    {
+      "path": "reference/original_requirements.txt",
+      "sha256": "967fa73e6de33a2c3087b488ccfaea603548d66ee606c80bfd9a9735fa39c93a",
+      "source_relative_path": "requirements.txt",
+      "copy": "byte-identical"
+    }
+  ],
+  "new_support_files": [
+    ".gitignore",
+    "ENVIRONMENT.md",
+    "README.md",
+    "VALIDATION.json",
+    "best_sampler.py",
+    "requirements.txt",
+    "sample.py"
+  ],
+  "best_sampler_origin": "Portable exact [1,0.6,0.3,0.018,0] sampler previously verified against the original 101k EMA checkpoint on CPU.",
+  "protected_source_policy": "model.py including the base Model class, evaluator, dataset, fixed manifests and backbone are unchanged.",
+  "support_files_sha256": {
+    ".gitignore": "46825cf08b048c2eedc2e30ebfe07a36900c724abccf7bcd6af9b06e9a6538c3",
+    "ENVIRONMENT.md": "a63beb70a56a59929a2ee1916d12f0339c1fafdfa57afa4bfb3ceedc5ae0693c",
+    "README.md": "545851482a88206b5ebcf9f78ccdb7d6008fb44c9187085f2cc650fd73d63080",
+    "VALIDATION.json": "7b9ec5b7f33930a6aeb4245f81e34e8f0f40bf80bfc963dc03034b9ca9cdf913",
+    "best_sampler.py": "a5304f06ac0eda6f7405e8a85a27f492ce46f6a890af8037f57b49433a1be06f",
+    "requirements.txt": "28ec836f7e94f72ac42bdbf3a9ea79ee4a666c01a65abd7fbd2a47783eec3040",
+    "sample.py": "e958cb00c77feada045160a78c0647ae901b7a091d4995facb5b50ab7daddbea"
+  }
+}

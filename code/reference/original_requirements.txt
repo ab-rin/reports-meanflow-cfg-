@@ -1,0 +1,9 @@
+# Versions recorded in the completed run. Install the CUDA 12.8 torch wheels first; see README.
+torch==2.7.1
+torchvision==0.22.1
+Pillow==11.3.0
+numpy==2.2.6
+scipy==1.15.3
+clean-fid==0.1.35
+kagglehub==1.0.2
+tqdm==4.70.1
