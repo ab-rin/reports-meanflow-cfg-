@@ -55,7 +55,7 @@ The null-label prediction comes from the current network in evaluation mode, wit
 $$
 D u_\theta=\frac{\partial u_\theta}{\partial t}
 +\frac{\partial u_\theta}{\partial z_t}v_g,\qquad
-u_{\mathrm{target}}=\operatorname{stopgrad}\!\left[v_g-(t-r)D u_\theta\right].
+u_{\mathrm{target}}=\mathrm{stopgrad}\!\left[v_g-(t-r)D u_\theta\right].
 $$
 
 The prediction and JVP use the same label and dropout realization. The target is detached before backpropagation. When $r=t$, the correction vanishes and the example reduces to velocity regression.
@@ -65,7 +65,7 @@ The prediction and JVP use the same label and dropout realization. The target is
 $$
 \mathcal L=\mathbb E\left[
 \frac{\lVert e\rVert_2^2}
-{\left(\operatorname{stopgrad}(\lVert e\rVert_2^2)+10^{-3}\right)^{0.75}}
+{\left(\mathrm{stopgrad}(\lVert e\rVert_2^2)+10^{-3}\right)^{0.75}}
 \right].
 $$
 

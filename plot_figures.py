@@ -197,7 +197,7 @@ def plot_algorithm():
         diagram_box(axis, 2.0, 3.75, 6.0, 1.35)
         axis.text(5, 4.81, "Shared U-Net and forward-mode JVP", ha="center", fontsize=11, zorder=3)
         axis.text(5, 4.43, r"$u=u_\theta(z_t,t,r,\widetilde{c})$", ha="center", fontsize=13, zorder=3)
-        axis.text(5, 4.03, r"$D=\operatorname{JVP}_{(z,r,t)}[u_\theta]\,[\overline{v},0,1]$", ha="center", fontsize=12, zorder=3)
+        axis.text(5, 4.03, r"$D=\mathrm{JVP}_{(z,r,t)}[u_\theta]\,[\overline{v},0,1]$", ha="center", fontsize=12, zorder=3)
         diagram_arrow(axis, (2.15, 6.05), (2.15, 5.1))
         axis.text(2.32, 5.51, r"$z_t,r,t,\widetilde{c}$", fontsize=11)
         diagram_arrow(axis, (6.9, 5.65), (6.9, 5.1))
@@ -205,7 +205,7 @@ def plot_algorithm():
 
         diagram_box(axis, 4.8, 2.2, 3.9, 0.85)
         axis.text(6.75, 2.77, "Stopped target", ha="center", fontsize=11, zorder=3)
-        axis.text(6.75, 2.4, r"$u_{\rm tgt}=\operatorname{sg}[\overline{v}-(t-r)D]$", ha="center", fontsize=12, zorder=3)
+        axis.text(6.75, 2.4, r"$u_{\rm tgt}=\mathrm{sg}[\overline{v}-(t-r)D]$", ha="center", fontsize=12, zorder=3)
         diagram_arrow(axis, (6.75, 3.75), (6.75, 3.05))
         axis.text(6.92, 3.35, r"$D$", fontsize=12)
         diagram_arrow(axis, (9.5, 6.2), (8.7, 2.62), via=((9.9, 6.2), (9.9, 2.62)))
@@ -213,11 +213,11 @@ def plot_algorithm():
 
         diagram_box(axis, 2.0, 0.77, 6.0, 0.95)
         axis.text(5, 1.44, r"$e=u-u_{\rm tgt}$", ha="center", fontsize=12, zorder=3)
-        axis.text(5, 1.02, r"$\mathcal{L}=\mathbb{E}\!\left[\frac{\|e\|_2^2}{(\operatorname{sg}[\|e\|_2^2]+10^{-3})^{0.75}}\right]$", ha="center", fontsize=13, zorder=3)
+        axis.text(5, 1.02, r"$\mathcal{L}=\mathbb{E}\!\left[\frac{\|e\|_2^2}{(\mathrm{sg}[\|e\|_2^2]+10^{-3})^{0.75}}\right]$", ha="center", fontsize=13, zorder=3)
         diagram_arrow(axis, (6.75, 2.2), (6.75, 1.72))
         diagram_arrow(axis, (2, 4.38), (2, 1.25), via=((1.1, 4.38), (1.1, 1.25)))
         axis.text(0.85, 2.72, r"$u$", fontsize=13)
-        axis.text(0.4, 0.31, r"$\operatorname{sg}$: stop gradient. All $u_\theta$ calls share weights; the null call uses evaluation mode.", fontsize=10)
+        axis.text(0.4, 0.31, r"$\mathrm{sg}$: stop gradient. All $u_\theta$ calls share weights; the null call uses evaluation mode.", fontsize=10)
         save(fig, "algorithm")
 
 
