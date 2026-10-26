@@ -1,6 +1,6 @@
 """Regenerate the report figures from the bundled four-call evaluation CSVs.
 
-Run: python reports/plot_figures.py
+Run: python plot_figures.py
 Requires matplotlib. Reads only the report's data/ files; no GPU or model needed.
 The 62k archived run is intentionally absent from this run's history.
 """
