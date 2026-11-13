@@ -123,7 +123,7 @@
   const sourceContext = sourceCanvas.getContext("2d", { willReadFrequently: true });
   let specimenIndex = 0;
   let specimenFrame = 4;
-  let specimenType = false;
+  let specimenType = true;
   let specimenTimer = null;
   let specimenImage = null;
   let specimenRequest = 0;
@@ -133,6 +133,7 @@
     sourceContext.clearRect(0, 0, 64, 64);
     sourceContext.drawImage(specimenImage, specimenFrame * 64, 0, 64, 64, 0, 0, 64, 64);
     specimenContext.clearRect(0, 0, 480, 480);
+    specimenCanvas.classList.toggle("literal-pixels", !specimenType);
     if (!specimenType) {
       specimenContext.imageSmoothingEnabled = false;
       specimenContext.drawImage(sourceCanvas, 112, 112, 256, 256);
@@ -186,7 +187,6 @@
   $("specimen-mode").addEventListener("click", (event) => {
     specimenType = !specimenType;
     event.target.setAttribute("aria-pressed", String(specimenType));
-    event.target.textContent = specimenType ? "show pixels" : "text art";
     drawSpecimen();
     if (specimenType) document.fonts.load("8px Plex").then(drawSpecimen);
   });
@@ -212,61 +212,47 @@
   });
   loadTrajectory();
   loadSpecimen();
-  document.fonts.ready.then(drawSpecimen);
+  document.fonts.load("8px Plex").then(drawSpecimen);
 
-  // Three recorded samples follow the pointer; no permanent animation loop.
+  // The original opening-only trail: samples appear in place, then fade.
   const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)");
   let trailEnabled = !reducedMotion.matches;
-  let trailFrame = null;
-  let trailLastTime = 0;
-  let trailTarget = null;
-  const followers = ["Pikachu", "Bulbasaur", "Squirtle"].map((name) => {
-    const image = new Image();
-    image.src = "assets/gallery/" + specimenSamples.find((sample) => sample.species === name).image;
-    image.className = "trail-sample";
-    image.alt = "";
-    $("sample-trail").append(image);
-    return { image, x: 0, y: 0 };
-  });
+  let trailIndex = 0;
+  let trailPoint = null;
   function stopTrail() {
-    cancelAnimationFrame(trailFrame);
-    trailFrame = null;
-    trailTarget = null;
-    $("sample-trail").classList.remove("following");
+    trailPoint = null;
+    $("sample-trail").replaceChildren();
   }
   function updateTrailControl() {
     const available = finePointer.matches && !reducedMotion.matches;
     $("trail-toggle").hidden = !available;
-    $("trail-toggle").textContent = trailEnabled ? "Pokémon follow: on" : "Pokémon follow: off";
+    $("trail-toggle").textContent = trailEnabled ? "trail on" : "trail off";
     $("trail-toggle").setAttribute("aria-pressed", String(trailEnabled));
+    $("trail-toggle").setAttribute("aria-label", trailEnabled ? "Turn image trail off" : "Turn image trail on");
     if (!trailEnabled || !available) stopTrail();
   }
-  function followPointer(time) {
-    const elapsed = Math.min(40, time - trailLastTime || 16);
-    trailLastTime = time;
-    const easing = 1 - Math.exp(-elapsed / 90);
-    let distance = 0;
-    followers.forEach((follower, index) => {
-      const previous = index ? followers[index - 1] : trailTarget;
-      const x = Math.max(32, Math.min(innerWidth - 32, previous.x + (index ? 58 : 44)));
-      const y = Math.max(32, Math.min(innerHeight - 32, previous.y + (index ? 12 : 44)));
-      const dx = x - follower.x, dy = y - follower.y;
-      distance += Math.abs(dx) + Math.abs(dy);
-      follower.x += dx * easing;
-      follower.y += dy * easing;
-      follower.image.style.transform = `translate(${Math.round(follower.x - 32)}px, ${Math.round(follower.y - 32)}px)`;
-    });
-    trailFrame = distance > .5 ? requestAnimationFrame(followPointer) : null;
-  }
   $("trail-toggle").addEventListener("click", () => { trailEnabled = !trailEnabled; updateTrailControl(); });
-  document.addEventListener("pointermove", (event) => {
-    if (!trailEnabled || reducedMotion.matches || !finePointer.matches || event.pointerType !== "mouse") return;
-    if (!trailTarget) followers.forEach((follower) => { follower.x = event.clientX; follower.y = event.clientY; });
-    trailTarget = { x: event.clientX, y: event.clientY };
-    $("sample-trail").classList.add("following");
-    if (!trailFrame) { trailLastTime = 0; trailFrame = requestAnimationFrame(followPointer); }
+  $("top").addEventListener("pointermove", (event) => {
+    if (!trailEnabled || reducedMotion.matches || !finePointer.matches || event.pointerType !== "mouse" ||
+        event.target.closest("a,button,canvas,.intro-note,.intro-title")) return;
+    const bounds = $("top").getBoundingClientRect();
+    const point = [event.clientX - bounds.left, event.clientY - bounds.top];
+    if (trailPoint && Math.hypot(point[0] - trailPoint[0], point[1] - trailPoint[1]) < 95) return;
+    trailPoint = point;
+    const sample = specimenSamples[trailIndex % specimenSamples.length];
+    const image = new Image();
+    image.src = "assets/gallery/" + sample.image;
+    image.className = "trail-sample";
+    image.alt = "";
+    image.style.left = (point[0] - 24) + "px";
+    image.style.top = (point[1] - 24) + "px";
+    image.style.rotate = ((trailIndex % 5) * 7 - 14) + "deg";
+    trailIndex++;
+    $("sample-trail").append(image);
+    if ($("sample-trail").children.length > 10) $("sample-trail").firstElementChild.remove();
+    image.addEventListener("animationend", () => image.remove(), { once: true });
   });
-  document.documentElement.addEventListener("pointerleave", stopTrail);
+  $("top").addEventListener("pointerleave", () => { trailPoint = null; });
   window.addEventListener("blur", stopTrail);
   finePointer.addEventListener("change", updateTrailControl);
   reducedMotion.addEventListener("change", updateTrailControl);
@@ -333,7 +319,7 @@
     });
     chart.append(svg("text", { x: right, y: 352, "text-anchor": "end", class: "chart-axis" }, "optimizer updates"),
       svg("text", { x: left, y: 13, "text-anchor": "start", class: "chart-axis" }, "FID ↓"));
-    [[22, "#64748b", "7 5"], [20.82, "#f59e0b", "2 5"]].forEach(([value, color, dash]) => chart.append(svg("line", {
+    [[22, "#8799a5", "7 5"], [20.82, "#b4b285", "2 5"]].forEach(([value, color, dash]) => chart.append(svg("line", {
       x1: left, x2: right, y1: y(value), y2: y(value), stroke: color, "stroke-dasharray": dash, "stroke-width": 1.2
     })));
     const visible = data.history.slice(0, chartIndex + 1);
@@ -341,8 +327,8 @@
     chart.append(svg("path", { d: path, class: "fid-path", "clip-path": "url(#fid-clip)" }));
     const point = data.history[chartIndex];
     if (point[0] >= xmin && point[1] <= ymax && point[1] >= ymin) {
-      chart.append(svg("line", { x1: x(point[0]), x2: x(point[0]), y1: y(point[1]), y2: bottom, stroke: "#2563eb55", "stroke-dasharray": "3 4" }),
-        svg("circle", { cx: x(point[0]), cy: y(point[1]), r: 5, fill: "#2563eb", stroke: "#ffffff", "stroke-width": 2 }));
+      chart.append(svg("line", { x1: x(point[0]), x2: x(point[0]), y1: y(point[1]), y2: bottom, stroke: "#47675b55", "stroke-dasharray": "3 4" }),
+        svg("circle", { cx: x(point[0]), cy: y(point[1]), r: 5, fill: "#47675b", stroke: "#fafbf9", "stroke-width": 2 }));
     }
     const snapshot = [1000, 8000, 32000, 64000, 101000, 122000].filter((step) => step <= point[0]).at(-1) || 1000;
     const snapshotPath = `assets/study/journey-${snapshot}.png`;
@@ -407,18 +393,18 @@
     pairChart.replaceChildren();
     const px = (value) => 70 + (value - 19) / 1.1 * (width - 95);
     [19, 19.25, 19.5, 19.75, 20].forEach((value) => {
-      pairChart.append(svg("line", { x1: px(value), x2: px(value), y1: 40, y2: 228, stroke: "#e2e8f0" }),
+      pairChart.append(svg("line", { x1: px(value), x2: px(value), y1: 40, y2: 228, stroke: "#e1ded3" }),
         svg("text", { x: px(value), y: 253, "text-anchor": "middle", class: "chart-axis" }, value.toFixed(2)));
     });
     data.pairs.forEach((row, index) => {
       const y = 55 + index * 39;
       pairChart.append(svg("text", { x: 55, y: y + 4, "text-anchor": "end", class: "chart-axis" }, `run ${index + 1}`),
-        svg("line", { x1: px(row.tuned), x2: px(row.baseline), y1: y, y2: y, stroke: "#94a3b8", "stroke-width": 2 }),
-        svg("circle", { cx: px(row.baseline), cy: y, r: 5, fill: "#64748b" }),
-        svg("circle", { cx: px(row.tuned), cy: y, r: 5, fill: "#2563eb" }));
+        svg("line", { x1: px(row.tuned), x2: px(row.baseline), y1: y, y2: y, stroke: "#afb5a9", "stroke-width": 2 }),
+        svg("circle", { cx: px(row.baseline), cy: y, r: 5, fill: "#8799a5" }),
+        svg("circle", { cx: px(row.tuned), cy: y, r: 5, fill: "#47675b" }));
     });
-    pairChart.append(svg("text", { x: 70, y: 282, fill: "#2563eb", "font-size": 12 }, "● tuned"),
-      svg("text", { x: 160, y: 282, fill: "#64748b", "font-size": 12 }, "● ρ = 2"));
+    pairChart.append(svg("text", { x: 70, y: 282, fill: "#47675b", "font-size": 12 }, "● tuned"),
+      svg("text", { x: 160, y: 282, fill: "#8799a5", "font-size": 12 }, "● ρ = 2"));
   }
   drawPaired();
 
@@ -507,8 +493,8 @@
     const band = data.loss.map((row, i) => `${i ? "L" : "M"}${x(row[0])},${y(row[3])}`).join(" ") +
       data.loss.slice().reverse().map((row) => `L${x(row[0])},${y(row[2])}`).join(" ") + "Z";
     const path = data.loss.map((row, i) => `${i ? "L" : "M"}${x(row[0])},${y(row[1])}`).join(" ");
-    lossSvg.append(svg("path", { d: band, fill: "#dbeafe", opacity: ".6" }),
-      svg("path", { d: path, fill: "none", stroke: "#64748b", "stroke-width": 2 }));
+    lossSvg.append(svg("path", { d: band, fill: "#c9d1c3", opacity: ".6" }),
+      svg("path", { d: path, fill: "none", stroke: "#8799a5", "stroke-width": 2 }));
     [0, 40000, 80000, 120000].forEach((step) => lossSvg.append(svg("text", { x: x(step), y: 233, "text-anchor": "middle", class: "chart-axis" }, `${step / 1000}k`)));
     panel.append(lossSvg);
     const notes = document.createElement("details");

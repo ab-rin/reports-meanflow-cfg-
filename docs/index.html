@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="description" content="A Pokémon generator trained from scratch with MeanFlow. Images, experiments, code, and a question about what lower FID actually buys.">
-  <meta name="theme-color" content="#ffffff">
+  <meta name="theme-color" content="#fafbf9">
   <meta property="og:title" content="Pokémon, MeanFlow, and a question about FID">
   <meta property="og:description" content="A course project by ab-rin. Play with the samples, compare checkpoints, and inspect the experiments.">
   <title>Pokémon &amp; MeanFlow — ab-rin</title>
@@ -17,11 +17,11 @@
 <a class="skip-link" href="#main">Skip to content</a>
 <header class="site-header">
   <a class="home-link" href="#top">ab-rin <span>/</span> meanflow</a>
-  <div class="header-right"><a href="https://github.com/ab-rin/reports-meanflow-cfg-">source ↗</a><button id="trail-toggle" type="button" aria-pressed="true">Pokémon follow: on</button></div>
+  <div class="header-right"><a href="https://github.com/ab-rin/reports-meanflow-cfg-">source ↗</a><button id="trail-toggle" type="button" aria-pressed="true" aria-label="Turn image trail off">trail on</button></div>
 </header>
-<div id="sample-trail" aria-hidden="true"></div>
 <main id="main">
 <section class="intro" id="top">
+  <div id="sample-trail" aria-hidden="true"></div>
   <nav class="index" aria-label="Project sections">
     <a href="#explore"><span>the images</span><i></i></a>
     <a href="#question"><span>the question</span><i></i></a>
@@ -31,8 +31,8 @@
   </nav>
   <div class="intro-title"><h1>Pokémon<br>from noise.</h1><p class="intro-signature">a course project by <a href="https://github.com/ab-rin">ab-rin</a></p></div>
   <figure class="type-specimen" id="type-specimen">
-    <canvas id="type-canvas" width="480" height="480" role="img" aria-label="Interactive pixel rendering of a real generated Pikachu"></canvas>
-    <div class="specimen-controls"><button type="button" id="specimen-play">↺ replay</button><button type="button" id="specimen-mode" aria-pressed="false">text art</button><button type="button" id="specimen-next">another one ↗</button></div>
+    <canvas id="type-canvas" width="480" height="480" role="img" aria-label="Interactive typographic rendering of a real generated Pikachu"></canvas>
+    <div class="specimen-controls"><button type="button" id="specimen-play">↺ replay</button><button type="button" id="specimen-mode" aria-pressed="true" aria-label="Text art">type / pixels</button><button type="button" id="specimen-next">another one ↗</button></div>
   </figure>
   <div class="intro-note">
     <p>I trained a model to make <span class="inline-sample" tabindex="0">Pokémon<img src="assets/gallery/bulbasaur-42.png" alt="Generated Bulbasaur, seed 42"></span> from scratch, using just four network calls per image.</p>
