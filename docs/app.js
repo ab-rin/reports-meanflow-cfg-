@@ -24,68 +24,95 @@
   let playTimer = null;
   let frame = 4;
   let imageRequest = 0;
-  let trajectoryImage = null;
-  const generationCanvas = $("generation-canvas");
+  let playTarget = null;
+  const cards = Array.from({ length: 5 }, () => {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "seed-card";
+    const canvas = document.createElement("canvas");
+    canvas.width = canvas.height = 64;
+    canvas.setAttribute("aria-hidden", "true");
+    const label = textElement("span", "");
+    button.append(canvas, label);
+    $("seed-gallery").append(button);
+    return { button, canvas, label, image: null, seed: 42 };
+  });
   $("seed").max = seeds.length - 1;
   $("seed").value = seeds.indexOf(42);
   function setFrame(index) {
     frame = index;
-    if (!trajectoryImage) return;
-    generationCanvas.getContext("2d").drawImage(trajectoryImage, 64 * frame, 0, 64, 64, 0, 0, 64, 64);
+    cards.forEach((card, i) => {
+      if (!card.image) return;
+      const cardFrame = playTarget === null || playTarget === i ? frame : 4;
+      card.canvas.getContext("2d").drawImage(card.image, 64 * cardFrame, 0, 64, 64, 0, 0, 64, 64);
+      card.button.setAttribute("aria-label", `Replay ${selectedSpecies}, seed ${card.seed}, ${cardFrame ? "after call " + cardFrame : "initial noise"}`);
+    });
     [...$("generation-progress").children].forEach((mark, i) => mark.classList.toggle("filled", i < frame));
-    const seed = seeds[+$("seed").value];
-    generationCanvas.setAttribute("aria-label", `${selectedSpecies}, seed ${seed}, ${frame ? "after call " + frame : "initial noise"}`);
     $("generation-status").textContent = frame === 4 ? "" : frame ? `Call ${frame} of 4` : "Starting from noise…";
   }
   function stopPlayback() {
     clearInterval(playTimer);
     playTimer = null;
-    $("play").textContent = "↺ Watch it form";
+    $("play").textContent = "↺ Replay all five";
   }
-  function loadTrajectory() {
+  async function loadTrajectory() {
     stopPlayback();
     const request = ++imageRequest;
-    const seed = seeds[+$("seed").value];
-    const sample = data.gallery.samples.find((s) => s.species === selectedSpecies && s.seed === seed);
+    const first = +$("seed").value;
     $("selected-species").textContent = selectedSpecies;
-    $("seed-value").textContent = seed;
-    $("seed").setAttribute("aria-valuetext", `Seed ${seed}`);
+    $("seed-value").textContent = seeds[first];
+    $("seed").setAttribute("aria-valuetext", `Five samples starting at seed ${seeds[first]}`);
     document.querySelectorAll("#sample-shelf button").forEach((button) => button.setAttribute("aria-pressed", String(button.dataset.species === selectedSpecies)));
     $("play").disabled = true;
     $("generation-status").textContent = "Loading…";
-    trajectoryImage = null;
-    generationCanvas.getContext("2d").clearRect(0, 0, 64, 64);
-    const image = new Image();
-    image.onload = () => {
+    const samples = cards.map((card, index) => {
+      card.seed = seeds[(first + index) % seeds.length];
+      card.image = null;
+      card.button.disabled = true;
+      card.button.setAttribute("aria-label", `Loading ${selectedSpecies}, seed ${card.seed}`);
+      card.label.textContent = `Seed ${card.seed}`;
+      card.canvas.getContext("2d").clearRect(0, 0, 64, 64);
+      return data.gallery.samples.find((sample) => sample.species === selectedSpecies && sample.seed === card.seed);
+    });
+    try {
+      const images = await Promise.all(samples.map((sample) => new Promise((resolve, reject) => {
+        const image = new Image();
+        image.onload = () => resolve(image);
+        image.onerror = reject;
+        image.src = `assets/gallery/${sample.trajectory}`;
+      })));
       if (request !== imageRequest) return;
-      trajectoryImage = image;
-      $("play").disabled = false;
+      cards.forEach((card, index) => { card.image = images[index]; card.button.disabled = false; });
+      playTarget = null;
       setFrame(4);
-    };
-    image.onerror = () => {
-      if (request === imageRequest) $("generation-status").textContent = "Image unavailable. Try another seed.";
-    };
-    image.src = `assets/gallery/${sample.trajectory}`;
+      $("play").disabled = false;
+    } catch {
+      if (request === imageRequest) $("generation-status").textContent = "Images unavailable. Try another set of seeds.";
+    }
   }
-  $("seed").addEventListener("input", loadTrajectory);
-  $("another-seed").addEventListener("click", () => {
-    const offset = 1 + Math.floor(Math.random() * (seeds.length - 1));
-    $("seed").value = (+$("seed").value + offset) % seeds.length;
-    loadTrajectory();
-  });
-  $("play").addEventListener("click", () => {
-    if (playTimer) { stopPlayback(); return; }
+  function startPlayback(target = null) {
+    stopPlayback();
+    playTarget = target;
     setFrame(0);
     $("play").textContent = "Ⅱ Pause";
     playTimer = setInterval(() => {
       setFrame(frame + 1);
       if (frame === 4) stopPlayback();
     }, 700);
+  }
+  cards.forEach((card, index) => card.button.addEventListener("click", () => startPlayback(index)));
+  $("seed").addEventListener("input", loadTrajectory);
+  $("another-seed").addEventListener("click", () => {
+    $("seed").value = (+$("seed").value + cards.length) % seeds.length;
+    loadTrajectory();
+  });
+  $("play").addEventListener("click", () => {
+    if (playTimer) stopPlayback(); else startPlayback();
   });
   $("pixel-toggle").addEventListener("click", (event) => {
     const active = document.body.classList.toggle("pixelated");
     event.target.setAttribute("aria-pressed", String(active));
-    event.target.textContent = active ? "Smooth display" : "Show pixels";
+    event.target.textContent = active ? "Pixels on" : "Pixels off";
   });
 
   // A typographic view of the same recorded pixels, with a literal-pixel toggle.
@@ -96,7 +123,7 @@
   const sourceContext = sourceCanvas.getContext("2d", { willReadFrequently: true });
   let specimenIndex = 0;
   let specimenFrame = 4;
-  let specimenType = true;
+  let specimenType = false;
   let specimenTimer = null;
   let specimenImage = null;
   let specimenRequest = 0;
@@ -108,7 +135,7 @@
     specimenContext.clearRect(0, 0, 480, 480);
     if (!specimenType) {
       specimenContext.imageSmoothingEnabled = false;
-      specimenContext.drawImage(sourceCanvas, 64, 64, 352, 352);
+      specimenContext.drawImage(sourceCanvas, 112, 112, 256, 256);
     } else {
       const pixels = sourceContext.getImageData(0, 0, 64, 64).data;
       const alphabet = " .·:+*ox#@";
@@ -159,7 +186,9 @@
   $("specimen-mode").addEventListener("click", (event) => {
     specimenType = !specimenType;
     event.target.setAttribute("aria-pressed", String(specimenType));
+    event.target.textContent = specimenType ? "show pixels" : "text art";
     drawSpecimen();
+    if (specimenType) document.fonts.load("8px Plex").then(drawSpecimen);
   });
   $("specimen-next").addEventListener("click", () => {
     specimenIndex = (specimenIndex + 1) % specimenSamples.length;
@@ -219,14 +248,13 @@
     let distance = 0;
     followers.forEach((follower, index) => {
       const previous = index ? followers[index - 1] : trailTarget;
-      const x = Math.max(24, Math.min(innerWidth - 24, previous.x + (index ? 42 : 36)));
-      const y = Math.max(24, Math.min(innerHeight - 24, previous.y + (index ? 12 : 36)));
+      const x = Math.max(32, Math.min(innerWidth - 32, previous.x + (index ? 58 : 44)));
+      const y = Math.max(32, Math.min(innerHeight - 32, previous.y + (index ? 12 : 44)));
       const dx = x - follower.x, dy = y - follower.y;
       distance += Math.abs(dx) + Math.abs(dy);
       follower.x += dx * easing;
       follower.y += dy * easing;
-      const tilt = Math.max(-12, Math.min(12, dx * .3));
-      follower.image.style.transform = `translate(${follower.x - 24}px, ${follower.y - 24}px) rotate(${tilt}deg)`;
+      follower.image.style.transform = `translate(${Math.round(follower.x - 32)}px, ${Math.round(follower.y - 32)}px)`;
     });
     trailFrame = distance > .5 ? requestAnimationFrame(followPointer) : null;
   }
@@ -244,16 +272,35 @@
   reducedMotion.addEventListener("change", updateTrailControl);
   updateTrailControl();
 
-  const diagram = document.querySelector(".flow-diagram > svg");
-  let diagramPaused = reducedMotion.matches;
-  function setDiagramMotion() {
-    if (diagramPaused) diagram.pauseAnimations(); else diagram.unpauseAnimations();
-    $("motion-toggle").textContent = diagramPaused ? "Play diagram motion" : "Pause diagram motion";
-    $("motion-toggle").setAttribute("aria-pressed", String(diagramPaused));
+  const trainingStages = [...document.querySelectorAll("[data-training-stage]")];
+  const stageDescriptions = [
+    "Mix a training image with Gaussian noise at time t. Keep the image’s class label as the condition.",
+    "The class-conditioned U-Net predicts average velocity over the interval from t to r.",
+    "Combine guided velocity with a Jacobian-vector product (JVP). Detach this target so gradients do not flow through it.",
+    "Compare prediction and target with the adaptively weighted loss. Adam updates the network; an exponential moving average (EMA) keeps the sampling weights."
+  ];
+  let trainingStage = 0;
+  let diagramTimer = null;
+  function showTrainingStage(index) {
+    trainingStage = index;
+    trainingStages.forEach((button, i) => button.setAttribute("aria-pressed", String(i === index)));
+    $("training-explanation").textContent = stageDescriptions[index];
   }
-  $("motion-toggle").addEventListener("click", () => { diagramPaused = !diagramPaused; setDiagramMotion(); });
-  reducedMotion.addEventListener("change", () => { diagramPaused = reducedMotion.matches; setDiagramMotion(); });
-  setDiagramMotion();
+  function stopDiagram() {
+    clearInterval(diagramTimer);
+    diagramTimer = null;
+    $("motion-toggle").textContent = "▶ Play loop";
+    $("motion-toggle").setAttribute("aria-pressed", "false");
+  }
+  trainingStages.forEach((button, index) => button.addEventListener("click", () => { stopDiagram(); showTrainingStage(index); }));
+  $("motion-toggle").addEventListener("click", () => {
+    if (diagramTimer) { stopDiagram(); return; }
+    showTrainingStage(0);
+    $("motion-toggle").textContent = "Ⅱ Pause loop";
+    $("motion-toggle").setAttribute("aria-pressed", "true");
+    diagramTimer = setInterval(() => showTrainingStage((trainingStage + 1) % trainingStages.length), 1800);
+  });
+  reducedMotion.addEventListener("change", () => { if (reducedMotion.matches) stopDiagram(); });
 
   let chartZoom = false;
   let chartTimer = null;
@@ -286,7 +333,7 @@
     });
     chart.append(svg("text", { x: right, y: 352, "text-anchor": "end", class: "chart-axis" }, "optimizer updates"),
       svg("text", { x: left, y: 13, "text-anchor": "start", class: "chart-axis" }, "FID ↓"));
-    [[22, "#8799a5", "7 5"], [20.82, "#b4b285", "2 5"]].forEach(([value, color, dash]) => chart.append(svg("line", {
+    [[22, "#64748b", "7 5"], [20.82, "#f59e0b", "2 5"]].forEach(([value, color, dash]) => chart.append(svg("line", {
       x1: left, x2: right, y1: y(value), y2: y(value), stroke: color, "stroke-dasharray": dash, "stroke-width": 1.2
     })));
     const visible = data.history.slice(0, chartIndex + 1);
@@ -294,8 +341,8 @@
     chart.append(svg("path", { d: path, class: "fid-path", "clip-path": "url(#fid-clip)" }));
     const point = data.history[chartIndex];
     if (point[0] >= xmin && point[1] <= ymax && point[1] >= ymin) {
-      chart.append(svg("line", { x1: x(point[0]), x2: x(point[0]), y1: y(point[1]), y2: bottom, stroke: "#47675b55", "stroke-dasharray": "3 4" }),
-        svg("circle", { cx: x(point[0]), cy: y(point[1]), r: 5, fill: "#47675b", stroke: "#fafbf9", "stroke-width": 2 }));
+      chart.append(svg("line", { x1: x(point[0]), x2: x(point[0]), y1: y(point[1]), y2: bottom, stroke: "#2563eb55", "stroke-dasharray": "3 4" }),
+        svg("circle", { cx: x(point[0]), cy: y(point[1]), r: 5, fill: "#2563eb", stroke: "#ffffff", "stroke-width": 2 }));
     }
     const snapshot = [1000, 8000, 32000, 64000, 101000, 122000].filter((step) => step <= point[0]).at(-1) || 1000;
     const snapshotPath = `assets/study/journey-${snapshot}.png`;
@@ -353,21 +400,27 @@
   }
   document.querySelectorAll("[data-schedule]").forEach((button) => button.addEventListener("click", () => setSchedule(button.dataset.schedule)));
   setSchedule("tuned");
-  const pairChart = $("paired-chart");
-  const px = (value) => 90 + (value - 19) / 1.1 * 345;
-  [19, 19.25, 19.5, 19.75, 20].forEach((value) => {
-    pairChart.append(svg("line", { x1: px(value), x2: px(value), y1: 40, y2: 228, stroke: "#e1ded3" }),
-      svg("text", { x: px(value), y: 253, "text-anchor": "middle", class: "chart-axis" }, value.toFixed(2)));
-  });
-  data.pairs.forEach((row, index) => {
-    const y = 55 + index * 39;
-    pairChart.append(svg("text", { x: 64, y: y + 4, "text-anchor": "end", class: "chart-axis" }, `run ${index + 1}`),
-      svg("line", { x1: px(row.tuned), x2: px(row.baseline), y1: y, y2: y, stroke: "#afb5a9", "stroke-width": 2 }),
-      svg("circle", { cx: px(row.baseline), cy: y, r: 5, fill: "#8799a5" }),
-      svg("circle", { cx: px(row.tuned), cy: y, r: 5, fill: "#47675b" }));
-  });
-  pairChart.append(svg("text", { x: 90, y: 282, fill: "#47675b", "font-size": 11 }, "● tuned"),
-    svg("text", { x: 185, y: 282, fill: "#8799a5", "font-size": 11 }, "● ρ = 2"));
+  function drawPaired() {
+    const pairChart = $("paired-chart");
+    const width = Math.max(280, pairChart.clientWidth);
+    pairChart.setAttribute("viewBox", `0 0 ${width} 290`);
+    pairChart.replaceChildren();
+    const px = (value) => 70 + (value - 19) / 1.1 * (width - 95);
+    [19, 19.25, 19.5, 19.75, 20].forEach((value) => {
+      pairChart.append(svg("line", { x1: px(value), x2: px(value), y1: 40, y2: 228, stroke: "#e2e8f0" }),
+        svg("text", { x: px(value), y: 253, "text-anchor": "middle", class: "chart-axis" }, value.toFixed(2)));
+    });
+    data.pairs.forEach((row, index) => {
+      const y = 55 + index * 39;
+      pairChart.append(svg("text", { x: 55, y: y + 4, "text-anchor": "end", class: "chart-axis" }, `run ${index + 1}`),
+        svg("line", { x1: px(row.tuned), x2: px(row.baseline), y1: y, y2: y, stroke: "#94a3b8", "stroke-width": 2 }),
+        svg("circle", { cx: px(row.baseline), cy: y, r: 5, fill: "#64748b" }),
+        svg("circle", { cx: px(row.tuned), cy: y, r: 5, fill: "#2563eb" }));
+    });
+    pairChart.append(svg("text", { x: 70, y: 282, fill: "#2563eb", "font-size": 12 }, "● tuned"),
+      svg("text", { x: 160, y: 282, fill: "#64748b", "font-size": 12 }, "● ρ = 2"));
+  }
+  drawPaired();
 
   if (data.study) {
     const panel = $("checkpoint-comparison");
@@ -454,8 +507,8 @@
     const band = data.loss.map((row, i) => `${i ? "L" : "M"}${x(row[0])},${y(row[3])}`).join(" ") +
       data.loss.slice().reverse().map((row) => `L${x(row[0])},${y(row[2])}`).join(" ") + "Z";
     const path = data.loss.map((row, i) => `${i ? "L" : "M"}${x(row[0])},${y(row[1])}`).join(" ");
-    lossSvg.append(svg("path", { d: band, fill: "#c9d1c3", opacity: ".6" }),
-      svg("path", { d: path, fill: "none", stroke: "#8799a5", "stroke-width": 2 }));
+    lossSvg.append(svg("path", { d: band, fill: "#dbeafe", opacity: ".6" }),
+      svg("path", { d: path, fill: "none", stroke: "#64748b", "stroke-width": 2 }));
     [0, 40000, 80000, 120000].forEach((step) => lossSvg.append(svg("text", { x: x(step), y: 233, "text-anchor": "middle", class: "chart-axis" }, `${step / 1000}k`)));
     panel.append(lossSvg);
     const notes = document.createElement("details");
@@ -477,9 +530,8 @@
     }
     setTimeout(() => { event.target.textContent = "Copy command"; }, 2400);
   });
-  window.addEventListener("resize", () => { drawFID(); drawLoss(); });
+  window.addEventListener("resize", () => { drawFID(); drawLoss(); drawPaired(); });
   document.addEventListener("visibilitychange", () => {
-    if (document.hidden) { stopPlayback(); stopChart(); stopSpecimen(); stopTrail(); diagram.pauseAnimations(); }
-    else setDiagramMotion();
+    if (document.hidden) { stopPlayback(); stopChart(); stopSpecimen(); stopTrail(); stopDiagram(); }
   });
 })();

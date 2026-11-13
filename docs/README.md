@@ -14,9 +14,9 @@ GitHub Pages can serve `main` → `/docs`. `.nojekyll` keeps these files unchang
 - `assets/study/compare-*`: the same 12 species and three seeds at 64k and 101k, using uniform four-call sampling on the GPU. All outputs are included. Grid order follows the species list in `study.json`, left to right, top to bottom.
 - `assets/study/journey-*`: fixed Pikachu class and seed 42 at 1k, 8k, 32k, 64k, 101k, and 122k EMA checkpoints, using uniform four-call sampling.
 - `assets/four-calls.gif`: a preview rendered from six seed-42 gallery strips. It contains only the five saved model states. There is no interpolation.
-- The opening canvas converts those same pixels into colored characters. Its “type / pixels” control switches to the recorded RGB image. This typographic treatment is presentation, not another model output.
+- The opening canvas starts with the recorded RGB pixels. Its “text art” control converts those same pixels into colored characters. This optional typographic treatment is presentation, not another model output.
 
-The seed slider selects from those 16 recorded seeds. The checkpoint wipe uses all 36 existing matched pairs; it does not mix samples from different seeds. The training chart switches among six real saved snapshots, always labeling the snapshot’s update count. Desktop pointer followers use three of the same recorded samples, stop when settled or hidden, and are disabled for touch and reduced-motion preferences.
+The gallery displays five consecutive entries from the 16 recorded seeds, wrapping at the end. Each image can replay individually; “Replay all five” plays them together. The seed slider selects the first entry. Images default to pixel rendering and stay at 128 CSS pixels or smaller in the gallery (64 pixels on phones). The checkpoint wipe uses all 36 existing matched pairs; it does not mix samples from different seeds. The training chart switches among six real saved snapshots, always labeling the snapshot’s update count. Desktop pointer followers use three of the same recorded samples, stop when settled or hidden, and are disabled for touch and reduced-motion preferences.
 
 The samples are conditioned on the class names in the course mapping. They are not selected for image quality. Their declared species list is a small qualitative selection, not a random sample of all 151 classes or a human-preference benchmark.
 
@@ -75,7 +75,9 @@ Generated PNGs contain RGB pixels without EXIF, text, or location metadata. Chec
 
 The current provenance documents omit local filesystem paths while retaining the original source hashes. Earlier Git commits and the older inference-source release contain historical local path strings; history has not been rewritten.
 
-Fonts come from the official `google/fonts` repository and retain their SIL Open Font License files. The source download was checked against GitHub's blob hashes:
+The page uses system sans-serif fonts and native MathML for the sampling equation. The training-loop diagram uses responsive HTML stages, with click-to-explain and optional playback. No external math or animation library is needed.
+
+The optional text-art canvas uses IBM Plex Mono; the earlier EB Garamond asset is retained for provenance but is no longer loaded by the page. Both bundled fonts come from the official `google/fonts` repository and retain their SIL Open Font License files. The source download was checked against GitHub's blob hashes:
 
 | Asset | Git blob SHA-1 |
 | --- | --- |
