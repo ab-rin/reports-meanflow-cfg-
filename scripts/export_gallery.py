@@ -48,7 +48,7 @@ def export(args):
     records = []
     verification = None
     for name in SPECIES:
-        for seed in SEEDS:
+        for seed in args.seeds:
             torch.manual_seed(seed)
             category = torch.tensor([mapping[name]], device=args.device)
             x = torch.randn((1, 3, 64, 64), device=args.device)
@@ -79,7 +79,7 @@ def export(args):
     record = {"checkpoint_sha256": digest, "checkpoint_step": 101000,
               "times": list(BEST_TIMES), "calls": 4, "resolution": [64, 64],
               "device": args.device, "torch": torch.__version__, "precision": "FP32",
-              "selection": "12 named species, all three declared seeds; no sample filtering",
+              "selection": f"12 named species, all {len(args.seeds)} declared seeds; no sample filtering",
               "display": "Actual states clipped to [-1,1] for RGB display. No interpolated model states.",
               "verification": verification, "samples": records}
     (args.output / "gallery.json").write_text(json.dumps(record, indent=2) + "\n")
@@ -90,4 +90,5 @@ if __name__ == "__main__":
     parser.add_argument("--checkpoint", type=Path, required=True)
     parser.add_argument("--output", type=Path, default=ROOT / "docs/assets/gallery")
     parser.add_argument("--device", choices=["cpu", "cuda", "mps"], default="cpu")
+    parser.add_argument("--seeds", type=int, nargs="+", default=SEEDS)
     export(parser.parse_args())

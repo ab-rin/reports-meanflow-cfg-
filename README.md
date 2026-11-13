@@ -6,7 +6,7 @@ I trained a Pokémon generator from scratch for KAIST’s [FastGen course projec
 
 ![Six Pokémon generated in four actual model calls, starting from noise.](docs/assets/four-calls.gif)
 
-*101k EMA, seed 42. Five recorded states, with no interpolated frames. The page includes all 36 samples across 12 species and three seeds.*
+*101k EMA, seed 42. Five recorded states, with no interpolated frames. The page includes all 192 samples across 12 species and 16 seeds.*
 
 ## Why I wanted to look beyond the score
 

@@ -10,11 +10,13 @@ GitHub Pages can serve `main` → `/docs`. `.nojekyll` keeps these files unchang
 
 ## What the images show
 
-- `assets/gallery/`: 12 declared species × seeds 42, 1234, 2026. Each strip contains initial Gaussian noise and four actual model states from the 101k EMA checkpoint with times `[1, .6, .3, .018, 0]`. Intermediate states are clipped for display. These are CPU FP32 samples, not members of the GPU FID evaluation set.
+- `assets/gallery/`: 12 declared species × 16 seeds: 7, 19, 42, 73, 101, 256, 512, 777, 999, 1234, 1337, 2026, 2048, 4096, 8192, 16384. Each strip contains initial Gaussian noise and four actual model states from the 101k EMA checkpoint with times `[1, .6, .3, .018, 0]`. Intermediate states are clipped for display. These are CPU FP32 samples, not members of the GPU FID evaluation set.
 - `assets/study/compare-*`: the same 12 species and three seeds at 64k and 101k, using uniform four-call sampling on the GPU. All outputs are included. Grid order follows the species list in `study.json`, left to right, top to bottom.
 - `assets/study/journey-*`: fixed Pikachu class and seed 42 at 1k, 8k, 32k, 64k, 101k, and 122k EMA checkpoints, using uniform four-call sampling.
 - `assets/four-calls.gif`: a preview rendered from six seed-42 gallery strips. It contains only the five saved model states. There is no interpolation.
 - The opening canvas converts those same pixels into colored characters. Its “type / pixels” control switches to the recorded RGB image. This typographic treatment is presentation, not another model output.
+
+The seed slider selects from those 16 recorded seeds. The checkpoint wipe uses all 36 existing matched pairs; it does not mix samples from different seeds. The training chart switches among six real saved snapshots, always labeling the snapshot’s update count. Desktop pointer followers use three of the same recorded samples, stop when settled or hidden, and are disabled for touch and reduced-motion preferences.
 
 The samples are conditioned on the class names in the course mapping. They are not selected for image quality. Their declared species list is a small qualitative selection, not a random sample of all 151 classes or a human-preference benchmark.
 
@@ -25,7 +27,8 @@ Use the repository's documented model dependencies, plus Pillow. The exporter ch
 ```bash
 python scripts/export_gallery.py \
   --checkpoint code/checkpoints/ema_0101000.ckpt \
-  --output outputs/gallery-recheck --device cpu
+  --output outputs/gallery-recheck --device cpu \
+  --seeds 7 19 42 73 101 256 512 777 999 1234 1337 2026 2048 4096 8192 16384
 ```
 
 The output must be a fresh directory. To rebuild the browser data and README animation from the checked-in assets:
@@ -79,4 +82,4 @@ Fonts come from the official `google/fonts` repository and retain their SIL Open
 | EB Garamond variable TTF | `52d34b86ec20977f222ce37e8158e6b3002c0a31` |
 | IBM Plex Mono Light TTF | `61d43577842179cdffeb38b6c1928786981db0da` |
 
-Design references: [antwi.dev](https://antwi.dev/) and [jadefranson.com](https://www.jadefranson.com/). Their images, source code, and site assets were not copied. All Pokémon images on this page come from this project's model. The model backbone's upstream license and attribution remain in `code/src/original_meanflow/`.
+Design references: [antwi.dev](https://antwi.dev/), [jadefranson.com](https://www.jadefranson.com/), [Visual Anagrams](https://dangeng.github.io/visual_anagrams/), and [Prompt-to-Prompt](https://prompt-to-prompt.github.io/). Their images, source code, and site assets were not copied. All Pokémon images on this page come from this project's model. The model backbone's upstream license and attribution remain in `code/src/original_meanflow/`.

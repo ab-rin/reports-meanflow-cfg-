@@ -18,88 +18,91 @@
 <a class="skip-link" href="#main">Skip to content</a>
 <header class="site-header">
   <a class="home-link" href="#top">ab-rin <span>/</span> meanflow</a>
-  <div class="header-right"><a href="https://github.com/ab-rin/reports-meanflow-cfg-">source ↗</a><button id="trail-toggle" type="button" aria-pressed="false" aria-label="Turn sample trail off"><span class="trail-icon" aria-hidden="true">···</span> trail on</button></div>
+  <div class="header-right"><a href="https://github.com/ab-rin/reports-meanflow-cfg-">source ↗</a><button id="trail-toggle" type="button" aria-pressed="true">Pokémon follow: on</button></div>
 </header>
+<div id="sample-trail" aria-hidden="true"></div>
 <main id="main">
 <section class="intro" id="top">
   <nav class="index" aria-label="Project sections">
-    <a href="#explore"><span>the images</span><i></i><span>01</span></a>
-    <a href="#question"><span>the question</span><i></i><span>02</span></a>
-    <a href="#results"><span>the experiments</span><i></i><span>03</span></a>
-    <a href="#method"><span>the method</span><i></i><span>04</span></a>
-    <a href="#reproduce"><span>the files</span><i></i><span>05</span></a>
+    <a href="#explore"><span>the images</span><i></i></a>
+    <a href="#question"><span>the question</span><i></i></a>
+    <a href="#results"><span>the experiments</span><i></i></a>
+    <a href="#method"><span>the method</span><i></i></a>
+    <a href="#reproduce"><span>the files</span><i></i></a>
   </nav>
-  <div class="intro-title"><p class="small-label">KAIST / FASTGEN / FALL 2026</p><h1>Pokémon<br>from noise.</h1><p class="intro-signature">a course project by <a href="https://github.com/ab-rin">ab-rin</a></p></div>
+  <div class="intro-title"><h1>Pokémon<br>from noise.</h1><p class="intro-signature">a course project by <a href="https://github.com/ab-rin">ab-rin</a></p></div>
   <figure class="type-specimen" id="type-specimen">
     <canvas id="type-canvas" width="480" height="480" role="img" aria-label="Interactive typographic rendering of a real generated Pikachu"></canvas>
     <div class="specimen-controls"><button type="button" id="specimen-play">↺ replay</button><button type="button" id="specimen-mode" aria-pressed="true">type / pixels</button><button type="button" id="specimen-next">another one ↗</button></div>
-    <figcaption id="specimen-caption">pikachu · seed 42 · 4 calls</figcaption>
   </figure>
   <div class="intro-note">
     <p>I trained a model to make <span class="inline-sample" tabindex="0">Pokémon<img src="assets/gallery/bulbasaur-42.png" alt="Generated Bulbasaur, seed 42"></span> from scratch, using just four network calls per image.</p>
     <p>I got it down to <a href="#results">19.35 FID</a>. The course’s real-data reference was 20.82. Going below that felt strange: I was spending a lot of time on a smaller number, but what was changing in the images?</p>
-    <p>You can <a href="#explore">try a few seeds</a>, watch the four steps, and <a href="#comparison">compare two checkpoints</a> before looking at their scores.</p>
+    <p><a href="#explore">Find a Pokémon you like</a>, then <a href="#comparison">compare the checkpoints</a> before looking at their scores.</p>
   </div>
-  <div class="intro-bottom"><span>151 classes &nbsp; / &nbsp; 64 × 64 pixels &nbsp; / &nbsp; no pretrained generator</span><a href="#explore">scroll a little ↓</a></div>
-  <div id="sample-trail" aria-hidden="true"></div>
+
 </section>
 
 <section class="section" id="explore">
-  <div class="section-top"><span class="small-label">01 / IMAGES</span><h2>From noise to Pokémon.</h2></div>
-  <div class="section-note"><p>Pick a class and a seed. These are the five saved states: the starting noise, then the result after each of four calls. Nothing between them is invented.</p><p class="aside">101k EMA checkpoint<br>guidance is already in the model</p></div>
+  <div class="section-top"><h2>From noise to Pokémon.</h2></div>
+  <p class="section-description">Pick a Pokémon and try a different seed.</p>
   <div class="explorer">
-    <div class="explorer-controls">
-      <label>class<select id="species" aria-label="Pokémon species"><option>Pikachu</option></select></label>
-      <label>seed<select id="seed" aria-label="Noise seed"><option value="42">42</option><option value="1234">1234</option><option value="2026">2026</option></select></label>
-      <button class="button" id="play" type="button">▶ Play four calls</button>
+    <div class="generation-stage">
+      <canvas id="generation-canvas" width="64" height="64" role="img" aria-label="Generated Pikachu, seed 42"></canvas>
+      <div class="generation-progress" id="generation-progress" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
     </div>
-    <div class="trajectory" id="trajectory" aria-label="Five recorded sampling states"></div>
-    <div class="scrubber"><label for="step">step through it</label><input id="step" type="range" min="0" max="4" step="1" value="4"><output id="step-label" for="step">Call 4 · t = 0</output><button type="button" class="quiet-button" id="pixel-toggle" aria-pressed="false">Show native pixels</button></div>
+    <div class="explorer-picker">
+      <h3 id="selected-species">Pikachu</h3>
+      <div id="sample-shelf" class="sample-shelf" role="group" aria-label="Choose a Pokémon"></div>
+      <div class="seed-heading"><label for="seed">Seed <output id="seed-value" for="seed">42</output></label><button type="button" id="another-seed" class="quiet-button">Another seed ↗</button></div>
+      <input id="seed" type="range" min="0" max="15" value="2" step="1" aria-label="Noise seed">
+      <div class="generation-controls"><button class="button" id="play" type="button">↺ Watch it form</button><button type="button" class="quiet-button" id="pixel-toggle" aria-pressed="false">Show pixels</button></div>
+      <p class="generation-status" id="generation-status" role="status"></p>
+    </div>
   </div>
-  <p class="caption">12 chosen species, three seeds each; all 36 outputs are here. This replays recorded inference, not a model running in your browser. Intermediate tensors are clipped for display. <a href="assets/gallery/gallery.json">Sampling record ↗</a></p>
-  <div id="sample-shelf" class="sample-shelf" aria-label="Choose a generated Pokémon"></div>
+  <details><summary>About these samples</summary><p>192 recorded outputs: 12 Pokémon × 16 seeds. Every output from this selection is included. Replay shows the starting noise and four saved model states, with no invented frames. This page plays saved inference; it does not run the model in your browser.</p><p>The 101k EMA checkpoint uses sampling times [1, .6, .3, .018, 0], with guidance built into the model. Intermediate tensors are clipped for display. <a href="assets/gallery/gallery.json">Sampling record ↗</a></p></details>
 </section>
 
 <section class="section essay-section" id="question">
-  <div class="section-top"><span class="small-label">02 / A QUESTION</span><h2>Lower FID. Better images?</h2></div>
+  <div class="section-top"><h2>Lower FID. Better images?</h2></div>
   <div class="essay">
     <p>We were being evaluated on FID, so I spent a lot of time getting it lower. The part I found counterintuitive was going below the distance between the real training and validation data. If those sets are already different, what does beating that number mean?</p>
-    <p>The <a href="https://generative-models.kaist.ac.kr/fastgen/#evaluation">course reports 20.82</a> for the train–validation gap. Its November 5 update gives full base credit at 22 and below. I wanted to compare a checkpoint around 22 with the one I had spent much longer optimizing.</p>
+    <p>The <a href="https://generative-models.kaist.ac.kr/fastgen/#evaluation">course reports 20.82</a> for the train–validation gap. I wanted to compare a checkpoint around 22 with the one I had spent much longer optimizing.</p>
     <p>I checked the baseline again. With 20 real training images per class, it was <strong>20.86 ± 0.35</strong> across three subsets. Using the full training split gave <strong>15.71</strong>. The reference itself moves when the protocol changes.</p>
     <details class="baseline-audit"><summary>The numbers behind that check</summary><table><thead><tr><th>Training images</th><th>Validation images</th><th>FID ↓</th></tr></thead><tbody><tr><td>3,020 · 20 per class</td><td>3,020</td><td>20.86 ± 0.35</td></tr><tr><td>17,079 · full split</td><td>3,020</td><td>15.7109</td></tr></tbody></table><p class="caption">The first row is the mean ± sample SD of three independently drawn, class-balanced subsets. Sample count and class balance both change between rows, so this does not isolate either effect. These local checks use the same clean-fid features, but do not reconstruct the course’s exact baseline protocol. <a href="assets/study/baseline-sensitivity.json">Subset results</a> · <a href="assets/study/study.json">Full protocol</a></p></details>
     <p>I would not call 20.82 a hard floor. FID compares feature statistics, and finite samples introduce bias. A score below it is possible; it does not prove that a model has become worse. It also does not tell me, by itself, that the extra training was worth it.</p>
-    <p class="essay-end">So here are the images. Look at them before the numbers.</p>
-    <p class="caption">On finite-sample FID bias: <a href="https://arxiv.org/abs/1911.07023">Chong &amp; Forsyth, CVPR 2020</a>. Checkpoint and schedule selection reused the validation reference; fresh noise seeds are not a new test set.</p>
+    <p class="caption">Checkpoint and schedule selection reused the validation reference. Fresh noise seeds are not a new test set. <a href="https://arxiv.org/abs/1911.07023">More on FID bias ↗</a></p>
   </div>
 </section>
 
 <section class="section comparison-section" id="comparison">
-  <div class="section-top"><span class="small-label">A / B</span><h2>Same class. Same noise.</h2></div>
-  <p class="section-description">Look for changes in shape, class identity, background, and variety. The two models use the same four equal steps. Reveal the scores whenever you want.</p>
+  <div class="section-top"><h2>Can you see the difference?</h2></div>
+  <p class="section-description">Same Pokémon, same noise. Drag across the image to compare, then reveal the scores.</p>
   <div id="checkpoint-comparison" class="comparison-panel"><p>Enable JavaScript for the comparison, or open the complete grids: <a href="assets/study/compare-64000-42.png">64k</a> · <a href="assets/study/compare-101000-42.png">101k</a>.</p></div>
-  <p class="caption" id="comparison-caption">64k → 101k added 101.33 active training hours for a 1.5261 improvement in uniform-schedule FID. Both were already below 22. This small gallery cannot establish a general visual ranking or rule out memorization. <a href="assets/study/study.json">Measurements and checkpoint hashes ↗</a></p>
+  <p class="comparison-takeaway">Another 101 hours of training. A 1.53-point drop in FID. How much changed in the images?</p>
+  <details><summary>How the comparison works</summary><p>64k is the first recorded checkpoint below FID 22; 101k is the best recorded checkpoint with the same uniform four-call sampler. All 36 matched pairs are available here. The headline 19.35 uses a separately tuned schedule and five seeds.</p><p>This small gallery cannot establish a general visual ranking or rule out memorization. <a href="assets/study/study.json">Measurements and checkpoint hashes ↗</a></p></details>
 </section>
 
 <section class="section" id="results">
-  <div class="section-top"><span class="small-label">03 / EXPERIMENTS</span><h2>What happened during training.</h2></div>
+  <div class="section-top"><h2>What happened during training.</h2></div>
   <p class="section-description">The first checkpoint below 22 was at 64k updates. The best recorded uniform-four score was at 101k. Continuing to 122k did not improve it.</p>
   <div class="chart-panel">
     <div class="chart-toolbar"><div><h3>Validation FID</h3><p>uniform four-call sampler</p></div><div class="chart-buttons"><button id="zoom-chart" class="quiet-button" aria-pressed="false" type="button">Zoom near 22</button><button id="replay-chart" class="button" type="button">↻ Replay training</button></div></div>
-    <svg id="fid-chart" viewBox="0 0 1080 360" role="img" aria-label="Validation FID during training"></svg>
+    <div class="training-view"><figure class="training-snapshot"><img id="training-image" src="assets/study/journey-122000.png" width="64" height="64" alt="Pikachu from the 122k checkpoint, seed 42"><figcaption id="training-image-caption">Saved at 122k updates</figcaption></figure><svg id="fid-chart" viewBox="0 0 1080 360" role="img" aria-label="Validation FID during training"></svg></div>
     <div class="chart-scrubber"><label for="training-step">updates</label><input id="training-step" type="range" min="0" max="167" value="167"><output id="training-readout" for="training-step"></output></div>
     <div class="chart-legend"><span><i class="line-key"></i> measured FID</span><span><i class="line-key dashed"></i> course target: 22</span><span><i class="line-key baseline"></i> course real-data reference: 20.82</span></div>
   </div>
-  <p class="caption">168 evaluations. The reference lines give context, not lower bounds. A later continuation reached 122,295 retained updates. <a href="assets/study/fid_history.csv">Download the points ↗</a></p>
+  <details><summary>Chart notes &amp; data</summary><p>168 measured FIDs. The image switches between six saved checkpoints of the same Pikachu and seed 42; the caption identifies the snapshot on screen. There is no interpolation. The reference lines are context, not lower bounds. <a href="assets/study/fid_history.csv">Download FID history ↗</a></p></details>
   <div id="loss-panel"></div>
   <div class="schedule-study">
-    <div><h3>Moving the four steps.</h3><p>After training, I kept the 101k weights fixed and changed the sampling times. The selected schedule improved FID in all five paired confirmation runs.</p><div class="schedule-options" role="group" aria-label="Sampling schedule"><button data-schedule="uniform" aria-pressed="false">uniform</button><button data-schedule="rho2" aria-pressed="false">ρ = 2</button><button data-schedule="tuned" aria-pressed="true">tuned</button></div><div id="schedule-bars" aria-label="Sampling time intervals"></div><p class="caption" id="schedule-times"></p><p class="caption">Widths show interval lengths. Each one still costs one network call.</p></div>
-    <div><h3>Five paired seeds.</h3><svg id="paired-chart" viewBox="0 0 480 290" role="img" aria-label="Tuned schedule improves FID in all five paired seeds"></svg><p class="caption">ρ = 2: 19.7340 ± 0.1884<br>Tuned: 19.3469 ± 0.1662<br>Mean paired change: −0.3871.<br>Runs 1–5 use seeds 2026102801–2026102805.</p></div>
+    <div><h3>Moving the four steps.</h3><p>After training, I kept the 101k weights fixed and changed the sampling times. The selected schedule improved FID in all five paired confirmation runs.</p><div class="schedule-options" role="group" aria-label="Sampling schedule"><button data-schedule="uniform" aria-pressed="false">uniform</button><button data-schedule="rho2" aria-pressed="false">ρ = 2</button><button data-schedule="tuned" aria-pressed="true">tuned</button></div><div id="schedule-bars" aria-label="Sampling time intervals"></div><p class="caption" id="schedule-times"></p></div>
+    <div><h3>Five paired seeds.</h3><svg id="paired-chart" viewBox="0 0 480 290" role="img" aria-label="Tuned schedule improves FID in all five paired seeds"></svg><p class="caption">19.73 → 19.35 FID. Better in all five runs.</p></div>
   </div>
-  <p class="caption">± is sample standard deviation over generation seeds, with the same validation reference used for selection. These are local measurements, not official TA scores. <a href="https://github.com/ab-rin/reports-meanflow-cfg-/blob/main/data/best_schedule.json">All five paired results ↗</a></p>
+  <details><summary>Five-seed measurements</summary><p>ρ = 2: 19.7340 ± 0.1884. Tuned: 19.3469 ± 0.1662. Mean paired change: −0.3871. ± is sample standard deviation over seeds 2026102801–2026102805, using the same validation reference used for selection. These are local measurements, not official TA scores. <a href="https://github.com/ab-rin/reports-meanflow-cfg-/blob/main/data/best_schedule.json">All paired results ↗</a></p></details>
 </section>
 
 <section class="section" id="method">
-  <div class="section-top"><span class="small-label">04 / METHOD</span><h2>MeanFlow, with guidance built in.</h2></div>
+  <div class="section-top"><h2>MeanFlow, with guidance built in.</h2></div>
   <div class="method-intro"><p>MeanFlow learns the average velocity over a time interval. I adapted the class-conditional U-Net and training setup to the Pokémon task, with classifier-free guidance in the training target. At inference, each interval needs one conditional network call.</p><p>The method comes from <a href="https://arxiv.org/abs/2505.13447">Geng et al.</a>; the backbone comes from <a href="https://github.com/Gsunshine/py-meanflow">Gsunshine/py-meanflow</a>. My work here is the implementation for this task, training, and experiments.</p></div>
   <div class="formula">x<sub>r</sub> = x<sub>t</sub> − (t − r) u<sub>θ</sub>(x<sub>t</sub>, t, r, c)</div>
   <div class="flow-diagram"><div class="diagram-heading"><span class="small-label">THE TRAINING LOOP</span><button class="quiet-button" id="motion-toggle" type="button" aria-pressed="false">Pause diagram motion</button></div>
@@ -114,11 +117,11 @@
         </svg>
   <div class="mobile-flow"><div>image + noise<span>mix at time t</span></div><b>↓</b><div>class-conditioned U-Net<span>predict average velocity</span></div><b>↓</b><div>guided target + JVP<span>detach target, compute weighted loss</span></div><b>↓</b><div>Adam + EMA<span>sample with the averaged weights</span></div></div></div>
   <details><summary>Training recipe and objective</summary><div class="recipe-columns"><div><p>z<sub>t</sub> = (1 − t)x + tε. Labeled examples use v<sub>g</sub> = 2(ε − x) − u<sub>θ</sub>(z<sub>t</sub>, t, t, ∅); dropped labels use ε − x.</p><p>The target is stopgrad[v<sub>g</sub> − (t − r)D u<sub>θ</sub>]. The JVP follows v<sub>g</sub> in space and increases t while holding r fixed. The adaptive loss exponent is 0.75.</p><a href="https://github.com/ab-rin/reports-meanflow-cfg-/blob/main/code/src/cfg_meanflow.py">Read the loss implementation ↗</a></div><dl><dt>parameters</dt><dd>56,010,243</dd><dt>data</dt><dd>17,079 images · 151 classes · 64² RGB</dd><dt>initialization</dt><dd>random · seed 42</dd><dt>optimizer</dt><dd>Adam · 3e−4 · 500-step warmup</dd><dt>effective batch</dt><dd>512 · gradient accumulation</dd><dt>EMA</dt><dd>0.999</dd><dt>guidance</dt><dd>scale 2 · label dropout 0.1</dd><dt>GPU</dt><dd>one A100 20 GB · 12.43 GB peak allocation</dd><dt>time to 101k</dt><dd>268.24 active hours</dd></dl></div></details>
-  <p class="caption">Original MeanFlow objective, not iMF or distillation. No pretrained generator or external teacher. Active time excludes evaluation, checkpoint writing, and downtime.</p>
+
 </section>
 
 <section class="section files-section" id="reproduce">
-  <div class="section-top"><span class="small-label">05 / FILES</span><h2>If you want to run it.</h2></div>
+  <div class="section-top"><h2>If you want to run it.</h2></div>
   <p class="section-description">The weights, training code, sampler, and measured data are all linked here. The technical report keeps the equations and the longer experiment history.</p>
   <div class="file-list">
     <a href="https://github.com/ab-rin/reports-meanflow-cfg-/tree/main/code"><span>training &amp; inference code</span><i></i><small>source ↗</small></a>
@@ -135,7 +138,7 @@ python sample.py --checkpoint checkpoints/ema_0101000.ckpt \
   --samples-per-class 3 --output outputs/four-calls --device cuda</code></pre></div><p class="caption">Class IDs come from category_to_id.json, not Pokédex numbers.</p></details>
 </section>
 </main>
-<footer><div><a href="#top">ab-rin / meanflow ↑</a><span>KAIST · AIC313 / CS378 · 2026</span></div><p>Method: <a href="https://arxiv.org/abs/2505.13447">Mean Flows for One-step Generative Modeling</a>. Backbone: <a href="https://github.com/Gsunshine/py-meanflow/tree/1f6d72d94247c8fdeb89489acca1a8007a6baf6c">py-meanflow</a>, CC BY-NC-SA 4.0. <a href="https://generative-models.kaist.ac.kr/fastgen/">Course</a>. <a href="https://arxiv.org/abs/1911.07023">FID bias paper</a>.</p><p>Design references: <a href="https://antwi.dev/">Jermaine Antwi</a> and <a href="https://www.jadefranson.com/">Jade Franson</a>. Original page code; no copied site assets. Fonts: EB Garamond and IBM Plex Mono, self-hosted under the SIL Open Font License.</p><p>Pokémon belongs to its respective rights holders. This is an unaffiliated course project. No analytics or external scripts.</p></footer>
+<footer><div><a href="#top">ab-rin / meanflow ↑</a><span>KAIST · AIC313 / CS378 · 2026</span></div><details><summary>Sources &amp; credits</summary><p>Method: <a href="https://arxiv.org/abs/2505.13447">Mean Flows for One-step Generative Modeling</a>. Backbone: <a href="https://github.com/Gsunshine/py-meanflow/tree/1f6d72d94247c8fdeb89489acca1a8007a6baf6c">py-meanflow</a>, CC BY-NC-SA 4.0. <a href="https://generative-models.kaist.ac.kr/fastgen/">Course</a>. <a href="https://arxiv.org/abs/1911.07023">FID bias paper</a>.</p><p>Design references: <a href="https://antwi.dev/">Jermaine Antwi</a>, <a href="https://www.jadefranson.com/">Jade Franson</a>, <a href="https://dangeng.github.io/visual_anagrams/">Visual Anagrams</a>, and <a href="https://prompt-to-prompt.github.io/">Prompt-to-Prompt</a>. Fonts: EB Garamond and IBM Plex Mono, self-hosted under the SIL Open Font License.</p><p>Pokémon belongs to its respective rights holders. This is an unaffiliated course project. No analytics or external scripts.</p></details></footer>
 <noscript><p class="noscript">JavaScript enables the interactive views. All samples, data, code, and weights remain available through their links.</p></noscript>
 </body>
 </html>

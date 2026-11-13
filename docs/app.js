@@ -19,65 +19,60 @@
     return element;
   }
   const species = [...new Set(data.gallery.samples.map((sample) => sample.species))];
-  $("species").replaceChildren(...species.map((name) => new Option(name, name)));
+  const seeds = [...new Set(data.gallery.samples.map((sample) => sample.seed))].sort((a, b) => a - b);
+  let selectedSpecies = species[0];
   let playTimer = null;
   let frame = 4;
   let imageRequest = 0;
-  const frames = [];
-  data.gallery.times.forEach((time, index) => {
-    const figure = document.createElement("figure");
-    figure.className = "state-card";
-    const button = document.createElement("button");
-    button.type = "button";
-    button.className = "state-button";
-    button.setAttribute("aria-label", `Inspect ${index ? "call " + index : "initial noise"}, time ${time}`);
-    const canvas = document.createElement("canvas");
-    canvas.width = canvas.height = 64;
-    canvas.className = "state-image";
-    canvas.setAttribute("aria-hidden", "true");
-    button.append(canvas);
-    button.addEventListener("click", () => { stopPlayback(); setFrame(index); });
-    const caption = document.createElement("figcaption");
-    caption.append(textElement("span", index ? `CALL ${index}` : "NOISE"), textElement("span", `t = ${time}`));
-    figure.append(button, caption);
-    $("trajectory").append(figure);
-    frames.push({ figure, canvas, button });
-  });
+  let trajectoryImage = null;
+  const generationCanvas = $("generation-canvas");
+  $("seed").max = seeds.length - 1;
+  $("seed").value = seeds.indexOf(42);
   function setFrame(index) {
     frame = index;
-    frames.forEach(({ figure, button }, i) => {
-      figure.classList.toggle("current", i === frame);
-      button.setAttribute("aria-pressed", String(i === frame));
-    });
-    $("step").value = frame;
-    $("step-label").textContent = `${frame ? "Call " + frame : "Noise"} · t = ${data.gallery.times[frame]}`;
-    $("step").setAttribute("aria-valuetext", $("step-label").textContent);
+    if (!trajectoryImage) return;
+    generationCanvas.getContext("2d").drawImage(trajectoryImage, 64 * frame, 0, 64, 64, 0, 0, 64, 64);
+    [...$("generation-progress").children].forEach((mark, i) => mark.classList.toggle("filled", i < frame));
+    const seed = seeds[+$("seed").value];
+    generationCanvas.setAttribute("aria-label", `${selectedSpecies}, seed ${seed}, ${frame ? "after call " + frame : "initial noise"}`);
+    $("generation-status").textContent = frame === 4 ? "" : frame ? `Call ${frame} of 4` : "Starting from noise…";
   }
   function stopPlayback() {
     clearInterval(playTimer);
     playTimer = null;
-    $("play").textContent = "▶ Play four calls";
+    $("play").textContent = "↺ Watch it form";
   }
   function loadTrajectory() {
     stopPlayback();
     const request = ++imageRequest;
-    const sample = data.gallery.samples.find((s) => s.species === $("species").value && s.seed === +$("seed").value);
-    const image = new Image();
+    const seed = seeds[+$("seed").value];
+    const sample = data.gallery.samples.find((s) => s.species === selectedSpecies && s.seed === seed);
+    $("selected-species").textContent = selectedSpecies;
+    $("seed-value").textContent = seed;
+    $("seed").setAttribute("aria-valuetext", `Seed ${seed}`);
+    document.querySelectorAll("#sample-shelf button").forEach((button) => button.setAttribute("aria-pressed", String(button.dataset.species === selectedSpecies)));
     $("play").disabled = true;
+    $("generation-status").textContent = "Loading…";
+    trajectoryImage = null;
+    generationCanvas.getContext("2d").clearRect(0, 0, 64, 64);
+    const image = new Image();
     image.onload = () => {
       if (request !== imageRequest) return;
-      frames.forEach(({ canvas }, index) => canvas.getContext("2d").drawImage(image, 64 * index, 0, 64, 64, 0, 0, 64, 64));
+      trajectoryImage = image;
       $("play").disabled = false;
       setFrame(4);
     };
     image.onerror = () => {
-      if (request === imageRequest) $("step-label").textContent = "Image unavailable";
+      if (request === imageRequest) $("generation-status").textContent = "Image unavailable. Try another seed.";
     };
     image.src = `assets/gallery/${sample.trajectory}`;
   }
-  $("species").addEventListener("change", loadTrajectory);
-  $("seed").addEventListener("change", loadTrajectory);
-  $("step").addEventListener("input", (event) => { stopPlayback(); setFrame(+event.target.value); });
+  $("seed").addEventListener("input", loadTrajectory);
+  $("another-seed").addEventListener("click", () => {
+    const offset = 1 + Math.floor(Math.random() * (seeds.length - 1));
+    $("seed").value = (+$("seed").value + offset) % seeds.length;
+    loadTrajectory();
+  });
   $("play").addEventListener("click", () => {
     if (playTimer) { stopPlayback(); return; }
     setFrame(0);
@@ -85,14 +80,13 @@
     playTimer = setInterval(() => {
       setFrame(frame + 1);
       if (frame === 4) stopPlayback();
-    }, 850);
+    }, 700);
   });
   $("pixel-toggle").addEventListener("click", (event) => {
     const active = document.body.classList.toggle("pixelated");
     event.target.setAttribute("aria-pressed", String(active));
-    event.target.textContent = active ? "Smooth display" : "Show native pixels";
+    event.target.textContent = active ? "Smooth display" : "Show pixels";
   });
-  loadTrajectory();
 
   // A typographic view of the same recorded pixels, with a literal-pixel toggle.
   const specimenCanvas = $("type-canvas");
@@ -133,8 +127,6 @@
       }
     }
     const sample = specimenSamples[specimenIndex];
-    $("specimen-caption").textContent = sample.species.toLowerCase() + " · seed 42 · " +
-      (specimenFrame ? specimenFrame + " calls" : "initial noise") + (specimenType ? " · typeset from pixels" : " · actual pixels");
     specimenCanvas.setAttribute("aria-label", (specimenType ? "Typographic rendering" : "Recorded pixels") +
       " of " + sample.species + " after " + specimenFrame + " model calls");
   }
@@ -177,49 +169,79 @@
     const button = document.createElement("button");
     button.type = "button";
     button.setAttribute("aria-label", "Explore " + sample.species);
+    button.dataset.species = sample.species;
     const image = new Image();
     image.src = "assets/gallery/" + sample.image;
     image.alt = "";
     image.width = image.height = 64;
     button.append(image, textElement("span", sample.species.toLowerCase()));
     button.addEventListener("click", () => {
-      $("species").value = sample.species;
+      selectedSpecies = sample.species;
       loadTrajectory();
     });
     $("sample-shelf").append(button);
   });
+  loadTrajectory();
   loadSpecimen();
   document.fonts.ready.then(drawSpecimen);
 
+  // Three recorded samples follow the pointer; no permanent animation loop.
+  const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)");
   let trailEnabled = !reducedMotion.matches;
-  let trailIndex = 0;
-  let trailPoint = null;
+  let trailFrame = null;
+  let trailLastTime = 0;
+  let trailTarget = null;
+  const followers = ["Pikachu", "Bulbasaur", "Squirtle"].map((name) => {
+    const image = new Image();
+    image.src = "assets/gallery/" + specimenSamples.find((sample) => sample.species === name).image;
+    image.className = "trail-sample";
+    image.alt = "";
+    $("sample-trail").append(image);
+    return { image, x: 0, y: 0 };
+  });
+  function stopTrail() {
+    cancelAnimationFrame(trailFrame);
+    trailFrame = null;
+    trailTarget = null;
+    $("sample-trail").classList.remove("following");
+  }
   function updateTrailControl() {
-    $("trail-toggle").textContent = trailEnabled ? "··· trail on" : "··· trail off";
-    $("trail-toggle").setAttribute("aria-pressed", String(!trailEnabled));
-    $("trail-toggle").setAttribute("aria-label", trailEnabled ? "Turn sample trail off" : "Turn sample trail on");
-    if (!trailEnabled) $("sample-trail").replaceChildren();
+    const available = finePointer.matches && !reducedMotion.matches;
+    $("trail-toggle").hidden = !available;
+    $("trail-toggle").textContent = trailEnabled ? "Pokémon follow: on" : "Pokémon follow: off";
+    $("trail-toggle").setAttribute("aria-pressed", String(trailEnabled));
+    if (!trailEnabled || !available) stopTrail();
+  }
+  function followPointer(time) {
+    const elapsed = Math.min(40, time - trailLastTime || 16);
+    trailLastTime = time;
+    const easing = 1 - Math.exp(-elapsed / 90);
+    let distance = 0;
+    followers.forEach((follower, index) => {
+      const previous = index ? followers[index - 1] : trailTarget;
+      const x = Math.max(24, Math.min(innerWidth - 24, previous.x + (index ? 42 : 36)));
+      const y = Math.max(24, Math.min(innerHeight - 24, previous.y + (index ? 12 : 36)));
+      const dx = x - follower.x, dy = y - follower.y;
+      distance += Math.abs(dx) + Math.abs(dy);
+      follower.x += dx * easing;
+      follower.y += dy * easing;
+      const tilt = Math.max(-12, Math.min(12, dx * .3));
+      follower.image.style.transform = `translate(${follower.x - 24}px, ${follower.y - 24}px) rotate(${tilt}deg)`;
+    });
+    trailFrame = distance > .5 ? requestAnimationFrame(followPointer) : null;
   }
   $("trail-toggle").addEventListener("click", () => { trailEnabled = !trailEnabled; updateTrailControl(); });
-  $("top").addEventListener("pointermove", (event) => {
-    if (!trailEnabled || reducedMotion.matches || event.pointerType !== "mouse" ||
-        event.target.closest("a,button,canvas,.intro-note,.intro-title")) return;
-    const bounds = $("top").getBoundingClientRect();
-    const point = [event.clientX - bounds.left, event.clientY - bounds.top];
-    if (trailPoint && Math.hypot(point[0] - trailPoint[0], point[1] - trailPoint[1]) < 95) return;
-    trailPoint = point;
-    const sample = specimenSamples[trailIndex % specimenSamples.length];
-    const image = new Image();
-    image.src = "assets/gallery/" + sample.image;
-    image.className = "trail-sample";
-    image.style.left = (point[0] - 24) + "px";
-    image.style.top = (point[1] - 24) + "px";
-    image.style.rotate = ((trailIndex % 5) * 7 - 14) + "deg";
-    trailIndex++;
-    $("sample-trail").append(image);
-    if ($("sample-trail").children.length > 10) $("sample-trail").firstElementChild.remove();
-    image.addEventListener("animationend", () => image.remove(), { once: true });
+  document.addEventListener("pointermove", (event) => {
+    if (!trailEnabled || reducedMotion.matches || !finePointer.matches || event.pointerType !== "mouse") return;
+    if (!trailTarget) followers.forEach((follower) => { follower.x = event.clientX; follower.y = event.clientY; });
+    trailTarget = { x: event.clientX, y: event.clientY };
+    $("sample-trail").classList.add("following");
+    if (!trailFrame) { trailLastTime = 0; trailFrame = requestAnimationFrame(followPointer); }
   });
+  document.documentElement.addEventListener("pointerleave", stopTrail);
+  window.addEventListener("blur", stopTrail);
+  finePointer.addEventListener("change", updateTrailControl);
+  reducedMotion.addEventListener("change", updateTrailControl);
   updateTrailControl();
 
   const diagram = document.querySelector(".flow-diagram > svg");
@@ -274,6 +296,13 @@
     if (point[0] >= xmin && point[1] <= ymax && point[1] >= ymin) {
       chart.append(svg("line", { x1: x(point[0]), x2: x(point[0]), y1: y(point[1]), y2: bottom, stroke: "#47675b55", "stroke-dasharray": "3 4" }),
         svg("circle", { cx: x(point[0]), cy: y(point[1]), r: 5, fill: "#47675b", stroke: "#fafbf9", "stroke-width": 2 }));
+    }
+    const snapshot = [1000, 8000, 32000, 64000, 101000, 122000].filter((step) => step <= point[0]).at(-1) || 1000;
+    const snapshotPath = `assets/study/journey-${snapshot}.png`;
+    if ($("training-image").getAttribute("src") !== snapshotPath) {
+      $("training-image").src = snapshotPath;
+      $("training-image").alt = `Pikachu at ${snapshot.toLocaleString()} training updates, seed 42`;
+      $("training-image-caption").textContent = `Saved at ${snapshot / 1000}k updates`;
     }
     $("training-readout").textContent = `${point[0].toLocaleString()} updates · ${point[1].toFixed(2)} FID`;
     $("training-step").value = chartIndex;
@@ -343,68 +372,67 @@
   if (data.study) {
     const panel = $("checkpoint-comparison");
     panel.replaceChildren();
+    let pairIndex = 0;
     let revealed = false;
     const controls = textElement("div", "", "comparison-controls");
-    const seedLabel = textElement("label", "Noise seed ");
-    const seeds = document.createElement("select");
-    seeds.setAttribute("aria-label", "Checkpoint comparison seed");
-    data.study.visual_seeds.forEach((seed) => seeds.add(new Option(String(seed), String(seed))));
-    seedLabel.append(seeds);
-    const speciesLabel = textElement("label", "View ");
-    const compareSpecies = document.createElement("select");
-    compareSpecies.setAttribute("aria-label", "Checkpoint comparison species");
-    compareSpecies.add(new Option("All 12 species", "all"));
-    data.study.species.forEach((name) => compareSpecies.add(new Option(name, name.toLowerCase())));
-    speciesLabel.append(compareSpecies);
-    const reveal = textElement("button", "Reveal FID & steps", "button secondary");
+    const pairName = textElement("h3", "");
+    const next = textElement("button", "Another pair ↗", "quiet-button");
+    next.type = "button";
+    controls.append(pairName, next);
+    const stage = textElement("div", "", "comparison-stage");
+    const images = [new Image(), new Image()];
+    images.forEach((image, i) => { image.width = image.height = 64; image.className = `comparison-image image-${i}`; });
+    const divider = textElement("div", "↔", "comparison-divider");
+    divider.setAttribute("aria-hidden", "true");
+    const wipe = document.createElement("input");
+    wipe.type = "range"; wipe.min = 0; wipe.max = 100; wipe.value = 50;
+    wipe.id = "comparison-wipe";
+    wipe.setAttribute("aria-label", "Compare checkpoints: slide left for B, right for A");
+    const tagA = textElement("span", "A", "comparison-tag tag-a");
+    const tagB = textElement("span", "B", "comparison-tag tag-b");
+    stage.append(images[1], images[0], tagA, tagB, divider, wipe);
+    function positionWipe() {
+      stage.style.setProperty("--split", wipe.value + "%");
+      wipe.setAttribute("aria-valuetext", `${wipe.value}% checkpoint A, ${100 - wipe.value}% checkpoint B`);
+    }
+    wipe.addEventListener("input", positionWipe);
+    const actions = textElement("div", "", "comparison-actions");
+    const reveal = textElement("button", "Reveal the scores", "button");
     reveal.type = "button";
-    reveal.setAttribute("aria-expanded", "false");
-    controls.append(seedLabel, speciesLabel, reveal);
-    const pairs = textElement("div", "", "compare-images");
-    const comparisonFigures = data.study.checkpoints.map((checkpoint, index) => {
-      const figure = document.createElement("figure");
-      const image = document.createElement("img");
-      image.loading = "lazy";
-      const caption = document.createElement("figcaption");
-      figure.append(image, caption); pairs.append(figure);
-      return { checkpoint, image, caption, index };
-    });
+    const scores = textElement("div", "", "comparison-scores");
+    scores.id = "comparison-scores";
+    reveal.setAttribute("aria-controls", scores.id);
+    const pairSeed = textElement("span", "", "pair-seed");
+    actions.append(pairSeed, reveal);
     function showComparison() {
-      pairs.classList.toggle("single", compareSpecies.value !== "all");
-      comparisonFigures.forEach(({ checkpoint, image, caption, index }) => {
-        const speciesPart = compareSpecies.value === "all" ? "" : `${compareSpecies.value}-`;
-        image.src = `assets/study/compare-${checkpoint.step}-${speciesPart}${seeds.value}.png`;
-        image.alt = `Checkpoint ${index ? "B" : "A"}, ${compareSpecies.options[compareSpecies.selectedIndex].text}, seed ${seeds.value}`;
-        image.style.aspectRatio = compareSpecies.value === "all" ? "4 / 3" : "1";
-        const score = checkpoint.remeasured_uniform_fid ?? checkpoint.historical_uniform_fid;
-        caption.replaceChildren(textElement("strong", revealed ? `${checkpoint.step / 1000}k updates` : `Checkpoint ${index ? "B" : "A"}`),
-          textElement("span", revealed ? `${score.toFixed(4)} FID · uniform 4 calls` : "Look first. Reveal the score."));
+      const name = data.study.species[pairIndex % data.study.species.length];
+      const seed = data.study.visual_seeds[Math.floor(pairIndex / data.study.species.length)];
+      pairName.textContent = name;
+      pairSeed.textContent = `Seed ${seed}`;
+      data.study.checkpoints.forEach((checkpoint, i) => {
+        images[i].src = `assets/study/compare-${checkpoint.step}-${name.toLowerCase()}-${seed}.png`;
+        images[i].alt = `${name}, checkpoint ${i ? "B" : "A"}, seed ${seed}`;
       });
-      reveal.textContent = revealed ? "Hide FID & steps" : "Reveal FID & steps";
+      wipe.value = 50; positionWipe();
+    }
+    function showScores() {
+      scores.hidden = !revealed;
+      reveal.textContent = revealed ? "Hide the scores" : "Reveal the scores";
       reveal.setAttribute("aria-expanded", String(revealed));
     }
-    seeds.addEventListener("change", showComparison);
-    compareSpecies.addEventListener("change", showComparison);
-    reveal.addEventListener("click", () => { revealed = !revealed; showComparison(); });
-    panel.append(controls, pairs);
-    const findings = textElement("div", "", "compare-findings");
-    findings.append(textElement("p", "64k is the first recorded checkpoint to cross FID 22. The 101k weights are the best recorded checkpoint in the same run. These comparisons use equal four-call intervals to isolate the checkpoint change."),
-      textElement("p", "The headline 19.35 uses the tuned schedule and five seeds. It is a separate result from the uniform-schedule scores here. All 36 matched samples per checkpoint are shown; this is a qualitative study, not a human-preference benchmark."));
-    panel.append(findings);
-    showComparison();
-    const journey = textElement("div", "", "training-journey");
-    journey.append(textElement("h3", "One Pikachu, at six checkpoints."));
-    const journeyGrid = textElement("div", "", "journey-grid");
-    [1000, 8000, 32000, 64000, 101000, 122000].forEach((step) => {
-      const figure = document.createElement("figure");
-      const image = document.createElement("img");
-      image.src = `assets/study/journey-${step}.png`;
-      image.alt = `Pikachu at ${step.toLocaleString()} training updates, seed 42, uniform four-call sampler`;
-      image.loading = "lazy"; image.width = image.height = 64;
-      figure.append(image, textElement("figcaption", `${step / 1000}k updates`)); journeyGrid.append(figure);
+    data.study.checkpoints.forEach((checkpoint, i) => {
+      const score = checkpoint.remeasured_uniform_fid ?? checkpoint.historical_uniform_fid;
+      const column = textElement("p", "");
+      column.append(textElement("span", `${i ? "B" : "A"} · ${checkpoint.step / 1000}k updates`), textElement("strong", `${score.toFixed(2)} FID`));
+      scores.append(column);
     });
-    journey.append(journeyGrid, textElement("p", "One fixed seed and class across six actual EMA checkpoints. These are training snapshots, not interpolated images.", "caption"));
-    panel.append(journey);
+    next.addEventListener("click", () => {
+      pairIndex = (pairIndex + 1) % (data.study.species.length * data.study.visual_seeds.length);
+      showComparison();
+    });
+    reveal.addEventListener("click", () => { revealed = !revealed; showScores(); });
+    panel.append(controls, stage, actions, scores);
+    showComparison(); showScores();
   }
 
   function drawLoss() {
@@ -429,9 +457,11 @@
     lossSvg.append(svg("path", { d: band, fill: "#c9d1c3", opacity: ".6" }),
       svg("path", { d: path, fill: "none", stroke: "#8799a5", "stroke-width": 2 }));
     [0, 40000, 80000, 120000].forEach((step) => lossSvg.append(svg("text", { x: x(step), y: 233, "text-anchor": "middle", class: "chart-axis" }, `${step / 1000}k`)));
-    panel.append(lossSvg, textElement("p", "Mean logged adaptive loss in 1,000-update bins; shaded band shows the minimum and maximum logged loss in each bin, not a confidence interval. The objective has a changing target and adaptive weighting, so its scale is not an image-quality score. Duplicate logged steps retain their last occurrence.", "caption"));
+    panel.append(lossSvg);
+    const notes = document.createElement("details");
+    notes.append(textElement("summary", "About the loss curve"), textElement("p", "Mean logged adaptive loss in 1,000-update bins. Shading shows the minimum and maximum, not a confidence interval. The objective changes during training; this is not an image-quality score. Duplicate steps retain their last occurrence."));
     const link = textElement("a", "Download the numeric loss history ↗", "caption");
-    link.href = "assets/study/training_loss.csv"; panel.append(link);
+    link.href = "assets/study/training_loss.csv"; notes.append(link); panel.append(notes);
   }
   drawLoss();
   $("copy-command").addEventListener("click", async (event) => {
@@ -449,7 +479,7 @@
   });
   window.addEventListener("resize", () => { drawFID(); drawLoss(); });
   document.addEventListener("visibilitychange", () => {
-    if (document.hidden) { stopPlayback(); stopChart(); stopSpecimen(); diagram.pauseAnimations(); }
+    if (document.hidden) { stopPlayback(); stopChart(); stopSpecimen(); stopTrail(); diagram.pauseAnimations(); }
     else setDiagramMotion();
   });
 })();
