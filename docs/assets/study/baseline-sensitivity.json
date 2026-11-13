@@ -1,0 +1,31 @@
+{
+  "protocol": "20 real training images per class, without replacement, against all 3020 validation images",
+  "selection": "NumPy default_rng(seed), classes sorted alphabetically; indices refer to train_split.txt",
+  "features": "Reuses the exact clean-fid features from checkpoint_study.py; no network access",
+  "interpretation": "Sample-count and class-balance sensitivity check, not a reconstruction of the course's unpublished baseline protocol",
+  "runs": [
+    {
+      "seed": 42,
+      "train_count": 3020,
+      "validation_count": 3020,
+      "fid": 20.84477972846571,
+      "selected_indices_sha256": "36c3c8d1cfb77dcaf6ff9f7b8c1be6d50d0ad09be84ebd27143f90f7b0c78e14"
+    },
+    {
+      "seed": 1234,
+      "train_count": 3020,
+      "validation_count": 3020,
+      "fid": 20.514373711826863,
+      "selected_indices_sha256": "94ef5c444127720675421b5797bf941b3295127a09ada7a9f200500274de1e4d"
+    },
+    {
+      "seed": 2026,
+      "train_count": 3020,
+      "validation_count": 3020,
+      "fid": 21.211456127100632,
+      "selected_indices_sha256": "53c3c6f51c24c542f87a0ef429640643f9e66673a9a504402ec66a6f1d6aecfa"
+    }
+  ],
+  "mean": 20.856869855797736,
+  "sample_sd": 0.3486984396368248
+}

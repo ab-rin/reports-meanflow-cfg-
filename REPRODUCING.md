@@ -83,4 +83,4 @@ Changing software, precision, batch size, preprocessing, or seed can change FID.
 
 [data/run_history.json](data/run_history.json) distinguishes active update time from process elapsed time. Time at a selected checkpoint is cumulative from initialization, not the duration of its last resumed session. Repeated steps after recovery are not counted twice in the reconstructed trajectory.
 
-The local CFG run has a valid saved checkpoint at 110,600 updates. A log line at 110,700 precedes a failed save; the configured target of 125,000 was not completed. The selected checkpoint remains 101,000.
+The original report ended at a valid 110,600-update checkpoint. A later continuation, inspected for the project page, reached 122,295 retained updates; the last recorded evaluation was at 122,000. The selected checkpoint remains 101,000. The original data files preserve the earlier report snapshot; [the page data](docs/assets/study/) contains the extended history and new measurements. See [the page reproduction notes](docs/README.md) for the matched checkpoint comparison and real-data baseline checks.

@@ -1,0 +1,95 @@
+{
+  "checkpoints": [
+    {
+      "file": "ema_0001000.ckpt",
+      "sha256": "68cded77f3c22484805894b1cc16b83030b5c60a4c082ad79e95beaec53ab9cf",
+      "bytes": 224180163,
+      "metadata": {
+        "step": 1000,
+        "source_step": 0,
+        "updates": 1000,
+        "objective": "mf_cfg",
+        "guidance_scale": 2.0,
+        "label_dropout": 0.1
+      },
+      "weights_only_load": true,
+      "finite_tensors": true,
+      "strict_load": true,
+      "parameter_count": 56010243,
+      "download_url": "https://github.com/ab-rin/reports-meanflow-cfg-/releases/download/meanflow-cfg-training-snapshots/ema_0001000.ckpt"
+    },
+    {
+      "file": "ema_0008000.ckpt",
+      "sha256": "20aa738363a3e29cfd7def31d8c94bbc1fbbff46b0e6f1668cd26ccb5aad293d",
+      "bytes": 224180163,
+      "metadata": {
+        "step": 8000,
+        "source_step": 0,
+        "updates": 8000,
+        "objective": "mf_cfg",
+        "guidance_scale": 2.0,
+        "label_dropout": 0.1
+      },
+      "weights_only_load": true,
+      "finite_tensors": true,
+      "strict_load": true,
+      "parameter_count": 56010243,
+      "download_url": "https://github.com/ab-rin/reports-meanflow-cfg-/releases/download/meanflow-cfg-training-snapshots/ema_0008000.ckpt"
+    },
+    {
+      "file": "ema_0032000.ckpt",
+      "sha256": "a6651adcf824d27e85636086250904b804c7102329b0da1355cb02198b368334",
+      "bytes": 224175708,
+      "metadata": {
+        "step": 32000,
+        "source_step": 0,
+        "updates": 32000,
+        "objective": "mf_cfg",
+        "guidance_scale": 2.0,
+        "label_dropout": 0.1
+      },
+      "weights_only_load": true,
+      "finite_tensors": true,
+      "strict_load": true,
+      "parameter_count": 56010243,
+      "download_url": "https://github.com/ab-rin/reports-meanflow-cfg-/releases/download/meanflow-cfg-training-snapshots/ema_0032000.ckpt"
+    },
+    {
+      "file": "ema_0064000.ckpt",
+      "sha256": "8ba96595edd883380a489060d5aa58bd346242ae8279c6491b8fcc80d520ec14",
+      "bytes": 224175708,
+      "metadata": {
+        "step": 64000,
+        "source_step": 0,
+        "updates": 64000,
+        "objective": "mf_cfg",
+        "guidance_scale": 2.0,
+        "label_dropout": 0.1
+      },
+      "weights_only_load": true,
+      "finite_tensors": true,
+      "strict_load": true,
+      "parameter_count": 56010243,
+      "download_url": "https://github.com/ab-rin/reports-meanflow-cfg-/releases/download/meanflow-cfg-64k/ema_0064000.ckpt"
+    },
+    {
+      "file": "ema_0101000.ckpt",
+      "sha256": "ab99f610b9bc2a8ec26f627573608b52d490065773ede28ab18bf5a940d11b41",
+      "bytes": 224175708,
+      "metadata": {
+        "step": 101000,
+        "source_step": 0,
+        "updates": 101000,
+        "objective": "mf_cfg",
+        "guidance_scale": 2.0,
+        "label_dropout": 0.1
+      },
+      "weights_only_load": true,
+      "finite_tensors": true,
+      "strict_load": true,
+      "parameter_count": 56010243,
+      "download_url": "https://github.com/ab-rin/reports-meanflow-cfg-/releases/download/meanflow-cfg-101k/ema_0101000.ckpt"
+    }
+  ],
+  "note": "EMA tensors and scalar metadata only. The 122k image snapshot is shown on the page; that weight file is not included in these downloads."
+}

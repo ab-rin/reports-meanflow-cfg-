@@ -1,0 +1,276 @@
+{
+  "checkpoint_sha256": "ab99f610b9bc2a8ec26f627573608b52d490065773ede28ab18bf5a940d11b41",
+  "checkpoint_step": 101000,
+  "times": [
+    1.0,
+    0.6,
+    0.3,
+    0.018,
+    0.0
+  ],
+  "calls": 4,
+  "resolution": [
+    64,
+    64
+  ],
+  "device": "cpu",
+  "torch": "2.6.0",
+  "precision": "FP32",
+  "selection": "12 named species, all three declared seeds; no sample filtering",
+  "display": "Actual states clipped to [-1,1] for RGB display. No interpolated model states.",
+  "verification": "First trajectory exactly equals sample_best_four for the same seed",
+  "samples": [
+    {
+      "species": "Pikachu",
+      "class_id": 103,
+      "seed": 42,
+      "image": "pikachu-42.png",
+      "trajectory": "pikachu-42-steps.png"
+    },
+    {
+      "species": "Pikachu",
+      "class_id": 103,
+      "seed": 1234,
+      "image": "pikachu-1234.png",
+      "trajectory": "pikachu-1234-steps.png"
+    },
+    {
+      "species": "Pikachu",
+      "class_id": 103,
+      "seed": 2026,
+      "image": "pikachu-2026.png",
+      "trajectory": "pikachu-2026-steps.png"
+    },
+    {
+      "species": "Bulbasaur",
+      "class_id": 9,
+      "seed": 42,
+      "image": "bulbasaur-42.png",
+      "trajectory": "bulbasaur-42-steps.png"
+    },
+    {
+      "species": "Bulbasaur",
+      "class_id": 9,
+      "seed": 1234,
+      "image": "bulbasaur-1234.png",
+      "trajectory": "bulbasaur-1234-steps.png"
+    },
+    {
+      "species": "Bulbasaur",
+      "class_id": 9,
+      "seed": 2026,
+      "image": "bulbasaur-2026.png",
+      "trajectory": "bulbasaur-2026-steps.png"
+    },
+    {
+      "species": "Charmander",
+      "class_id": 14,
+      "seed": 42,
+      "image": "charmander-42.png",
+      "trajectory": "charmander-42-steps.png"
+    },
+    {
+      "species": "Charmander",
+      "class_id": 14,
+      "seed": 1234,
+      "image": "charmander-1234.png",
+      "trajectory": "charmander-1234-steps.png"
+    },
+    {
+      "species": "Charmander",
+      "class_id": 14,
+      "seed": 2026,
+      "image": "charmander-2026.png",
+      "trajectory": "charmander-2026-steps.png"
+    },
+    {
+      "species": "Squirtle",
+      "class_id": 129,
+      "seed": 42,
+      "image": "squirtle-42.png",
+      "trajectory": "squirtle-42-steps.png"
+    },
+    {
+      "species": "Squirtle",
+      "class_id": 129,
+      "seed": 1234,
+      "image": "squirtle-1234.png",
+      "trajectory": "squirtle-1234-steps.png"
+    },
+    {
+      "species": "Squirtle",
+      "class_id": 129,
+      "seed": 2026,
+      "image": "squirtle-2026.png",
+      "trajectory": "squirtle-2026-steps.png"
+    },
+    {
+      "species": "Eevee",
+      "class_id": 30,
+      "seed": 42,
+      "image": "eevee-42.png",
+      "trajectory": "eevee-42-steps.png"
+    },
+    {
+      "species": "Eevee",
+      "class_id": 30,
+      "seed": 1234,
+      "image": "eevee-1234.png",
+      "trajectory": "eevee-1234-steps.png"
+    },
+    {
+      "species": "Eevee",
+      "class_id": 30,
+      "seed": 2026,
+      "image": "eevee-2026.png",
+      "trajectory": "eevee-2026-steps.png"
+    },
+    {
+      "species": "Gengar",
+      "class_id": 40,
+      "seed": 42,
+      "image": "gengar-42.png",
+      "trajectory": "gengar-42-steps.png"
+    },
+    {
+      "species": "Gengar",
+      "class_id": 40,
+      "seed": 1234,
+      "image": "gengar-1234.png",
+      "trajectory": "gengar-1234-steps.png"
+    },
+    {
+      "species": "Gengar",
+      "class_id": 40,
+      "seed": 2026,
+      "image": "gengar-2026.png",
+      "trajectory": "gengar-2026-steps.png"
+    },
+    {
+      "species": "Jigglypuff",
+      "class_id": 57,
+      "seed": 42,
+      "image": "jigglypuff-42.png",
+      "trajectory": "jigglypuff-42-steps.png"
+    },
+    {
+      "species": "Jigglypuff",
+      "class_id": 57,
+      "seed": 1234,
+      "image": "jigglypuff-1234.png",
+      "trajectory": "jigglypuff-1234-steps.png"
+    },
+    {
+      "species": "Jigglypuff",
+      "class_id": 57,
+      "seed": 2026,
+      "image": "jigglypuff-2026.png",
+      "trajectory": "jigglypuff-2026-steps.png"
+    },
+    {
+      "species": "Psyduck",
+      "class_id": 111,
+      "seed": 42,
+      "image": "psyduck-42.png",
+      "trajectory": "psyduck-42-steps.png"
+    },
+    {
+      "species": "Psyduck",
+      "class_id": 111,
+      "seed": 1234,
+      "image": "psyduck-1234.png",
+      "trajectory": "psyduck-1234-steps.png"
+    },
+    {
+      "species": "Psyduck",
+      "class_id": 111,
+      "seed": 2026,
+      "image": "psyduck-2026.png",
+      "trajectory": "psyduck-2026-steps.png"
+    },
+    {
+      "species": "Snorlax",
+      "class_id": 127,
+      "seed": 42,
+      "image": "snorlax-42.png",
+      "trajectory": "snorlax-42-steps.png"
+    },
+    {
+      "species": "Snorlax",
+      "class_id": 127,
+      "seed": 1234,
+      "image": "snorlax-1234.png",
+      "trajectory": "snorlax-1234-steps.png"
+    },
+    {
+      "species": "Snorlax",
+      "class_id": 127,
+      "seed": 2026,
+      "image": "snorlax-2026.png",
+      "trajectory": "snorlax-2026-steps.png"
+    },
+    {
+      "species": "Dragonite",
+      "class_id": 26,
+      "seed": 42,
+      "image": "dragonite-42.png",
+      "trajectory": "dragonite-42-steps.png"
+    },
+    {
+      "species": "Dragonite",
+      "class_id": 26,
+      "seed": 1234,
+      "image": "dragonite-1234.png",
+      "trajectory": "dragonite-1234-steps.png"
+    },
+    {
+      "species": "Dragonite",
+      "class_id": 26,
+      "seed": 2026,
+      "image": "dragonite-2026.png",
+      "trajectory": "dragonite-2026-steps.png"
+    },
+    {
+      "species": "Mew",
+      "class_id": 81,
+      "seed": 42,
+      "image": "mew-42.png",
+      "trajectory": "mew-42-steps.png"
+    },
+    {
+      "species": "Mew",
+      "class_id": 81,
+      "seed": 1234,
+      "image": "mew-1234.png",
+      "trajectory": "mew-1234-steps.png"
+    },
+    {
+      "species": "Mew",
+      "class_id": 81,
+      "seed": 2026,
+      "image": "mew-2026.png",
+      "trajectory": "mew-2026-steps.png"
+    },
+    {
+      "species": "Vulpix",
+      "class_id": 143,
+      "seed": 42,
+      "image": "vulpix-42.png",
+      "trajectory": "vulpix-42-steps.png"
+    },
+    {
+      "species": "Vulpix",
+      "class_id": 143,
+      "seed": 1234,
+      "image": "vulpix-1234.png",
+      "trajectory": "vulpix-1234-steps.png"
+    },
+    {
+      "species": "Vulpix",
+      "class_id": 143,
+      "seed": 2026,
+      "image": "vulpix-2026.png",
+      "trajectory": "vulpix-2026-steps.png"
+    }
+  ]
+}

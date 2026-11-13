@@ -1,5 +1,5 @@
 {
-  "source_directory": "/root/AIC313-Project-FastGen/meanflow_cfg_implementation_20260929",
+  "source_directory": "[local source directory omitted]",
   "export_purpose": "Runnable original MeanFlow CFG training and inference source; no weights, images, logs or caches.",
   "original_files": [
     {
@@ -60,7 +60,8 @@
       "path": "provenance.json",
       "sha256": "fbb2a6bc48697aebc325a068fd5826a522f66e3aa58b8f064476a3813872f24d",
       "source_relative_path": "provenance.json",
-      "copy": "byte-identical"
+      "copy": "local paths redacted for publication; executable code unchanged",
+      "exported_sha256": "194af46fd34c0016f45066ae2dc2a8e763a5c333cf321e87b052e1af9201b72b"
     },
     {
       "path": "reference/cache_identity.json",
@@ -102,7 +103,8 @@
       "path": "src/original_meanflow/UPSTREAM.md",
       "sha256": "a72f14a990404b76769046488d558e3577a380b603fc5b39610dc2cb43fadc36",
       "source_relative_path": "src/original_meanflow/UPSTREAM.md",
-      "copy": "byte-identical"
+      "copy": "local paths redacted for publication; executable code unchanged",
+      "exported_sha256": "0d08c538c71026facda18983657b2bd8b31929875d7df2c1a496dbf44f4dc558"
     },
     {
       "path": "src/original_meanflow/__init__.py",
@@ -214,5 +216,6 @@
     "best_sampler.py": "a5304f06ac0eda6f7405e8a85a27f492ce46f6a890af8037f57b49433a1be06f",
     "requirements.txt": "28ec836f7e94f72ac42bdbf3a9ea79ee4a666c01a65abd7fbd2a47783eec3040",
     "sample.py": "e958cb00c77feada045160a78c0647ae901b7a091d4995facb5b50ab7daddbea"
-  }
+  },
+  "publication_note": "Local machine paths were removed from provenance.json and src/original_meanflow/UPSTREAM.md for publication. Their original source hashes remain recorded below; exported hashes identify the redacted copies. Executable source files are unchanged."
 }

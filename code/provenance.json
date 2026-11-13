@@ -1,5 +1,5 @@
 {
-  "source_directory": "/mnt/sting/rinat/meanflow-best",
+  "source_directory": "[local source directory omitted]",
   "source_files_sha256": {
     "evaluate.py": "f201320f3505ad478096313eedf657388a0c6aca4af456095509e13807228adb",
     "few_nfe_0016000.ckpt": "485d401553dcfc6418a25fbae64ecef66ebf5306102de16d5accd0c84296ce79",
@@ -29,7 +29,7 @@
   "initialization": "Random from seed; no checkpoint weights loaded",
   "paper_url": "https://arxiv.org/html/2505.13447v1",
   "paper_variant": "MeanFlow section 4.2, equations 18\u201319: built-in CFG, fixed guidance scale",
-  "implementation_parent": "/mnt/sting/rinat/diffusion/imf",
+  "implementation_parent": "[local implementation directory omitted]",
   "guidance_code_reference": "https://github.com/Gsunshine/meanflow/blob/main/meanflow.py",
   "guidance_reference_details": "kappa=0, omega=2; cond_drop uses raw velocity for null examples; boundary velocity computed in eval mode"
 }

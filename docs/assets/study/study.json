@@ -1,0 +1,65 @@
+{
+  "purpose": "Matched checkpoint comparison and real-data FID reference",
+  "device": "GRID A100D-20C",
+  "torch": "2.6.0+cu124",
+  "precision": "FP32; TF32 disabled",
+  "times": [
+    1.0,
+    0.75,
+    0.5,
+    0.25,
+    0.0
+  ],
+  "nfe": 4,
+  "sample_policy": "12 predeclared species, all 3 seeds, no image filtering",
+  "comparison_selection": "64k is the first recorded uniform-four checkpoint below 22; 101k is the best recorded uniform-four checkpoint",
+  "visual_seeds": [
+    42,
+    1234,
+    2026
+  ],
+  "species": [
+    "Pikachu",
+    "Bulbasaur",
+    "Charmander",
+    "Squirtle",
+    "Eevee",
+    "Gengar",
+    "Jigglypuff",
+    "Psyduck",
+    "Snorlax",
+    "Dragonite",
+    "Mew",
+    "Vulpix"
+  ],
+  "evaluation_seed": 1234,
+  "evaluation_batch": 32,
+  "generated_count": 3020,
+  "reference_count": 3020,
+  "train_manifest_sha256": "c4068bdec8c5994fa14887d3335e762dd6a4da1bc6394a6df7fae96d293138c0",
+  "val_manifest_sha256": "6dfba46a82c1bb329287d6da0f87be1b3b71d26c217150bf681f37cce4264df0",
+  "inception_sha256": "f58cb9b6ec323ed63459aa4fb441fe750cfe39fafad6da5cb504a16f19e958f4",
+  "checkpoints": [
+    {
+      "step": 64000,
+      "sha256": "8ba96595edd883380a489060d5aa58bd346242ae8279c6491b8fcc80d520ec14",
+      "historical_uniform_fid": 21.91814013325802,
+      "remeasured_uniform_fid": 21.918140061396798
+    },
+    {
+      "step": 101000,
+      "sha256": "ab99f610b9bc2a8ec26f627573608b52d490065773ede28ab18bf5a940d11b41",
+      "historical_uniform_fid": 20.39205670333024,
+      "remeasured_uniform_fid": 20.392056995263772
+    }
+  ],
+  "last_logged_step": 122290,
+  "retained_step": 122295,
+  "loss_export": "Last occurrence per step; only step, loss and cumulative active seconds",
+  "active_hours_at_64k": 166.91968716956458,
+  "active_hours_at_101k": 268.24470403004915,
+  "train_validation_fid": 15.710918412786214,
+  "train_count": 17079,
+  "reference_note": "All training images vs all validation images; unequal set sizes. Descriptive reference, not a lower bound.",
+  "complete": true
+}
