@@ -1,0 +1,21 @@
+{
+  "repository": "https://github.com/PokeAPI/cries",
+  "revision": "b3a9044bb839b5e3152aaa536c7b463a0fcf0140",
+  "audio_copyright": "The Pok\u00e9mon Company; see upstream license notice.",
+  "assets": [
+    {
+      "file": "mew.ogg",
+      "source": "https://github.com/PokeAPI/cries/blob/b3a9044bb839b5e3152aaa536c7b463a0fcf0140/cries/pokemon/legacy/151.ogg",
+      "git_blob_sha1": "3655005e7141b15a8e472426aa1b9d9d31d291a1",
+      "sha256": "284e179ac1035fb66ef68a5cbc4c7e63f9a97aa098ed1aff7baae4a6c4a84809",
+      "bytes": 8552
+    },
+    {
+      "file": "PokeAPI-cries-LICENSE.txt",
+      "source": "https://github.com/PokeAPI/cries/blob/b3a9044bb839b5e3152aaa536c7b463a0fcf0140/LICENSE",
+      "git_blob_sha1": "4e3f8426deb7b78c4abeec8ab8f548e4ea0524cc",
+      "sha256": "3bad26402acfeca5815384f903a4ad8528dea5bed20689a01f13fcba46f4c594",
+      "bytes": 6661
+    }
+  ]
+}

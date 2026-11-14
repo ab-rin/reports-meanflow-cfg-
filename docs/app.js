@@ -115,85 +115,154 @@
     event.target.textContent = active ? "Pixels on" : "Pixels off";
   });
 
-  // A typographic view of the same recorded pixels, with a literal-pixel toggle.
+  // Decorative transitions between recorded outputs; no extra model states.
   const specimenCanvas = $("type-canvas");
   const specimenContext = specimenCanvas.getContext("2d");
   const sourceCanvas = document.createElement("canvas");
   sourceCanvas.width = sourceCanvas.height = 64;
   const sourceContext = sourceCanvas.getContext("2d", { willReadFrequently: true });
-  let specimenIndex = 0;
-  let specimenFrame = 4;
-  let specimenType = true;
-  let specimenTimer = null;
-  let specimenImage = null;
-  let specimenRequest = 0;
   const specimenSamples = data.gallery.samples.filter((sample) => sample.seed === 42);
-  function drawSpecimen() {
-    if (!specimenImage) return;
-    sourceContext.clearRect(0, 0, 64, 64);
-    sourceContext.drawImage(specimenImage, specimenFrame * 64, 0, 64, 64, 0, 0, 64, 64);
-    specimenContext.clearRect(0, 0, 480, 480);
-    specimenCanvas.classList.toggle("literal-pixels", !specimenType);
-    if (!specimenType) {
-      specimenContext.imageSmoothingEnabled = false;
-      specimenContext.drawImage(sourceCanvas, 112, 112, 256, 256);
-    } else {
-      const pixels = sourceContext.getImageData(0, 0, 64, 64).data;
-      const alphabet = " .·:+*ox#@";
-      specimenContext.font = "8px Plex, monospace";
-      specimenContext.textAlign = "center";
-      for (let y = 0; y < 64; y++) {
-        for (let x = 0; x < 64; x++) {
-          const i = (y * 64 + x) * 4;
-          const r = pixels[i], g = pixels[i + 1], b = pixels[i + 2];
-          const brightness = (r + g + b) / 3;
-          if (brightness > 244) continue;
-          const glyph = alphabet[Math.min(9, Math.floor((255 - brightness) / 255 * 9) + 1)];
-          specimenContext.fillStyle = "rgb(" + Math.round(r * .54) + "," + Math.round(g * .54) + "," + Math.round(b * .54) + ")";
-          specimenContext.fillText(glyph, x * 7.5 + 3.75, y * 7.5 + 7);
-        }
-      }
+  const specimenLayers = new Map();
+  let specimenIndex = 0;
+  let specimenLayer = null;
+  let specimenTimer = null;
+  let specimenAnimation = null;
+  let specimenRequest = 0;
+  let specimenPaused = false;
+  let specimenVisible = true;
+  const specimenFont = document.fonts.load("8px Plex");
+  function specimenImage(sample) {
+    if (!specimenLayers.has(sample.species)) {
+      specimenLayers.set(sample.species, new Promise((resolve, reject) => {
+        const image = new Image();
+        image.onload = async () => {
+          await specimenFont;
+          sourceContext.clearRect(0, 0, 64, 64);
+          sourceContext.drawImage(image, 0, 0);
+          const pixels = sourceContext.getImageData(0, 0, 64, 64).data;
+          const layer = document.createElement("canvas");
+          layer.width = layer.height = 480;
+          const context = layer.getContext("2d");
+          const alphabet = " .·:+*ox#@";
+          context.font = "8px Plex, monospace";
+          context.textAlign = "center";
+          for (let y = 0; y < 64; y++) {
+            for (let x = 0; x < 64; x++) {
+              const i = (y * 64 + x) * 4;
+              const r = pixels[i], g = pixels[i + 1], b = pixels[i + 2];
+              const brightness = (r + g + b) / 3;
+              if (brightness > 244) continue;
+              const glyph = alphabet[Math.min(9, Math.floor((255 - brightness) / 255 * 9) + 1)];
+              context.fillStyle = `rgb(${Math.round(r * .54)},${Math.round(g * .54)},${Math.round(b * .54)})`;
+              context.fillText(glyph, x * 7.5 + 3.75, y * 7.5 + 7);
+            }
+          }
+          resolve(layer);
+        };
+        image.onerror = reject;
+        image.src = "assets/gallery/" + sample.image;
+      }));
     }
-    const sample = specimenSamples[specimenIndex];
-    specimenCanvas.setAttribute("aria-label", (specimenType ? "Typographic rendering" : "Recorded pixels") +
-      " of " + sample.species + " after " + specimenFrame + " model calls");
+    return specimenLayers.get(sample.species);
+  }
+  function drawSpecimen(layer = specimenLayer, opacity = 1, offset = 0) {
+    specimenContext.clearRect(0, 0, 480, 480);
+    if (!layer) return;
+    specimenContext.globalAlpha = opacity;
+    specimenContext.drawImage(layer, 0, offset);
+    specimenContext.globalAlpha = 1;
   }
   function stopSpecimen() {
-    clearInterval(specimenTimer);
-    specimenTimer = null;
-    $("specimen-play").textContent = "↺ replay";
-  }
-  function loadSpecimen() {
-    stopSpecimen();
-    const request = ++specimenRequest;
-    const image = new Image();
-    image.onload = () => {
-      if (request !== specimenRequest) return;
-      specimenImage = image;
-      specimenFrame = 4;
-      drawSpecimen();
-    };
-    image.src = "assets/gallery/" + specimenSamples[specimenIndex].trajectory;
-  }
-  $("specimen-play").addEventListener("click", () => {
-    if (specimenTimer) { stopSpecimen(); return; }
-    specimenFrame = 0; drawSpecimen();
-    $("specimen-play").textContent = "Ⅱ pause";
-    specimenTimer = setInterval(() => {
-      specimenFrame++; drawSpecimen();
-      if (specimenFrame === 4) stopSpecimen();
-    }, 800);
-  });
-  $("specimen-mode").addEventListener("click", (event) => {
-    specimenType = !specimenType;
-    event.target.setAttribute("aria-pressed", String(specimenType));
+    clearTimeout(specimenTimer);
+    cancelAnimationFrame(specimenAnimation);
+    specimenTimer = specimenAnimation = null;
     drawSpecimen();
-    if (specimenType) document.fonts.load("8px Plex").then(drawSpecimen);
+  }
+  function scheduleSpecimen() {
+    clearTimeout(specimenTimer);
+    if (specimenPaused || reducedMotion.matches || document.hidden || !specimenVisible) return;
+    specimenTimer = setTimeout(() => showSpecimen((specimenIndex + 1) % specimenSamples.length), 3500);
+  }
+  function updateSpecimenControl() {
+    const button = $("specimen-toggle");
+    const label = reducedMotion.matches ? "Show another Pokémon" : specimenPaused ? "Resume changing Pokémon" : "Pause changing Pokémon";
+    button.setAttribute("aria-label", label);
+    button.title = label;
+    button.setAttribute("aria-pressed", String(specimenPaused));
+    button.classList.toggle("paused", specimenPaused);
+    button.querySelector("span").textContent = specimenPaused || reducedMotion.matches ? "▶" : "Ⅱ";
+  }
+  async function showSpecimen(index, animate = true) {
+    const request = ++specimenRequest;
+    stopSpecimen();
+    try {
+      const next = await specimenImage(specimenSamples[index]);
+      if (request !== specimenRequest) return;
+      const previous = specimenLayer;
+      specimenIndex = index;
+      specimenLayer = next;
+      specimenCanvas.setAttribute("aria-label", "Typographic rendering of generated " + specimenSamples[index].species);
+      document.querySelectorAll("#hero-pokemon button").forEach((button) => button.setAttribute("aria-pressed", String(button.dataset.species === specimenSamples[index].species)));
+      if (!animate || !previous || reducedMotion.matches || document.hidden || !specimenVisible) {
+        drawSpecimen(); scheduleSpecimen(); return;
+      }
+      const started = performance.now();
+      const ease = (value) => value * value * (3 - 2 * value);
+      function dissolve(time) {
+        const progress = Math.min(1, (time - started) / 1200);
+        if (progress < .5) drawSpecimen(previous, 1 - ease(progress * 2), -4 * progress);
+        else drawSpecimen(next, ease((progress - .5) * 2), 4 * (1 - progress));
+        if (progress < 1) specimenAnimation = requestAnimationFrame(dissolve);
+        else { specimenAnimation = null; drawSpecimen(); scheduleSpecimen(); }
+      }
+      specimenAnimation = requestAnimationFrame(dissolve);
+    } catch {
+      if (request === specimenRequest) scheduleSpecimen();
+    }
+  }
+  $("specimen-toggle").addEventListener("click", () => {
+    if (reducedMotion.matches) { showSpecimen((specimenIndex + 1) % specimenSamples.length, false); return; }
+    specimenPaused = !specimenPaused;
+    updateSpecimenControl();
+    if (specimenPaused) stopSpecimen(); else scheduleSpecimen();
   });
-  $("specimen-next").addEventListener("click", () => {
-    specimenIndex = (specimenIndex + 1) % specimenSamples.length;
-    loadSpecimen();
+  ["Mew", "Gengar", "Dragonite"].forEach((name) => {
+    const index = specimenSamples.findIndex((sample) => sample.species === name);
+    const button = document.createElement("button");
+    button.type = "button";
+    button.dataset.species = name;
+    button.setAttribute("aria-label", "Show " + name + " in the artwork");
+    button.title = name;
+    button.setAttribute("aria-pressed", "false");
+    const image = new Image();
+    image.src = "assets/gallery/" + specimenSamples[index].image;
+    image.alt = ""; image.width = image.height = 64;
+    button.append(image);
+    button.addEventListener("click", () => showSpecimen(index));
+    $("hero-pokemon").append(button);
   });
+  const mewAudio = $("mew-audio");
+  mewAudio.volume = .35;
+  $("mew-cry").addEventListener("click", async () => {
+    showSpecimen(specimenSamples.findIndex((sample) => sample.species === "Mew"));
+    mewAudio.currentTime = 0;
+    try {
+      await mewAudio.play();
+      $("mew-cry").classList.add("playing");
+      $("audio-status").textContent = "Playing Mew’s cry";
+    } catch {
+      $("audio-status").textContent = "Mew’s cry could not be played in this browser.";
+    }
+  });
+  mewAudio.addEventListener("ended", () => { $("mew-cry").classList.remove("playing"); $("audio-status").textContent = ""; });
+  new IntersectionObserver(([entry]) => {
+    specimenVisible = entry.isIntersecting;
+    if (specimenVisible) scheduleSpecimen(); else stopSpecimen();
+  }, { threshold: .1 }).observe($("top"));
+  reducedMotion.addEventListener("change", () => {
+    updateSpecimenControl(); stopSpecimen(); scheduleSpecimen();
+  });
+  updateSpecimenControl();
   specimenSamples.forEach((sample) => {
     const button = document.createElement("button");
     button.type = "button";
@@ -211,29 +280,18 @@
     $("sample-shelf").append(button);
   });
   loadTrajectory();
-  loadSpecimen();
-  document.fonts.load("8px Plex").then(drawSpecimen);
+  showSpecimen(0, false);
 
   // The original opening-only trail: samples appear in place, then fade.
   const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)");
-  let trailEnabled = !reducedMotion.matches;
   let trailIndex = 0;
   let trailPoint = null;
   function stopTrail() {
     trailPoint = null;
     $("sample-trail").replaceChildren();
   }
-  function updateTrailControl() {
-    const available = finePointer.matches && !reducedMotion.matches;
-    $("trail-toggle").hidden = !available;
-    $("trail-toggle").textContent = trailEnabled ? "trail on" : "trail off";
-    $("trail-toggle").setAttribute("aria-pressed", String(trailEnabled));
-    $("trail-toggle").setAttribute("aria-label", trailEnabled ? "Turn image trail off" : "Turn image trail on");
-    if (!trailEnabled || !available) stopTrail();
-  }
-  $("trail-toggle").addEventListener("click", () => { trailEnabled = !trailEnabled; updateTrailControl(); });
   $("top").addEventListener("pointermove", (event) => {
-    if (!trailEnabled || reducedMotion.matches || !finePointer.matches || event.pointerType !== "mouse" ||
+    if (reducedMotion.matches || !finePointer.matches || event.pointerType !== "mouse" ||
         event.target.closest("a,button,canvas,.intro-note,.intro-title")) return;
     const bounds = $("top").getBoundingClientRect();
     const point = [event.clientX - bounds.left, event.clientY - bounds.top];
@@ -254,9 +312,8 @@
   });
   $("top").addEventListener("pointerleave", () => { trailPoint = null; });
   window.addEventListener("blur", stopTrail);
-  finePointer.addEventListener("change", updateTrailControl);
-  reducedMotion.addEventListener("change", updateTrailControl);
-  updateTrailControl();
+  finePointer.addEventListener("change", stopTrail);
+  reducedMotion.addEventListener("change", stopTrail);
 
   const trainingStages = [...document.querySelectorAll("[data-training-stage]")];
   const stageDescriptions = [
@@ -518,6 +575,7 @@
   });
   window.addEventListener("resize", () => { drawFID(); drawLoss(); drawPaired(); });
   document.addEventListener("visibilitychange", () => {
-    if (document.hidden) { stopPlayback(); stopChart(); stopSpecimen(); stopTrail(); stopDiagram(); }
+    if (document.hidden) { stopPlayback(); stopChart(); stopSpecimen(); stopTrail(); stopDiagram(); mewAudio.pause(); $("mew-cry").classList.remove("playing"); }
+    else scheduleSpecimen();
   });
 })();
