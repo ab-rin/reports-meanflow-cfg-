@@ -189,8 +189,6 @@
     button.setAttribute("aria-label", label);
     button.title = label;
     button.setAttribute("aria-pressed", String(specimenPaused));
-    button.classList.toggle("paused", specimenPaused);
-    button.querySelector("span").textContent = specimenPaused || reducedMotion.matches ? "▶" : "Ⅱ";
   }
   async function showSpecimen(index, animate = true) {
     const request = ++specimenRequest;
