@@ -2,7 +2,7 @@
 
 I trained a Pokémon generator for KAIST’s [FastGen course project](https://generative-models.kaist.ac.kr/fastgen/). It uses MeanFlow with guidance built into training, so an image takes four network calls.
 
-[Explore the project page (In development)] || [Code](code/) || [Weights](#weights) || [Technical report](REPORT.md)
+Explore the project page (in development) || [Code](code/) || [Weights](#weights) || [Technical report](REPORT.md)
 
 ![Six Pokémon generated in four actual model calls, starting from noise.](docs/assets/four-calls.gif)
 
