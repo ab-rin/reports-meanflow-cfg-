@@ -1,4 +1,4 @@
-"""Render the README animation from recorded model states; no interpolation."""
+"""Render recorded model states with display-only alpha masks; no interpolation."""
 from pathlib import Path
 from PIL import Image, ImageDraw, ImageFont
 
@@ -15,9 +15,10 @@ for step in range(5):
     label = 'initial noise' if step == 0 else f'call {step} / 4'
     draw.text((1008, 47), label, font=font, fill='#47675b', anchor='ra')
     for index, name in enumerate(names):
-        strip = Image.open(ASSETS / 'gallery' / f'{name}-42-steps.png')
+        strip = Image.open(ASSETS / 'cutouts/gallery' / f'{name}-42-steps.png')
         state = strip.crop((step * 64, 0, (step + 1) * 64, 64))
-        canvas.paste(state.resize((144, 144), Image.Resampling.NEAREST), (30 + 166 * index, 101))
+        enlarged = state.resize((144, 144), Image.Resampling.NEAREST)
+        canvas.paste(enlarged, (30 + 166 * index, 101), enlarged.getchannel('A'))
         draw.text((30 + 166 * index, 258), name, font=font, fill='#667061')
     draw.text((30, 295), '101k EMA · seed 42 · actual recorded states · [1, .6, .3, .018, 0]', font=font, fill='#667061')
     frames.append(canvas)

@@ -6,7 +6,7 @@ I trained a Pokémon generator from scratch for KAIST’s [FastGen course projec
 
 ![Six Pokémon generated in four actual model calls, starting from noise.](docs/assets/four-calls.gif)
 
-*101k EMA, seed 42. Five recorded states, with no interpolated frames. The page includes all 192 samples across 12 species and 16 seeds.*
+*101k EMA, seed 42. Five recorded states, with no interpolated frames. Backgrounds are masked for display; the page also offers the untouched frames. The page includes all 192 samples across 12 species and 16 seeds.*
 
 ## Why I wanted to look beyond the score
 
@@ -19,7 +19,7 @@ I compared the first checkpoint below 22 with the best checkpoint, using the sam
 | 64k EMA | 21.9181 | 166.92 |
 | 101k EMA | 20.3921 | 268.24 |
 
-That is **101.33 more active hours for 1.5261 lower FID**. The page lets you compare their images before revealing the scores. It also shows one fixed Pikachu seed at six training checkpoints, the loss history, and all 168 recorded FID evaluations.
+That is **101.33 more active hours for 1.5261 lower FID**. The page lets you compare their images before revealing the scores. It also shows one fixed Pikachu seed at all 168 evaluated training checkpoints, the loss history, and all 168 recorded FID evaluations.
 
 The baseline check matters too. Using 3,020 real training images, balanced at 20 per class, gave **20.86 ± 0.35** over three subsets. Using all 17,079 training images gave **15.71** against the same 3,020 validation images. Both sample count and class balance change here. This is not an exact reconstruction of the course’s baseline.
 

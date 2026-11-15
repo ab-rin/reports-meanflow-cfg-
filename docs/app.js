@@ -18,6 +18,14 @@
     if (className) element.className = className;
     return element;
   }
+  let showBackgrounds = false;
+  function displayPath(original) {
+    return showBackgrounds ? original : original.replace("assets/", "assets/cutouts/");
+  }
+  function sampleSource(image, original) {
+    image.dataset.originalSrc = original;
+    image.src = displayPath(original);
+  }
   const species = [...new Set(data.gallery.samples.map((sample) => sample.species))];
   const seeds = [...new Set(data.gallery.samples.map((sample) => sample.seed))].sort((a, b) => a - b);
   let selectedSpecies = species[0];
@@ -44,7 +52,9 @@
     cards.forEach((card, i) => {
       if (!card.image) return;
       const cardFrame = playTarget === null || playTarget === i ? frame : 4;
-      card.canvas.getContext("2d").drawImage(card.image, 64 * cardFrame, 0, 64, 64, 0, 0, 64, 64);
+      const context = card.canvas.getContext("2d");
+      context.clearRect(0, 0, 64, 64);
+      context.drawImage(card.image, 64 * cardFrame, 0, 64, 64, 0, 0, 64, 64);
       card.button.setAttribute("aria-label", `Replay ${selectedSpecies}, seed ${card.seed}, ${cardFrame ? "after call " + cardFrame : "initial noise"}`);
     });
     [...$("generation-progress").children].forEach((mark, i) => mark.classList.toggle("filled", i < frame));
@@ -79,7 +89,7 @@
         const image = new Image();
         image.onload = () => resolve(image);
         image.onerror = reject;
-        image.src = `assets/gallery/${sample.trajectory}`;
+        image.src = displayPath(`assets/gallery/${sample.trajectory}`);
       })));
       if (request !== imageRequest) return;
       cards.forEach((card, index) => { card.image = images[index]; card.button.disabled = false; });
@@ -151,16 +161,19 @@
               const i = (y * 64 + x) * 4;
               const r = pixels[i], g = pixels[i + 1], b = pixels[i + 2];
               const brightness = (r + g + b) / 3;
-              if (brightness > 244) continue;
+              const alpha = pixels[i + 3] / 255;
+              if (brightness > 244 || alpha < .02) continue;
+              context.globalAlpha = alpha;
               const glyph = alphabet[Math.min(9, Math.floor((255 - brightness) / 255 * 9) + 1)];
               context.fillStyle = `rgb(${Math.round(r * .54)},${Math.round(g * .54)},${Math.round(b * .54)})`;
               context.fillText(glyph, x * 7.5 + 3.75, y * 7.5 + 7);
             }
           }
+          context.globalAlpha = 1;
           resolve(layer);
         };
         image.onerror = reject;
-        image.src = "assets/gallery/" + sample.image;
+        sampleSource(image, "assets/gallery/" + sample.image);
       }));
     }
     return specimenLayers.get(sample.species);
@@ -233,7 +246,7 @@
     button.title = name;
     button.setAttribute("aria-pressed", "false");
     const image = new Image();
-    image.src = "assets/gallery/" + specimenSamples[index].image;
+    sampleSource(image, "assets/gallery/" + specimenSamples[index].image);
     image.alt = ""; image.width = image.height = 64;
     button.append(image);
     button.addEventListener("click", () => showSpecimen(index));
@@ -267,7 +280,7 @@
     button.setAttribute("aria-label", "Explore " + sample.species);
     button.dataset.species = sample.species;
     const image = new Image();
-    image.src = "assets/gallery/" + sample.image;
+    sampleSource(image, "assets/gallery/" + sample.image);
     image.alt = "";
     image.width = image.height = 64;
     button.append(image, textElement("span", sample.species.toLowerCase()));
@@ -297,7 +310,7 @@
     trailPoint = point;
     const sample = specimenSamples[trailIndex % specimenSamples.length];
     const image = new Image();
-    image.src = "assets/gallery/" + sample.image;
+    sampleSource(image, "assets/gallery/" + sample.image);
     image.className = "trail-sample";
     image.alt = "";
     image.style.left = (point[0] - 24) + "px";
@@ -343,6 +356,10 @@
   });
   reducedMotion.addEventListener("change", () => { if (reducedMotion.matches) stopDiagram(); });
 
+  const trainingAtlas = new Image();
+  $("replay-chart").disabled = true;
+  trainingAtlas.onload = () => { $("replay-chart").disabled = false; drawFID(); };
+  trainingAtlas.src = displayPath(data.trainingFrames.atlas);
   let chartZoom = false;
   let chartTimer = null;
   let chartIndex = data.history.length - 1;
@@ -385,13 +402,18 @@
       chart.append(svg("line", { x1: x(point[0]), x2: x(point[0]), y1: y(point[1]), y2: bottom, stroke: "#47675b55", "stroke-dasharray": "3 4" }),
         svg("circle", { cx: x(point[0]), cy: y(point[1]), r: 5, fill: "#47675b", stroke: "#fafbf9", "stroke-width": 2 }));
     }
-    const snapshot = [1000, 8000, 32000, 64000, 101000, 122000].filter((step) => step <= point[0]).at(-1) || 1000;
-    const snapshotPath = `assets/study/journey-${snapshot}.png`;
-    if ($("training-image").getAttribute("src") !== snapshotPath) {
-      $("training-image").src = snapshotPath;
-      $("training-image").alt = `Pikachu at ${snapshot.toLocaleString()} training updates, seed 42`;
-      $("training-image-caption").textContent = `Saved at ${snapshot / 1000}k updates`;
+    const snapshot = data.trainingFrames.steps[chartIndex];
+    const canvas = $("training-image");
+    if (trainingAtlas.complete && trainingAtlas.naturalWidth) {
+      const column = chartIndex % data.trainingFrames.columns;
+      const row = Math.floor(chartIndex / data.trainingFrames.columns);
+      const context = canvas.getContext("2d");
+      context.clearRect(0, 0, 64, 64);
+      context.drawImage(trainingAtlas, column * 64, row * 64, 64, 64, 0, 0, 64, 64);
     }
+    canvas.setAttribute("aria-label", `Pikachu at ${snapshot.toLocaleString()} training updates, seed 42`);
+    canvas.dataset.checkpointStep = snapshot;
+    $("training-image-caption").textContent = `${snapshot / 1000}k updates`;
     $("training-readout").textContent = `${point[0].toLocaleString()} updates · ${point[1].toFixed(2)} FID`;
     $("training-step").value = chartIndex;
     $("training-step").setAttribute("aria-valuetext", $("training-readout").textContent);
@@ -418,7 +440,7 @@
     chartTimer = setInterval(() => {
       chartIndex += 1; drawFID();
       if (chartIndex === data.history.length - 1) stopChart();
-    }, 35);
+    }, 110);
   });
   drawFID();
 
@@ -497,14 +519,18 @@
     scores.id = "comparison-scores";
     reveal.setAttribute("aria-controls", scores.id);
     const pairSeed = textElement("span", "", "pair-seed");
-    actions.append(pairSeed, reveal);
+    const backgrounds = textElement("button", "Show backgrounds", "quiet-button");
+    backgrounds.type = "button";
+    backgrounds.dataset.backgroundToggle = "";
+    backgrounds.setAttribute("aria-pressed", "false");
+    actions.append(pairSeed, backgrounds, reveal);
     function showComparison() {
       const name = data.study.species[pairIndex % data.study.species.length];
       const seed = data.study.visual_seeds[Math.floor(pairIndex / data.study.species.length)];
       pairName.textContent = name;
       pairSeed.textContent = `Seed ${seed}`;
       data.study.checkpoints.forEach((checkpoint, i) => {
-        images[i].src = `assets/study/compare-${checkpoint.step}-${name.toLowerCase()}-${seed}.png`;
+        sampleSource(images[i], `assets/study/compare-${checkpoint.step}-${name.toLowerCase()}-${seed}.png`);
         images[i].alt = `${name}, checkpoint ${i ? "B" : "A"}, seed ${seed}`;
       });
       wipe.value = 50; positionWipe();
@@ -558,6 +584,20 @@
     link.href = "assets/study/training_loss.csv"; notes.append(link); panel.append(notes);
   }
   drawLoss();
+  document.querySelectorAll("[data-background-toggle]").forEach((button) => button.addEventListener("click", () => {
+    showBackgrounds = !showBackgrounds;
+    document.querySelectorAll("[data-background-toggle]").forEach((control) => {
+      control.textContent = showBackgrounds ? "Hide backgrounds" : "Show backgrounds";
+      control.setAttribute("aria-pressed", String(showBackgrounds));
+    });
+    document.querySelectorAll("img[data-original-src]").forEach((image) => { image.src = displayPath(image.dataset.originalSrc); });
+    loadTrajectory();
+    specimenLayers.clear();
+    showSpecimen(specimenIndex, false);
+    stopChart();
+    $("replay-chart").disabled = true;
+    trainingAtlas.src = displayPath(data.trainingFrames.atlas);
+  }));
   $("copy-command").addEventListener("click", async (event) => {
     try {
       await navigator.clipboard.writeText($("sample-command").textContent);

@@ -3,6 +3,7 @@ import csv
 import json
 from pathlib import Path
 from statistics import mean
+from PIL import Image
 
 ROOT = Path(__file__).resolve().parents[1]
 ASSETS = ROOT / "docs/assets"
@@ -27,6 +28,21 @@ if study:
     data["loss"] = [[max(r[0] for r in values), mean(r[1] for r in values),
                      min(r[1] for r in values), max(r[1] for r in values), len(values)]
                     for _, values in sorted(bins.items())]
+frame_record_path = ASSETS / "study/training-frames.json"
+if frame_record_path.exists():
+    frame_record = json.loads(frame_record_path.read_text())
+    frames = frame_record["frames"]
+    assert frame_record["complete"]
+    assert [row["step"] for row in frames] == [row[0] for row in sorted(history)]
+    columns = 14
+    atlas = Image.new("RGB", (columns * 64, ((len(frames) + columns - 1) // columns) * 64))
+    for i, frame in enumerate(frames):
+        image = Image.open(ASSETS / "study" / frame["image"]).convert("RGB")
+        assert image.size == (64, 64)
+        atlas.paste(image, ((i % columns) * 64, (i // columns) * 64))
+    atlas.save(ASSETS / "study/training-atlas.png", optimize=True)
+    data["trainingFrames"] = {"steps": [row["step"] for row in frames], "columns": columns,
+                              "atlas": "assets/study/training-atlas.png"}
 payload = json.dumps(data, separators=(",", ":"), ensure_ascii=True)
 assert "</script" not in payload.lower()
 (ASSETS / "project-data.js").write_text("window.PROJECT_DATA = " + payload + ";\n")

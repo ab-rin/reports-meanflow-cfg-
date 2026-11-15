@@ -9,9 +9,9 @@
   <meta property="og:description" content="A course project by ab-rin. Play with the samples, compare checkpoints, and inspect the experiments.">
   <title>Pokémon &amp; MeanFlow — ab-rin</title>
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="style.css">
-  <script src="assets/project-data.js" defer></script>
-  <script src="app.js" defer></script>
+  <link rel="stylesheet" href="style.css?v=training-cutouts-1">
+  <script src="assets/project-data.js?v=training-cutouts-1" defer></script>
+  <script src="app.js?v=training-cutouts-1" defer></script>
 </head>
 <body class="pixelated">
 <a class="skip-link" href="#main">Skip to content</a>
@@ -31,7 +31,7 @@
     </button>
   </figure>
   <div class="intro-note">
-    <p>I trained a model to make <span class="inline-sample" tabindex="0">Pokémon<img src="assets/gallery/bulbasaur-42.png" alt="Generated Bulbasaur, seed 42"></span> from scratch, using just four network calls per image.</p>
+    <p>I trained a model to make <span class="inline-sample" tabindex="0">Pokémon<img src="assets/cutouts/gallery/bulbasaur-42.png" data-original-src="assets/gallery/bulbasaur-42.png" alt="Generated Bulbasaur, seed 42"></span> from scratch, using just four network calls per image.</p>
     <p>I got it down to <a href="#results">19.35 FID</a>. The course’s real-data reference was 20.82. Going below that felt strange: I was spending a lot of time on a smaller number, but what was changing in the images?</p>
     <p><a href="#explore">Find a Pokémon you like</a>, then <a href="#comparison">compare the checkpoints</a> before looking at their scores.</p>
   </div>
@@ -50,10 +50,11 @@
       <div class="seed-control"><label for="seed">First seed <output id="seed-value" for="seed">42</output></label><input id="seed" type="range" min="0" max="15" value="2" step="1" aria-label="First noise seed"></div>
       <button class="button" id="play" type="button">↺ Replay all five</button>
       <button type="button" class="quiet-button" id="pixel-toggle" aria-pressed="true">Pixels on</button>
+      <button type="button" class="quiet-button" data-background-toggle aria-pressed="false">Show backgrounds</button>
     </div>
     <p class="generation-status" id="generation-status" role="status"></p>
   </div>
-  <details><summary>About these samples</summary><p>192 recorded outputs: 12 Pokémon × 16 seeds. Every output from this selection is included. Replay shows the starting noise and four saved model states, with no invented frames. This page plays saved inference; it does not run the model in your browser.</p><p>The 101k EMA checkpoint uses sampling times [1, .6, .3, .018, 0], with guidance built into the model. Intermediate tensors are clipped for display. <a href="assets/gallery/gallery.json">Sampling record ↗</a></p></details>
+  <details><summary>About these samples</summary><p>192 recorded outputs: 12 Pokémon × 16 seeds. The page adds foreground masks for transparent display; “Show backgrounds” restores the untouched frames. Initial noise is always shown in full. Every output from this selection is included. Replay shows the starting noise and four saved model states, with no invented frames. This page plays saved inference; it does not run the model in your browser.</p><p>The 101k EMA checkpoint uses sampling times [1, .6, .3, .018, 0], with guidance built into the model. Intermediate tensors are clipped for display. <a href="assets/gallery/gallery.json">Sampling record ↗</a></p></details>
 </section>
 
 <section class="section essay-section" id="question">
@@ -73,7 +74,7 @@
   <p class="section-description">Same Pokémon, same noise. Drag across the image to compare, then reveal the scores.</p>
   <div id="checkpoint-comparison" class="comparison-panel"><p>Enable JavaScript for the comparison, or open the complete grids: <a href="assets/study/compare-64000-42.png">64k</a> · <a href="assets/study/compare-101000-42.png">101k</a>.</p></div>
   <p class="comparison-takeaway">Another 101 hours of training. A 1.53-point drop in FID. How much changed in the images?</p>
-  <details><summary>How the comparison works</summary><p>64k is the first recorded checkpoint below FID 22; 101k is the best recorded checkpoint with the same uniform four-call sampler. All 36 matched pairs are available here. The headline 19.35 uses a separately tuned schedule and five seeds.</p><p>This small gallery cannot establish a general visual ranking or rule out memorization. <a href="assets/study/study.json">Measurements and checkpoint hashes ↗</a></p></details>
+  <details><summary>How the comparison works</summary><p>64k is the first recorded checkpoint below FID 22; 101k is the best recorded checkpoint with the same uniform four-call sampler. All 36 matched pairs are available here. Foreground masks are for display only; “Show backgrounds” includes the models’ generated backgrounds. FID was measured on the full, unmasked images. The headline 19.35 uses a separately tuned schedule and five seeds.</p><p>This small gallery cannot establish a general visual ranking or rule out memorization. <a href="assets/study/study.json">Measurements and checkpoint hashes ↗</a></p></details>
 </section>
 
 <section class="section" id="results">
@@ -81,11 +82,11 @@
   <p class="section-description">The first checkpoint below 22 was at 64k updates. The best recorded uniform-four score was at 101k. Continuing to 122k did not improve it.</p>
   <div class="chart-panel">
     <div class="chart-toolbar"><div><h3>Validation FID</h3><p>uniform four-call sampler</p></div><div class="chart-buttons"><button id="zoom-chart" class="quiet-button" aria-pressed="false" type="button">Zoom near 22</button><button id="replay-chart" class="button" type="button">↻ Replay training</button></div></div>
-    <div class="training-view"><figure class="training-snapshot"><img id="training-image" src="assets/study/journey-122000.png" width="64" height="64" alt="Pikachu from the 122k checkpoint, seed 42"><figcaption id="training-image-caption">Saved at 122k updates</figcaption></figure><svg id="fid-chart" viewBox="0 0 1080 360" role="img" aria-label="Validation FID during training"></svg></div>
+    <div class="training-view"><figure class="training-snapshot"><canvas id="training-image" width="64" height="64" role="img" aria-label="Pikachu from the 122k checkpoint, seed 42"></canvas><figcaption id="training-image-caption">122k updates</figcaption></figure><svg id="fid-chart" viewBox="0 0 1080 360" role="img" aria-label="Validation FID during training"></svg></div>
     <div class="chart-scrubber"><label for="training-step">updates</label><input id="training-step" type="range" min="0" max="167" value="167"><output id="training-readout" for="training-step"></output></div>
     <div class="chart-legend"><span><i class="line-key"></i> measured FID</span><span><i class="line-key dashed"></i> course target: 22</span><span><i class="line-key baseline"></i> course real-data reference: 20.82</span></div>
   </div>
-  <details><summary>Chart notes &amp; data</summary><p>168 measured FIDs. The image switches between six saved checkpoints of the same Pikachu and seed 42; the caption identifies the snapshot on screen. There is no interpolation. The reference lines are context, not lower bounds. <a href="assets/study/fid_history.csv">Download FID history ↗</a></p></details>
+  <details><summary>Chart notes &amp; data</summary><p>168 measured FIDs and 168 matched checkpoint images. Every slider position shows that checkpoint’s actual Pikachu with seed 42 and the same four equal sampling intervals. The images are packed losslessly into one sheet for smooth playback. Display masks hide backgrounds; “Show backgrounds” restores the original RGB frames. There is no image interpolation. The reference lines are context, not lower bounds. <a href="assets/study/fid_history.csv">Download FID history ↗</a></p></details>
   <div id="loss-panel"></div>
   <div class="schedule-study">
     <div><h3>Moving the four steps.</h3><p>After training, I kept the 101k weights fixed and changed the sampling times. The selected schedule improved FID in all five paired confirmation runs.</p><div class="schedule-options" role="group" aria-label="Sampling schedule"><button data-schedule="uniform" aria-pressed="false">uniform</button><button data-schedule="rho2" aria-pressed="false">ρ = 2</button><button data-schedule="tuned" aria-pressed="true">tuned</button></div><div id="schedule-bars" aria-label="Sampling time intervals"></div><p class="caption" id="schedule-times"></p></div>
@@ -134,7 +135,7 @@ python sample.py --checkpoint checkpoints/ema_0101000.ckpt \
   --samples-per-class 3 --output outputs/four-calls --device cuda</code></pre></div><p class="caption">Class IDs come from category_to_id.json, not Pokédex numbers.</p></details>
 </section>
 </main>
-<footer><div><a href="#top">ab-rin / meanflow ↑</a><span>KAIST · AIC313 / CS378 · 2026</span></div><details><summary>Sources &amp; credits</summary><p>Method: <a href="https://arxiv.org/abs/2505.13447">Mean Flows for One-step Generative Modeling</a>. Backbone: <a href="https://github.com/Gsunshine/py-meanflow/tree/1f6d72d94247c8fdeb89489acca1a8007a6baf6c">py-meanflow</a>, CC BY-NC-SA 4.0. <a href="https://generative-models.kaist.ac.kr/fastgen/">Course</a>. <a href="https://arxiv.org/abs/1911.07023">FID bias paper</a>.</p><p>Design references: <a href="https://antwi.dev/">Jermaine Antwi</a>, <a href="https://www.jadefranson.com/">Jade Franson</a>, <a href="https://dangeng.github.io/visual_anagrams/">Visual Anagrams</a>, and <a href="https://prompt-to-prompt.github.io/">Prompt-to-Prompt</a>. System fonts for the page; IBM Plex Mono for the text-art canvas, self-hosted under the SIL Open Font License.</p><p>Mew’s cry: <a href="https://github.com/PokeAPI/cries">PokéAPI/cries</a> (<a href="assets/audio/PokeAPI-cries-LICENSE.txt">upstream notice</a>), copyright The Pokémon Company. Pokémon belongs to its respective rights holders. This is an unaffiliated course project. No analytics or external scripts.</p></details></footer>
+<footer><div><a href="#top">ab-rin / meanflow ↑</a><span>KAIST · AIC313 / CS378 · 2026</span></div><details><summary>Sources &amp; credits</summary><p>Method: <a href="https://arxiv.org/abs/2505.13447">Mean Flows for One-step Generative Modeling</a>. Backbone: <a href="https://github.com/Gsunshine/py-meanflow/tree/1f6d72d94247c8fdeb89489acca1a8007a6baf6c">py-meanflow</a>, CC BY-NC-SA 4.0. <a href="https://generative-models.kaist.ac.kr/fastgen/">Course</a>. <a href="https://arxiv.org/abs/1911.07023">FID bias paper</a>.</p><p>Design references: <a href="https://antwi.dev/">Jermaine Antwi</a>, <a href="https://www.jadefranson.com/">Jade Franson</a>, <a href="https://dangeng.github.io/visual_anagrams/">Visual Anagrams</a>, and <a href="https://prompt-to-prompt.github.io/">Prompt-to-Prompt</a>. System fonts for the page; IBM Plex Mono for the text-art canvas, self-hosted under the SIL Open Font License.</p><p>Display-only foreground masks: <a href="https://github.com/ZhengPeng7/BiRefNet">BiRefNet</a>, with the preprocessing from <a href="https://github.com/danielgatis/rembg">rembg</a>. Mew’s cry: <a href="https://github.com/PokeAPI/cries">PokéAPI/cries</a> (<a href="assets/audio/PokeAPI-cries-LICENSE.txt">upstream notice</a>), copyright The Pokémon Company. Pokémon belongs to its respective rights holders. This is an unaffiliated course project. No analytics or external scripts.</p></details></footer>
 <noscript><p class="noscript">JavaScript enables the interactive views. All samples, data, code, and weights remain available through their links.</p></noscript>
 </body>
 </html>
