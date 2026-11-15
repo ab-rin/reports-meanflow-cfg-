@@ -1,6 +1,6 @@
 # Pokémon from noise
 
-I trained a Pokémon generator from scratch for KAIST’s [FastGen course project](https://generative-models.kaist.ac.kr/fastgen/). It uses MeanFlow with guidance built into training, so an image takes four network calls.
+We trained a Pokémon generator for KAIST’s [FastGen course project](https://generative-models.kaist.ac.kr/fastgen/). It uses MeanFlow with guidance built into training, so an image takes four network calls.
 
 [**Explore the project page →**](https://ab-rin.github.io/reports-meanflow-cfg-/) · [Code](code/) · [Weights](#weights) · [Technical report](REPORT.md)
 
