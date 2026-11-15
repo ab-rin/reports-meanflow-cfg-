@@ -55,7 +55,7 @@ if frame_record_path.exists():
     atlas.save(ASSETS / "study/training-eight-atlas.png", optimize=True)
     data["trainingFrames"] = {"species": frame_record["species"], "seed": frame_record["seed"], "series": series,
                               "steps": [row["step"] for row in frames], "columns": columns,
-                              "atlas": "assets/study/training-eight-atlas.png"}
+                              "atlas": "assets/study/training-eight-atlas.png?v=eight-species-2"}
 payload = json.dumps(data, separators=(",", ":"), ensure_ascii=True)
 assert "</script" not in payload.lower()
 (ASSETS / "project-data.js").write_text("window.PROJECT_DATA = " + payload + ";\n")
