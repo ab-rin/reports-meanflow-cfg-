@@ -25,7 +25,7 @@ The reported FID compares **3,020 generated images, 20 per class**, against the 
 
 We were evaluated on FID. I spent a lot of time getting it lower, eventually reaching **19.3469 ± 0.1662** over five generation seeds. But using 3,020 training images and 3020 images from validation set, balanced at 20 per class, gave **20.86 ± 0.35** over three subsets. However, with fine-tuning we could go below that.
 
-I compared the first checkpoint below 22 with the best checkpoint, using the same classes, noise, and four equal sampling steps:
+For close reference, I compared the earlier checkpoint with decent result with the best checkpoint, using the same classes, noise, and four equal sampling steps:
 
 | Checkpoint | FID, remeasured | Active training time |
 | --- | ---: | ---: |
@@ -34,7 +34,7 @@ I compared the first checkpoint below 22 with the best checkpoint, using the sam
 
 That is **101.33 more active hours for 1.5261 lower FID**.
 
-Tuning the sampling times kept the 101k weights fixed, and both versions use four model calls.
+After that, I started looking for the best sampling schedule for the best checkpoint: 
 
 | Checkpoint | Sampling: noise to image | Validation FID | Tuning time |
 | --- | :---: | ---: | ---: |
