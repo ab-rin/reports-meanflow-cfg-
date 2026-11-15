@@ -411,7 +411,7 @@
       context.clearRect(0, 0, 64, 64);
       context.drawImage(trainingAtlas, column * 64, row * 64, 64, 64, 0, 0, 64, 64);
     }
-    canvas.setAttribute("aria-label", `Pikachu at ${snapshot.toLocaleString()} training updates, seed 42`);
+    canvas.setAttribute("aria-label", `${data.trainingFrames.species} at ${snapshot.toLocaleString()} training updates, seed ${data.trainingFrames.seed}`);
     canvas.dataset.checkpointStep = snapshot;
     $("training-image-caption").textContent = `${snapshot / 1000}k updates`;
     $("training-readout").textContent = `${point[0].toLocaleString()} updates · ${point[1].toFixed(2)} FID`;
@@ -488,7 +488,7 @@
   if (data.study) {
     const panel = $("checkpoint-comparison");
     panel.replaceChildren();
-    let pairIndex = 0;
+    let pairIndex = data.study.species.indexOf("Bulbasaur");
     let revealed = false;
     const controls = textElement("div", "", "comparison-controls");
     const pairName = textElement("h3", "");

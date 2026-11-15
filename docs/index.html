@@ -9,9 +9,9 @@
   <meta property="og:description" content="A course project by ab-rin. Play with the samples, compare checkpoints, and inspect the experiments.">
   <title>Pokémon &amp; MeanFlow — ab-rin</title>
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="style.css?v=training-cutouts-1">
-  <script src="assets/project-data.js?v=training-cutouts-1" defer></script>
-  <script src="app.js?v=training-cutouts-1" defer></script>
+  <link rel="stylesheet" href="style.css?v=charmander-bulbasaur-1">
+  <script src="assets/project-data.js?v=charmander-bulbasaur-1" defer></script>
+  <script src="app.js?v=charmander-bulbasaur-1" defer></script>
 </head>
 <body class="pixelated">
 <a class="skip-link" href="#main">Skip to content</a>
@@ -82,11 +82,11 @@
   <p class="section-description">The first checkpoint below 22 was at 64k updates. The best recorded uniform-four score was at 101k. Continuing to 122k did not improve it.</p>
   <div class="chart-panel">
     <div class="chart-toolbar"><div><h3>Validation FID</h3><p>uniform four-call sampler</p></div><div class="chart-buttons"><button id="zoom-chart" class="quiet-button" aria-pressed="false" type="button">Zoom near 22</button><button id="replay-chart" class="button" type="button">↻ Replay training</button></div></div>
-    <div class="training-view"><figure class="training-snapshot"><canvas id="training-image" width="64" height="64" role="img" aria-label="Pikachu from the 122k checkpoint, seed 42"></canvas><figcaption id="training-image-caption">122k updates</figcaption></figure><svg id="fid-chart" viewBox="0 0 1080 360" role="img" aria-label="Validation FID during training"></svg></div>
+    <div class="training-view"><figure class="training-snapshot"><canvas id="training-image" width="64" height="64" role="img" aria-label="Charmander from the 122k checkpoint, seed 42"></canvas><figcaption id="training-image-caption">122k updates</figcaption></figure><svg id="fid-chart" viewBox="0 0 1080 360" role="img" aria-label="Validation FID during training"></svg></div>
     <div class="chart-scrubber"><label for="training-step">updates</label><input id="training-step" type="range" min="0" max="167" value="167"><output id="training-readout" for="training-step"></output></div>
     <div class="chart-legend"><span><i class="line-key"></i> measured FID</span><span><i class="line-key dashed"></i> course target: 22</span><span><i class="line-key baseline"></i> course real-data reference: 20.82</span></div>
   </div>
-  <details><summary>Chart notes &amp; data</summary><p>168 measured FIDs and 168 matched checkpoint images. Every slider position shows that checkpoint’s actual Pikachu with seed 42 and the same four equal sampling intervals. The images are packed losslessly into one sheet for smooth playback. Display masks hide backgrounds; “Show backgrounds” restores the original RGB frames. There is no image interpolation. The reference lines are context, not lower bounds. <a href="assets/study/fid_history.csv">Download FID history ↗</a></p></details>
+  <details><summary>Chart notes &amp; data</summary><p>168 measured FIDs and 168 matched checkpoint images. Every slider position shows that checkpoint’s actual Charmander with seed 42 and the same four equal sampling intervals. The images are packed losslessly into one sheet for smooth playback. Display masks hide backgrounds; “Show backgrounds” restores the original RGB frames. There is no image interpolation. The reference lines are context, not lower bounds. <a href="assets/study/fid_history.csv">Download FID history ↗</a></p></details>
   <div id="loss-panel"></div>
   <div class="schedule-study">
     <div><h3>Moving the four steps.</h3><p>After training, I kept the 101k weights fixed and changed the sampling times. The selected schedule improved FID in all five paired confirmation runs.</p><div class="schedule-options" role="group" aria-label="Sampling schedule"><button data-schedule="uniform" aria-pressed="false">uniform</button><button data-schedule="rho2" aria-pressed="false">ρ = 2</button><button data-schedule="tuned" aria-pressed="true">tuned</button></div><div id="schedule-bars" aria-label="Sampling time intervals"></div><p class="caption" id="schedule-times"></p></div>

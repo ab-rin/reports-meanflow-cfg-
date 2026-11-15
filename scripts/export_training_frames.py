@@ -1,4 +1,4 @@
-"""Export one fixed Pikachu from every retained, evaluated EMA checkpoint.
+"""Export one fixed Charmander from every retained, evaluated EMA checkpoint.
 
 Uses existing weights and model source. Never downloads or writes into the run.
 The output must be a fresh directory and contains images plus public provenance.
@@ -42,9 +42,9 @@ def main(args):
     torch.backends.cudnn.benchmark = False
     torch.backends.cudnn.deterministic = True
     model = ModelFewNFE(device="cpu").to(args.device).eval()
-    category = torch.tensor([103], device=args.device)
+    category = torch.tensor([14], device=args.device)
     record = {
-        "species": "Pikachu", "class_id": 103, "seed": 42,
+        "species": "Charmander", "class_id": 14, "seed": 42,
         "times": [1., .75, .5, .25, 0.], "nfe": 4,
         "precision": "FP32; TF32 disabled", "device": args.device,
         "torch": torch.__version__, "model_sha256": MODEL_SHA256,
@@ -62,7 +62,7 @@ def main(args):
         if not torch.isfinite(pixels).all():
             raise ValueError(f"Non-finite image at {step}")
         image = to_pil_image(((pixels.float().cpu() + 1) / 2).clamp(0, 1)).convert("RGB")
-        name = f"journey-{step}.png"
+        name = f"journey-charmander-{step}.png"
         image.save(args.output / name)
         record["frames"].append({"step": step, "image": name,
                                   "checkpoint_sha256": sha(path), "image_sha256": sha(args.output / name)})

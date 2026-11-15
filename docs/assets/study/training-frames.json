@@ -1,6 +1,6 @@
 {
-  "species": "Pikachu",
-  "class_id": 103,
+  "species": "Charmander",
+  "class_id": 14,
   "seed": 42,
   "times": [
     1.0,
@@ -18,1011 +18,1011 @@
   "frames": [
     {
       "step": 1000,
-      "image": "journey-1000.png",
+      "image": "journey-charmander-1000.png",
       "checkpoint_sha256": "68cded77f3c22484805894b1cc16b83030b5c60a4c082ad79e95beaec53ab9cf",
-      "image_sha256": "810a29801b3f4c420e573c81bfec3d06e0b9dbd1a3f8a30bd6ed939f8eb02b40"
+      "image_sha256": "7f451a292007e965543b5738036b192378bed60e9c00195650ef6e0d7f25a6d0"
     },
     {
       "step": 2000,
-      "image": "journey-2000.png",
+      "image": "journey-charmander-2000.png",
       "checkpoint_sha256": "8d463e805d42e74f75b99f512d707a0fd09ec5992cc809ab5fca3bf567733fa5",
-      "image_sha256": "d3754b7163a78986585c66f50f83b873fa3680249a497f09788ba9ace9e061c6"
+      "image_sha256": "829de6a7f7a307e6d1e1a0c1fc44cdd13bd3ad88b5976a2bf04be87f89628a72"
     },
     {
       "step": 3000,
-      "image": "journey-3000.png",
+      "image": "journey-charmander-3000.png",
       "checkpoint_sha256": "5a951e77260b313274812429b41f5aa2a64b679df2b33dd279d7e36038e063db",
-      "image_sha256": "e9e9b5181048d3fd307b7b76590f599c5bda72ee008c87cb56346cc478979707"
+      "image_sha256": "286eb910506c8f6f22a451287cf3d8fe44ac462987852884f56659b86f9815a3"
     },
     {
       "step": 4000,
-      "image": "journey-4000.png",
+      "image": "journey-charmander-4000.png",
       "checkpoint_sha256": "61456adfc6e708b6db094fddec409d241b0ae5709081a41f4cb9bbf298762d51",
-      "image_sha256": "bce22468389fe798ea8fb3ac01eac9663a09154b74e5c0bbfd83cd5010d0c856"
+      "image_sha256": "d83cceb7e228c0085f2aada8e25a833f4c711b8a56761ced8cdb345abd5bba81"
     },
     {
       "step": 5000,
-      "image": "journey-5000.png",
+      "image": "journey-charmander-5000.png",
       "checkpoint_sha256": "c990c08b131b83887061c99e69bcf3fb0228011517b2bd0024d73ab4a9641c0b",
-      "image_sha256": "8399e1c37669c54367df6bc3c5d737239ab5feb15164eb08e5081553d5c6276f"
+      "image_sha256": "33eab6f5023d677048b8063338501ba1a29d7b9dc8cc5b776e129796f55d09fa"
     },
     {
       "step": 6000,
-      "image": "journey-6000.png",
+      "image": "journey-charmander-6000.png",
       "checkpoint_sha256": "11707f239f46fa52df3e8d40eccbe7138e50470e2ae84dc2a73041b6ff168cec",
-      "image_sha256": "389707adcb391999c52ffce0a3c4386fa4b5e3436a6df1517eb7fc733f6f0031"
+      "image_sha256": "a4a9b75f76289288d780d55dd57de7fddb6590c9ac22a374bec90d001c4ee555"
     },
     {
       "step": 7000,
-      "image": "journey-7000.png",
+      "image": "journey-charmander-7000.png",
       "checkpoint_sha256": "3fb6da4c18da64f75b11458075b606845d4b1f6738d69c8bc79bb955c682c7ab",
-      "image_sha256": "db110d7bf0bff547d7bda1f60062a1b828336373a8e3bfa6df17b34b040e692f"
+      "image_sha256": "e1b1ee970e8b5323a73d530a7c48499d4e5d34b8070bb3221bf79f59b3564ea6"
     },
     {
       "step": 8000,
-      "image": "journey-8000.png",
+      "image": "journey-charmander-8000.png",
       "checkpoint_sha256": "20aa738363a3e29cfd7def31d8c94bbc1fbbff46b0e6f1668cd26ccb5aad293d",
-      "image_sha256": "4691375219455c2f6717ad6d981d87ea904f556b4cbb22fee41709582fe20a0d"
+      "image_sha256": "02baf993af71c75b4510a61ae1d95aa24eff3a2bfa3c123269dea85bfcfdf7b3"
     },
     {
       "step": 9000,
-      "image": "journey-9000.png",
+      "image": "journey-charmander-9000.png",
       "checkpoint_sha256": "caca3d039f39d004fa6b8fefa67e2616738f8f2639aa3aba3a74eb6da8933188",
-      "image_sha256": "351d8219a783d2958fc320e738d4a14f89f07b27670188d8eec8ce362cf662b0"
+      "image_sha256": "bf4dd454c911ef3ca10d005e97c8b72e4768e712ef8037b578c3ec12ee59c044"
     },
     {
       "step": 10000,
-      "image": "journey-10000.png",
+      "image": "journey-charmander-10000.png",
       "checkpoint_sha256": "b653de7e83657f98501105d9ed8f32f5674992d946c109a152d53deb2d889f3a",
-      "image_sha256": "e902fb879d955e4a4cd4abd38532c0593f65ea222376f315a51b479b16ed1d1f"
+      "image_sha256": "d5bd4e51b87afbbae61c8a83e61a8b8e168d96b1754eb8e62240f50d870ac691"
     },
     {
       "step": 11000,
-      "image": "journey-11000.png",
+      "image": "journey-charmander-11000.png",
       "checkpoint_sha256": "732c8778f6b9f103d7c936fe225f410ca1e5ce5d850dd6ce68e87c8785654e54",
-      "image_sha256": "6074ae73d9165a406ee966f3a0996b1fd7291681eafe93745d54164ffac5114c"
+      "image_sha256": "10f15e8abffd59f936800e786a495135759dff45f55077dc1a3c42b52e38b7f8"
     },
     {
       "step": 12000,
-      "image": "journey-12000.png",
+      "image": "journey-charmander-12000.png",
       "checkpoint_sha256": "4f5247b841de051e4c6df46d31fd64e3bb9b7dded0cdc5da4625e89217a9096e",
-      "image_sha256": "ed560004af2019e3b130fd27b21da4fc4671d1ff7b7a8a4b6a6c0eb5f3f7806a"
+      "image_sha256": "91cf72e6dee30c0ec6fcdc74068be5eb0a682321598ac9195f6e7dccf350a7be"
     },
     {
       "step": 13000,
-      "image": "journey-13000.png",
+      "image": "journey-charmander-13000.png",
       "checkpoint_sha256": "8690a4ecb56572d56175b32d894b2ae2d8eeda17d84136b8d36e079ae6663774",
-      "image_sha256": "70ec12568be7e3432da58f800198e6c464523407d00f4286407000397f99aa06"
+      "image_sha256": "d20a671c812e814ed5c2dec39736abacae217a54a9a5af8ddd57a1b3d544f34c"
     },
     {
       "step": 14000,
-      "image": "journey-14000.png",
+      "image": "journey-charmander-14000.png",
       "checkpoint_sha256": "cbe1248268a8019bbdaf30fd38e50a1760bf90c0daa7c6e07b2cd72e091022ad",
-      "image_sha256": "5e2165c0a0c2c234bef7c2eb1b770c48b70d2c13b22d72dd37517224cc25a5dc"
+      "image_sha256": "746ca29097a47baf142d0cb51003311e26583cad2e4b27e54815e1c588b28702"
     },
     {
       "step": 15000,
-      "image": "journey-15000.png",
+      "image": "journey-charmander-15000.png",
       "checkpoint_sha256": "a2bf9d79684dbb2bf0f75e23a61218587a2229c40cdf725619fc7114b4676eaa",
-      "image_sha256": "b38b1db3c10ddccc51b2d34aabdc4ffb067d378bcd6208ea0bd8264aba3027ff"
+      "image_sha256": "738fff4c04a9e87e57111761907eafd299a13637d32153a1620a9ff2b73d1534"
     },
     {
       "step": 16000,
-      "image": "journey-16000.png",
+      "image": "journey-charmander-16000.png",
       "checkpoint_sha256": "fa98c02a66644c8af8b0727c0ca497f4f763dbf24662ad6cb0ed5c1319926637",
-      "image_sha256": "c9d313d4a76f42ddc37a2ffa7d8f449388e1a858accbf4691af211d96535f4e7"
+      "image_sha256": "37fcab99d550a2100666c5a036efa0115cc7c313e09730cda0ef66fe70e85e54"
     },
     {
       "step": 17000,
-      "image": "journey-17000.png",
+      "image": "journey-charmander-17000.png",
       "checkpoint_sha256": "35045794a90d9bdeb708d33ea9d08ed16e81b9d0252a5884ece7f400272c03fc",
-      "image_sha256": "7b356263f997351f40f39b6ba459fdb1d8e539a5acb9f0c0996d9575f5c9117d"
+      "image_sha256": "33c94ed82268953bec80f1202db4aafc9217753fa94962112682c5ef764f2c4f"
     },
     {
       "step": 18000,
-      "image": "journey-18000.png",
+      "image": "journey-charmander-18000.png",
       "checkpoint_sha256": "25535ab78cbd8b968e102307fc7c731e0eba039909c402555b65bcccce1652f0",
-      "image_sha256": "ba6a95295f601df46bbe3a70670cf57e9428a037426dd552043c369be99ce78a"
+      "image_sha256": "3c120ff766281297e30aa6f7199d204b0f7c1fdd5371a66fb50b42f62d51d6e0"
     },
     {
       "step": 19000,
-      "image": "journey-19000.png",
+      "image": "journey-charmander-19000.png",
       "checkpoint_sha256": "20df47e103bb0aade3f1f33c6311fd4ba97c2b08976356e23c0ac446d8e70b70",
-      "image_sha256": "1073abd9cb51c1b1762a06dcc187be56a14ce9c680b4d39a221bbbcf785938ea"
+      "image_sha256": "c6d5513ea4f1f571bac56fac906d3cbf6f46c8fe2df6b85020e64c4e8597cdf6"
     },
     {
       "step": 20000,
-      "image": "journey-20000.png",
+      "image": "journey-charmander-20000.png",
       "checkpoint_sha256": "0ccc38dec4ba2e5a6fee3244339100c12c1fc14c125df8b8f89e0d9d867b1c73",
-      "image_sha256": "2ba3189fb09d5127169c151b7b5f62431b833eba805b36ae09f2254affb4e138"
+      "image_sha256": "65767a6920b8c14f5cd2c7ea2dcec40a9f50435cc137d94ce3f226f4858401a5"
     },
     {
       "step": 21000,
-      "image": "journey-21000.png",
+      "image": "journey-charmander-21000.png",
       "checkpoint_sha256": "a826ea17537cda6809fcd5284b39c51c463ec8ee1ee4b055cd99e363cc640d7a",
-      "image_sha256": "5431ace6fa1de92806f435288bccd542c3a5baa00cca83319cbfe62cdd8c189c"
+      "image_sha256": "ecdb6bd7d73ddaa409e08d116c4f898c3230ecd73b9152781bdb5a65dd4d911c"
     },
     {
       "step": 22000,
-      "image": "journey-22000.png",
+      "image": "journey-charmander-22000.png",
       "checkpoint_sha256": "d32fbacba35c511006de26b11be9f82a41a641056ec7b41b75286568a479d77e",
-      "image_sha256": "72dccdb1c4871334bd93a0de3207f8ffd5635740b0e77112d115c6b79ab8febe"
+      "image_sha256": "2d2e5e327fccb26e8b05bc7dc668298583fd7be1cb0cdddbbfd6065277da0f97"
     },
     {
       "step": 23000,
-      "image": "journey-23000.png",
+      "image": "journey-charmander-23000.png",
       "checkpoint_sha256": "76f4f665e2139a4700d6e7a9a5d85de07e0656604a3d8acf8904d4c9fa78dd19",
-      "image_sha256": "332570f6c167b8651f4ee906f534ef453225f86da61dd93f5f182cc0cf967e7f"
+      "image_sha256": "9def8aa1b3928db1b18866b1d5780489de770cbd1f39b7002743d93949394f1a"
     },
     {
       "step": 24000,
-      "image": "journey-24000.png",
+      "image": "journey-charmander-24000.png",
       "checkpoint_sha256": "cd1d8dac85d74b9224f4e93ca813058abcec01c09c0f695f650b0ca6f4a22f80",
-      "image_sha256": "55710dfd2395ce2488878211ca930ff1f0949e4fa5305d22032c9b3d75cb6cda"
+      "image_sha256": "f7b828650430214cac693b13fa7dbcd5cd0b317e6abee3fedf3027faeceab318"
     },
     {
       "step": 25000,
-      "image": "journey-25000.png",
+      "image": "journey-charmander-25000.png",
       "checkpoint_sha256": "246cbc869ce8cc66019daf92820bc838d2a2c3c22efb31d22296124b5a6220d1",
-      "image_sha256": "de23355117280b00beb75ce2c213b75ea4c211391e1681a7476673157831ff0b"
+      "image_sha256": "7f3e7af9d2e87f66fc5255132baef0185fb42578dd53ff992a65d2c69fc19a98"
     },
     {
       "step": 26000,
-      "image": "journey-26000.png",
+      "image": "journey-charmander-26000.png",
       "checkpoint_sha256": "8404715917ce71d90060579fa0f00836c1b5703d8aac15b2a20118f00ed8e0d0",
-      "image_sha256": "89f10c5cb10ae236751d9d7caffde68b55aa32cae202ee652d88cce7c1ee5522"
+      "image_sha256": "7fc0988cfe5df152c3e7acf61c9117929f408bdaffc5fd0ae34ec3c4fb465e4c"
     },
     {
       "step": 27000,
-      "image": "journey-27000.png",
+      "image": "journey-charmander-27000.png",
       "checkpoint_sha256": "e9baf943555c53700b8472e6011e7494af66b8c3902790ad832a29c22572c0a2",
-      "image_sha256": "859a5cbd30bad75534dd101468f608fc560f6d52c943648b77e4884fecf715c0"
+      "image_sha256": "3f8b824d6adfb108e8225e3e729a53a57500a7b94e128d6a446f1b78f0c7ca29"
     },
     {
       "step": 28000,
-      "image": "journey-28000.png",
+      "image": "journey-charmander-28000.png",
       "checkpoint_sha256": "45b51b4ff86ae628f6c977c9f1fdf4bddc5033efb563596216ff2b857f70c261",
-      "image_sha256": "700ba819c95eba35721f4fad165754a6360bd0386af908014720dd729bb8a3cd"
+      "image_sha256": "477d8fbd5989a0028fa9c2b1a48e04011b6d0c1cc8fc089fd42691bd60797e26"
     },
     {
       "step": 29000,
-      "image": "journey-29000.png",
+      "image": "journey-charmander-29000.png",
       "checkpoint_sha256": "24e6c1e90a07e01ffeb7e97737b5582099abd902ffa4a292ddc32fdb1c732a4d",
-      "image_sha256": "9b271eaff925bca8816f044672c93c34e1100bcc3f8b562a3b32015307c0c726"
+      "image_sha256": "f92e3521023236d3adcc099cd5f3375dbcafe2176541c356c5eaf9ca76c1f925"
     },
     {
       "step": 30000,
-      "image": "journey-30000.png",
+      "image": "journey-charmander-30000.png",
       "checkpoint_sha256": "23de9b84eaaa9a2d49d11c07f82d33348fe13cb0c8c2a202b2360fabf7614e6f",
-      "image_sha256": "95c151aef2768cdd1411bd9384dfb2141a43cd4602417f0336aa76b235f630e7"
+      "image_sha256": "223878882a58dc8e50bcd25120c32cf542d0e8bde7e78e250ed406d1c8ecdf97"
     },
     {
       "step": 31000,
-      "image": "journey-31000.png",
+      "image": "journey-charmander-31000.png",
       "checkpoint_sha256": "71455d32598e4b869a062a9d7551ccc74822f24ccccb1960bee9671b0878926e",
-      "image_sha256": "ac13b5d2efb9c84e8530fe9f65694899387c0b1eccd7b0fd6e58ba90e451040f"
+      "image_sha256": "3b06f5b8e36c342042f98172646aeeb610dfd8e67ba9ee046e906ffe05c89c30"
     },
     {
       "step": 32000,
-      "image": "journey-32000.png",
+      "image": "journey-charmander-32000.png",
       "checkpoint_sha256": "a6651adcf824d27e85636086250904b804c7102329b0da1355cb02198b368334",
-      "image_sha256": "57fa3097a5f6275a769e076e79690053a9db0645144dc8915ac9216234112327"
+      "image_sha256": "9787ee89e6e037f6ee97f89a2ca224619ec88a6829887166d85776303c0db93f"
     },
     {
       "step": 33000,
-      "image": "journey-33000.png",
+      "image": "journey-charmander-33000.png",
       "checkpoint_sha256": "56dc844fbda94dc62a7095c6123c40dcb3c79907aa05112f3876ae2e039dcb48",
-      "image_sha256": "ffa1b854f7075b05734d5c6c6326a28d0baec65e17838fda2db3c4e21b018a68"
+      "image_sha256": "dbc7dc17368f75d13e36b4fe1a364ba815c4ea22aaa5e30db7edca8e91230551"
     },
     {
       "step": 34000,
-      "image": "journey-34000.png",
+      "image": "journey-charmander-34000.png",
       "checkpoint_sha256": "f5b8ec7c8fcc048369ed1c24228a4140a8bd6d009c714d2f04a49a8b2cede9a3",
-      "image_sha256": "fd98575a987546da2627afab354d0ebb15c14e685a5c175d32e574682a6d2b62"
+      "image_sha256": "a6f35bad3e9868f7df404fb98ec9d196d81a7f7ed33c515ae3c253b3ee8552dc"
     },
     {
       "step": 35000,
-      "image": "journey-35000.png",
+      "image": "journey-charmander-35000.png",
       "checkpoint_sha256": "b6c9b54168e99573de24a0c1bddd76e77a755287159cea06adc41be6608188fc",
-      "image_sha256": "82c2b969a49356b96c03d4453cfddc274beb2d392dfd782e6659f27d2480ed9c"
+      "image_sha256": "3a13349d49f11bd44484932cde895b1f21bc8b37f938d91242f99399d04dc139"
     },
     {
       "step": 36000,
-      "image": "journey-36000.png",
+      "image": "journey-charmander-36000.png",
       "checkpoint_sha256": "f82b46bc3c547a4a0a136c7c72ec911a811b364b116da9df8872f43a59795c88",
-      "image_sha256": "9adcc1d0b59527bff8cf7ffe5f29e5323e80063f6cd2dec6d96c7581e884bfb8"
+      "image_sha256": "ea9d697c2301c65a797989f5462742c34f5a5edc08b954fe6b1551324ea6c040"
     },
     {
       "step": 37000,
-      "image": "journey-37000.png",
+      "image": "journey-charmander-37000.png",
       "checkpoint_sha256": "c32f2b39b8e5ee0aabfc3c3ca093bc34a77073a4f322b08dc1f00daf221123d4",
-      "image_sha256": "77cc52481c22862b1e99e549c13c0bc1eaada53dda6aed2f7ca1982a1801b697"
+      "image_sha256": "59d11f278d02a04af39c6079eca99a130adcf35931404c8a26956d449f77c118"
     },
     {
       "step": 38000,
-      "image": "journey-38000.png",
+      "image": "journey-charmander-38000.png",
       "checkpoint_sha256": "3871b20bc548c2002d37811099245182b48b88227c94a63c42760cd189ba350e",
-      "image_sha256": "ae4edfb5f320cb3df8b7cb0f81411cca69f8b1b3c1b18c2af476358a278fd654"
+      "image_sha256": "2874cff9761083ae1cf3cdf80ea02244f5a728287dc59b14974ce0a1134e5856"
     },
     {
       "step": 39000,
-      "image": "journey-39000.png",
+      "image": "journey-charmander-39000.png",
       "checkpoint_sha256": "4661eb2e8ebe395ee67f802ce23f93e75af6ff368d5cc57577390e74e35a3b35",
-      "image_sha256": "d5c9e1a1ab67118e43ba39b0b48c5358bf8975b8dfe71a3488eab3ee2a8b9b4b"
+      "image_sha256": "4b09212f98be7bb16a5d7593c5cb5733c672efd61f63821d3ae2f401b7231e83"
     },
     {
       "step": 40000,
-      "image": "journey-40000.png",
+      "image": "journey-charmander-40000.png",
       "checkpoint_sha256": "1c83355f67c18cb232137f2fa040413401cb67594fd5e879277bfd00bc8991f2",
-      "image_sha256": "3ba878e3a070d0108d01cf28e3e1483ef065ba8772f426c7ce00d6904506de8d"
+      "image_sha256": "66f965c265f636c9926ee28b6cac47ff7ddaf861f548d14deb6fb55bf8de6a2e"
     },
     {
       "step": 41000,
-      "image": "journey-41000.png",
+      "image": "journey-charmander-41000.png",
       "checkpoint_sha256": "55d355b3d9c6a4e121a401a10a49e2d8f9080ead3796c3f798fb32d2eb49d414",
-      "image_sha256": "6e30e5827aa4344e6270cc64b40f80840e3dd6d878a1cce121cf4863883aaccc"
+      "image_sha256": "993ac9564d292fd3d6d253c628be0d513e634bacd4e5d968d27303fb31d79134"
     },
     {
       "step": 42000,
-      "image": "journey-42000.png",
+      "image": "journey-charmander-42000.png",
       "checkpoint_sha256": "1fb20e349c5d1edccfe3a0aabb71d3d5b29103fbabcee79a460d9c04af433113",
-      "image_sha256": "eaa7657a750b51d61c8c0382939a4f4a379384d12ad0408a3b8f31d9f7132709"
+      "image_sha256": "81c20994c0c54f595983d80b3d4f49ce4d96e729bb622b484e4d9dda2566dc05"
     },
     {
       "step": 43000,
-      "image": "journey-43000.png",
+      "image": "journey-charmander-43000.png",
       "checkpoint_sha256": "53e2898af2c2f4b5114aa71f3993740d8e5cf9c59d4fbc5b6ea80212b9514aa6",
-      "image_sha256": "a977968b63101298a74333e081311e8aa119a14b7660e1da6b774297bce8adfa"
+      "image_sha256": "a51bdc5d144cc46788bb5c5a5c56f8ca3ea6631248add8e693bf13ace95bea5d"
     },
     {
       "step": 44000,
-      "image": "journey-44000.png",
+      "image": "journey-charmander-44000.png",
       "checkpoint_sha256": "4eb0d27b11dd1918db9ab271b3d99644f7f9e455d850b5968e9350d83c3c3bab",
-      "image_sha256": "662ea394b8cc6f747e5754b1cc7a6994e3118d96997dcd640582bd88227e8963"
+      "image_sha256": "9ffb17e0fbc310b6e423d78c57ac4ed48cadad2f95ea5ec42940990c15984045"
     },
     {
       "step": 45000,
-      "image": "journey-45000.png",
+      "image": "journey-charmander-45000.png",
       "checkpoint_sha256": "c76653e98eeb6e2b713b2b5613be421599160cec373778063d6ed0d1d972cd5d",
-      "image_sha256": "fadb6dc71c0403dedeb5b8a58ce1fc5309856f62346a15edab4aafef8c087543"
+      "image_sha256": "8ad96f2f69f7b4283458f531d55831b60a947d03026c224e8df5053bdcec1874"
     },
     {
       "step": 46000,
-      "image": "journey-46000.png",
+      "image": "journey-charmander-46000.png",
       "checkpoint_sha256": "c67b98df22c5009d898688f7d6d82eae9ed30e21e98c848fc1044e529591f3a3",
-      "image_sha256": "c89f6615dae6395c4b0935b74a540ea6ab74e7db41b94946e07e43a1239dbe4f"
+      "image_sha256": "66c3b4e0f1d8b252c08bc3ac0462b8cfe09bcf3328106dad052dced5b5dbfec8"
     },
     {
       "step": 47000,
-      "image": "journey-47000.png",
+      "image": "journey-charmander-47000.png",
       "checkpoint_sha256": "83056997660ea976a54aac57f73434a74991ed318a761b4406608ad9c1d0c0e3",
-      "image_sha256": "78196fb3b455986f858ef60fb546aaf81af145d319a3dc689c2ed0a49a55337d"
+      "image_sha256": "55bf9395b3bc872249aabc197188e72e1c68eb50b66031e97db350ef64f12f6d"
     },
     {
       "step": 48000,
-      "image": "journey-48000.png",
+      "image": "journey-charmander-48000.png",
       "checkpoint_sha256": "eac21f91161f9cfccc8c4251e068ff202292f7963cec82a238ac849d0b99b9de",
-      "image_sha256": "f4b7a2c17cc98cb6bcf33001895e767605cf30fe1144225f05abad474e4ef1aa"
+      "image_sha256": "be502dc4735f6e51cdc30fba499ff14643f4b3daea818440100a5543096f6c1c"
     },
     {
       "step": 49000,
-      "image": "journey-49000.png",
+      "image": "journey-charmander-49000.png",
       "checkpoint_sha256": "ce40f4f50a78b69b34ee3983f7cdb639e051a22d569febe642a6cdb27f4a849d",
-      "image_sha256": "ea0b271ebf5317644717ece2c70d428bc654437dd903e40dc744f433002c1d97"
+      "image_sha256": "daa141729c125041221e2b3363ab8e53125ae012bc0a0b0fc0046a84ea77489a"
     },
     {
       "step": 50000,
-      "image": "journey-50000.png",
+      "image": "journey-charmander-50000.png",
       "checkpoint_sha256": "aff6cbccd6c97d39951d64aba6f38f8d858d0a96e74ad242fffbca105333b623",
-      "image_sha256": "fe0c0b26d07aaf1e94eb44fa2a8283a28d6a86aa667b4b3cceafdd01310e019f"
+      "image_sha256": "0aa6b105c59ae6096d7649e2f1af987e8f4fdfb32f190383cb9a421190b7f811"
     },
     {
       "step": 51000,
-      "image": "journey-51000.png",
+      "image": "journey-charmander-51000.png",
       "checkpoint_sha256": "0a2857048b2ca03e34e34b617fa3b6c3f7c7c02d0cb876dea530b0b7e171af0a",
-      "image_sha256": "bed32466e7f353757438221d274f564b24e86c6241f6bb0749447420041b42bd"
+      "image_sha256": "18bc83e9452d62d2c028f1898523be74b3c79583249be60cec374c1d588127f7"
     },
     {
       "step": 52000,
-      "image": "journey-52000.png",
+      "image": "journey-charmander-52000.png",
       "checkpoint_sha256": "e03e1da0247217413457cb2a2700e85380825f5173bba8721ae815c00d5114be",
-      "image_sha256": "4a043565bb729b6c2c50db30570a6bddc7d2e1fb0bf62c58355b9be279a713e4"
+      "image_sha256": "aecda119d2db00d1c1dea60f33d961f8848f857dbbbac5c9e832bfa22e0bbf22"
     },
     {
       "step": 53000,
-      "image": "journey-53000.png",
+      "image": "journey-charmander-53000.png",
       "checkpoint_sha256": "93c8829154428cc74191a5743e08578801b0156387834765b5045fc5f14e4089",
-      "image_sha256": "6a784611338e22edf2d49b1be137941b243d6596b154b14d29453f92182f514c"
+      "image_sha256": "5fc2fed25ca4ea1ab84543881e196374d1d62b0148194d1b4010ebba97249eaa"
     },
     {
       "step": 54000,
-      "image": "journey-54000.png",
+      "image": "journey-charmander-54000.png",
       "checkpoint_sha256": "af5b6f6696fd6d9c7a7955a340533ed9c7fdf143409f6cd694420437062dc912",
-      "image_sha256": "f13f211bcce315833e9f3800ed388e23444fb533668547c10b4f491ae396b5d3"
+      "image_sha256": "dc68f7f0e3cf5d255b379f07527c55b6783612a7fbae574da2b0ae1934f46bf2"
     },
     {
       "step": 55000,
-      "image": "journey-55000.png",
+      "image": "journey-charmander-55000.png",
       "checkpoint_sha256": "f26e23eef414a0490120403681b5d7ee2bcefb231a789a6856f1259ba5b55313",
-      "image_sha256": "d27b34fb6576c5ee7a9d7ed237684be64dad842661a260518633e8bbedd40b96"
+      "image_sha256": "9b3c1e9505608a87fbb3e7e46c5d7136c44496ba7ef2fd87409556c7992bbe0c"
     },
     {
       "step": 56000,
-      "image": "journey-56000.png",
+      "image": "journey-charmander-56000.png",
       "checkpoint_sha256": "4c20b6fd765b7e91614182a3c98c5b97064645a86e086ce6bc58754c030bdc1e",
-      "image_sha256": "64c17c5388619baf78354074b55d32501330e875ba11eccdabdc3167e09bee92"
+      "image_sha256": "5c73708df59918d8c65ee6c8a726ef9e2bf0723a45bf49c9c78a8ba4a5dddcb9"
     },
     {
       "step": 57000,
-      "image": "journey-57000.png",
+      "image": "journey-charmander-57000.png",
       "checkpoint_sha256": "88b46a7fa9e92b9a0a35a804d8752f3f4823586ff549f45350cb3a20e2b057d4",
-      "image_sha256": "dea513d38c6266b6e5fcafac427d4284c03c1c0dd8217b635fbe97de8c5dc628"
+      "image_sha256": "daa4b1789e8b3991744ee7ae8d298d5e429c3defb6585c1dd6b1d62263e5b671"
     },
     {
       "step": 58000,
-      "image": "journey-58000.png",
+      "image": "journey-charmander-58000.png",
       "checkpoint_sha256": "6605f1ab5c05321505f5a9f63517fbdf41a632632c7354eba225ca862d3a5ddb",
-      "image_sha256": "956f75545592e90ca111cf340cfea929946b15338027f93e22a6fc3b5b0805f1"
+      "image_sha256": "74645284d476b37854956f46e52412285cc5c827606046155dbfda2895046320"
     },
     {
       "step": 59000,
-      "image": "journey-59000.png",
+      "image": "journey-charmander-59000.png",
       "checkpoint_sha256": "8a88792d43b469fbc3faaf549e9f402a55ae2ca42cb06dceb43ed5b05c84a1c0",
-      "image_sha256": "3b648a862dec7aada6db83a6e3dc0ddbe3bd05f9ffbb12e7252283e74a0609ec"
+      "image_sha256": "c7445aad628113f885406c1e81a9c7aac051bebccde908f6e1c4bccb5545df1f"
     },
     {
       "step": 60000,
-      "image": "journey-60000.png",
+      "image": "journey-charmander-60000.png",
       "checkpoint_sha256": "77694d1d687114d2dd0a7ef2c92a011a5ae03bd09eec7547c4803b9a401a65d2",
-      "image_sha256": "8bd16a896acafa105ffa6cf94fc074dae3f5833a208f5327f3c7462a3921da48"
+      "image_sha256": "673929b5bb6a268a1024e6cc67441d1c08735be223fde4ddcbebf69c47dbb43f"
     },
     {
       "step": 61000,
-      "image": "journey-61000.png",
+      "image": "journey-charmander-61000.png",
       "checkpoint_sha256": "88f7be0823e3bed0231da1e76174d791c7b5d524ecfcdbc15b8fb9c6ce9ddc3a",
-      "image_sha256": "ab1362804d67777c0aacc18a2059b14135b61088e9726efb2a9a19f81d69c038"
+      "image_sha256": "edad771e8115b950eb08c72c975b666d8008516fe214869502e4bcfbaac88960"
     },
     {
       "step": 62000,
-      "image": "journey-62000.png",
+      "image": "journey-charmander-62000.png",
       "checkpoint_sha256": "cd55a1ff587edff0db62dd801512b5e3cc66ad33825fa1d87e9b63f6d0f71fbc",
-      "image_sha256": "39eb770e0d96f9dd484fe274494c9416a41a2fadbbce9112f9f072ce13c98d75"
+      "image_sha256": "07c96ed4f2cc41fa2fc8ace6f544c9007f9a97f9cf8bf9ee9cd057b1cbb67103"
     },
     {
       "step": 63000,
-      "image": "journey-63000.png",
+      "image": "journey-charmander-63000.png",
       "checkpoint_sha256": "f7180203b58b3adea9d9d587d29baab511cd27e7921e9180ba5874996aa963c0",
-      "image_sha256": "5af3e6de629ae3cf25e374051dce0937faded7e11594d93062b328da28234a0a"
+      "image_sha256": "0cf8b104f2c030607e5ab3acd97d9f81cf4acc6c1f328fd569fd250af853cc3a"
     },
     {
       "step": 64000,
-      "image": "journey-64000.png",
+      "image": "journey-charmander-64000.png",
       "checkpoint_sha256": "8ba96595edd883380a489060d5aa58bd346242ae8279c6491b8fcc80d520ec14",
-      "image_sha256": "eb1cca6970fa02a16fe027c09d0d723fe27115a5647d48606c5076ab39ca2aa8"
+      "image_sha256": "8b0c9aef295badd4161524b4eff3f3665a7ed2276edc04afe81bcce5adf9e73a"
     },
     {
       "step": 65000,
-      "image": "journey-65000.png",
+      "image": "journey-charmander-65000.png",
       "checkpoint_sha256": "0e644b8417866bc1679b2ec8501cf843804ae5a8e7666e0c99fa0acd619a33b7",
-      "image_sha256": "04aaf2d6437e6c124b020b37df4903b195d5802d3ee7390edeca3431872f0435"
+      "image_sha256": "7eb3be8b609cfb16b212f92f190d6f5353d2f4cbb9e50a2914b3f54f31794519"
     },
     {
       "step": 66000,
-      "image": "journey-66000.png",
+      "image": "journey-charmander-66000.png",
       "checkpoint_sha256": "caa77f8ef245f6387968d226b1a27577ae682cac249f5a22bab422c421440740",
-      "image_sha256": "3cbb5b91ff5f07016aa4844622db379f5154a6cc53f60024ec102018bd0d5205"
+      "image_sha256": "ae91651afa9d7a7fccc5ffffbe2fa5640f8efb7b87d5190deb6ca741ba0658e3"
     },
     {
       "step": 67000,
-      "image": "journey-67000.png",
+      "image": "journey-charmander-67000.png",
       "checkpoint_sha256": "40a3a1212a9fb76cea4db23c0abc2e7b86a94d7f9028ecd776ae7ad062099467",
-      "image_sha256": "19dcd3f5854176ce24d3eafa21539809cf26e61d7207c4e37544c1518cd1f4fa"
+      "image_sha256": "416bad13bfcc8cd5baf17cc3ab7695fb6cbc0fb7556e4d72102915ef136b5814"
     },
     {
       "step": 68000,
-      "image": "journey-68000.png",
+      "image": "journey-charmander-68000.png",
       "checkpoint_sha256": "3fc5fb5801a69e454a43798a72a9e0bd8234b562745c2edb19122e26609fd7d9",
-      "image_sha256": "63af11845200c3d103534b0a85c4e0a703e5494229073b642186e63405dc6eae"
+      "image_sha256": "ddf30adc891f6ffe36c4de57909950795a28e95be48f66916c5c6d999c318185"
     },
     {
       "step": 69000,
-      "image": "journey-69000.png",
+      "image": "journey-charmander-69000.png",
       "checkpoint_sha256": "173cb2260c0c5fe334236de15cda03be8426f35f45514e3eec87ebb6125fac9d",
-      "image_sha256": "752a22128fe3356633ca6c1db835eafd2fc8b84ee0b0c06f1cc88d59c7ad389e"
+      "image_sha256": "9ddffa0dd6c07c73810a78f9d498aa5b545707d366db7903772b9e1abcc7e41a"
     },
     {
       "step": 70000,
-      "image": "journey-70000.png",
+      "image": "journey-charmander-70000.png",
       "checkpoint_sha256": "caea6233b489d10c9b3eb664eb5b62bb5eca96358212f9068670ca8895a2b6a9",
-      "image_sha256": "7cdb4992ec8619b18f494e4526454d0a0b3829772f31c150987a6babb094680e"
+      "image_sha256": "8b009e5c18a73374aa960346a4301c29a52dceedf51b5a3a63ce65b32032b4bc"
     },
     {
       "step": 71000,
-      "image": "journey-71000.png",
+      "image": "journey-charmander-71000.png",
       "checkpoint_sha256": "fcf1d475bdd72e8430f7979597ae0ebcccdfd254de0e30b0d551175354f46020",
-      "image_sha256": "38e536f5da4fcf078d56e6cfa07c570763ed57d7308d207b412cba5fd9bae514"
+      "image_sha256": "33e368fcb537348fac6daf777919bc3534e0fbf0fe8d003f0f80b6f6ea35cceb"
     },
     {
       "step": 72000,
-      "image": "journey-72000.png",
+      "image": "journey-charmander-72000.png",
       "checkpoint_sha256": "23ac5d669eb1dd7fc8be2f6127a226b7c8b53bd496b5f41c2be69e997d7af08e",
-      "image_sha256": "c21ff7dfcf55cbd33079d403c13f887f12746bd648c2d48d54dff0f234f36fa4"
+      "image_sha256": "0f195a6cf022f683de98b2a7b8d2a120bf151d34771c38aa7aa02f4786a4d87b"
     },
     {
       "step": 73000,
-      "image": "journey-73000.png",
+      "image": "journey-charmander-73000.png",
       "checkpoint_sha256": "272a081a80045be57fb1b84fb971f6cb9a57706495ee0885287344c48ceda464",
-      "image_sha256": "449790cf470e525723f2b0feee7f6b1b4cbc76006169946e0b9b22995da5005c"
+      "image_sha256": "7416b44673a84bf2b4b76dfcee6a988dce9366db9837b2f14d7a48bf74956621"
     },
     {
       "step": 74000,
-      "image": "journey-74000.png",
+      "image": "journey-charmander-74000.png",
       "checkpoint_sha256": "635a8793f331ddba0bc3b1d31b37dbcf356824da7041e59535bbf41a9cd45d67",
-      "image_sha256": "9f1db658fba0a22c5fef29fc210be01d181dbac944a36c5f1eebfa01ea1c77e2"
+      "image_sha256": "8a79a7c59743d2e46900eea398f942c2eb060ff9dfed077fcce778723d0dc8c0"
     },
     {
       "step": 75000,
-      "image": "journey-75000.png",
+      "image": "journey-charmander-75000.png",
       "checkpoint_sha256": "817e264f6b65231d77a87e81b9b530a12dc7c7419d21c655d8db1ad9508c8147",
-      "image_sha256": "b49d51a69d67c18a8fe516816a45fe446388f5b140d51bdc1ce0a29338ef592a"
+      "image_sha256": "93108de27ff86e7eb7272c992d7ce5e6782f1cb7cae022f6466a8b4d72d666b3"
     },
     {
       "step": 76000,
-      "image": "journey-76000.png",
+      "image": "journey-charmander-76000.png",
       "checkpoint_sha256": "d1a1652cd2ecc07b5c35fb1f5ec96aec3f764a63fc0735bff587db61f0b6ea7c",
-      "image_sha256": "d549894d1d920c35049a52513b2061d0430220310b735384eedcf848a96174fd"
+      "image_sha256": "0f2c6204794de60b2870406acf95667c03bdf33111f096c3bb412c499244d846"
     },
     {
       "step": 77000,
-      "image": "journey-77000.png",
+      "image": "journey-charmander-77000.png",
       "checkpoint_sha256": "acbd752ded35fbe7d1580a8ccbc4d4a1d0b6e96a8032811018ad76e4297d67dc",
-      "image_sha256": "0618aa2203b45c940920309e0f8cfb1c8880a2a83ed34ea82426dafbdb7e54d0"
+      "image_sha256": "0e3a5f5e9f892786a1ba4af5388ca23f5cf706d375c4c1984d53351d4010c07e"
     },
     {
       "step": 78000,
-      "image": "journey-78000.png",
+      "image": "journey-charmander-78000.png",
       "checkpoint_sha256": "9999149011ed6784f39a5ebc445dfcbf69e822cef2bb3f7ede60e92c5e1006c5",
-      "image_sha256": "412bb813403b158835b1dff800f8b7335ca252b889968a03020cf2dd14b7b4ee"
+      "image_sha256": "3e855e0a0a4c7f296b0a7a94d3182e343ec3baf96dc55a08a9c57494b2bcb7a2"
     },
     {
       "step": 79000,
-      "image": "journey-79000.png",
+      "image": "journey-charmander-79000.png",
       "checkpoint_sha256": "8d9c7f10d2e219947a4826a94f95c6c73fbcdbd6b63cd0a5095cf677a28c17bf",
-      "image_sha256": "1f2640f5e07a7f418bad946e423645295c1f132070575944eb1fec7eb9e527b8"
+      "image_sha256": "0ef9352e159fa3fdb9a2a65364090d2a3f7e329c9f8f06d8c27a2d6113093b2b"
     },
     {
       "step": 80000,
-      "image": "journey-80000.png",
+      "image": "journey-charmander-80000.png",
       "checkpoint_sha256": "09dbb2f34bf11a28a5616cf55a46420d5e48a9036a1097b0a9618e2ed2c8d5aa",
-      "image_sha256": "96cc809526b0cd14a5df3a43e7c0c0758e6e797bce36a3a5a1a9e698f0553795"
+      "image_sha256": "671f9c58f2f9889928e7211922fd8b5f9d445722a3567bd581c4c2021b336c7d"
     },
     {
       "step": 81000,
-      "image": "journey-81000.png",
+      "image": "journey-charmander-81000.png",
       "checkpoint_sha256": "c83e5c4d6b2283fce731b3b342f5307957b2f34bb22e676cdfef2f42f41c37ae",
-      "image_sha256": "28ea2e22f392dfa05547757746bd54abd43002d4348572fb08e4a66b5d3d2c66"
+      "image_sha256": "93331a539d22c844a971e8469446c0dfc6acb4a873254b4dbe856b6c0dcef53c"
     },
     {
       "step": 82000,
-      "image": "journey-82000.png",
+      "image": "journey-charmander-82000.png",
       "checkpoint_sha256": "4eb5aa6deef0f739bf252fd0d5e89ed8389b5e7f6593cfddd3b05aac3b02a294",
-      "image_sha256": "3f440814da842eb0a1a7977e71e77e1d8ff11ceac2049b5419604cc6d78f7007"
+      "image_sha256": "19d35960749f884ce7167923cdad83a4b208536ac1f132e4ad186e8dcb8b9f7a"
     },
     {
       "step": 83000,
-      "image": "journey-83000.png",
+      "image": "journey-charmander-83000.png",
       "checkpoint_sha256": "6a594b55542993bfb9bd911f505232da79061117ea37f211c90d42791958539a",
-      "image_sha256": "13b866d5286fc99d60aedffe583329597fdc8402973bc40bc2e938efd1091920"
+      "image_sha256": "f84993c0458b8068236d19c9a7f15b1af9d9be7ddbc6e7495d3fdfc33216fb1f"
     },
     {
       "step": 84000,
-      "image": "journey-84000.png",
+      "image": "journey-charmander-84000.png",
       "checkpoint_sha256": "4e5c4c26a07b8f9596e905b6c4e88c4adcc7cadc6ac40a7975202cff9f033ec7",
-      "image_sha256": "2265e244f1b45c7fe998a80803ac3338f00ff8f5cdc0eae6826c0e2b311fa21c"
+      "image_sha256": "2bae0ada80a4b9f05c1d8f4bd2bec1f5c84c7fc43c24b7531c4980a2ffb1e663"
     },
     {
       "step": 84500,
-      "image": "journey-84500.png",
+      "image": "journey-charmander-84500.png",
       "checkpoint_sha256": "e39894f8d8d94516b9a184627a8308bd3da9c477901bcd17ae945e9bbd60135a",
-      "image_sha256": "704c2ea09705a9f25008478e16596d66b7a551c8205016ffe04ebe60a41a4536"
+      "image_sha256": "3137e9abe366067c7902ecb757c6806ec7a5fe48cbe6b1cce95a9075e766c28d"
     },
     {
       "step": 84750,
-      "image": "journey-84750.png",
+      "image": "journey-charmander-84750.png",
       "checkpoint_sha256": "1ae9e71683e9e03a9c5ae1578dee28b9321fe72e3f23f832ead28505fcdd39eb",
-      "image_sha256": "47f84f83e8eed3767308ffd531f1b9c62ac9c1041bd99c0b6e3225428c31a325"
+      "image_sha256": "9d5cd1b2c9428c666785e2afa1be232c2cbd00209e0708deead486f396c59168"
     },
     {
       "step": 85000,
-      "image": "journey-85000.png",
+      "image": "journey-charmander-85000.png",
       "checkpoint_sha256": "d2d4bd33af8c9be406d699e13d51e51e7950f989e3d0d103339cca1ac3f25307",
-      "image_sha256": "1f51061d223745cb5e1e8aff29e5e886f928cb8d471b5ee317a62391a06aebcd"
+      "image_sha256": "7cae9d8974c2a1b366069428209a665cb4804e4a6273e360d0fcbd23103acb52"
     },
     {
       "step": 85250,
-      "image": "journey-85250.png",
+      "image": "journey-charmander-85250.png",
       "checkpoint_sha256": "ed03118ce5bafdc3b3565dbe4c160085ea3b95867a643abd4a81903aca2aa3eb",
-      "image_sha256": "2865fe669b2b0a93a81c77974052a27faf34f447c1df240373509df70ddcc946"
+      "image_sha256": "6831d7c7a41d121a7b217cf28d394d25f94ec3ff9a7df0198f34001389eda8ba"
     },
     {
       "step": 85500,
-      "image": "journey-85500.png",
+      "image": "journey-charmander-85500.png",
       "checkpoint_sha256": "16ed12621edc9deecadeead2c4d79e2ac185664fca5a609c326ba8c6740fbe97",
-      "image_sha256": "70b0e1135c1b3c3e223b1390e010ac026b5bdf15c33c9c77a89056f6944453de"
+      "image_sha256": "88931880cec6dae523a749bc09fdf45e9214b26a81ec71ec5cf2d5ab5aacac8d"
     },
     {
       "step": 85750,
-      "image": "journey-85750.png",
+      "image": "journey-charmander-85750.png",
       "checkpoint_sha256": "91a163ec2b09149030342554f41a98e162ac5c617cd70047167db3b412f4b899",
-      "image_sha256": "817cb5dbd86d29aed2e855231036806aac7492418cd5190ac79bf2d90a294f4c"
+      "image_sha256": "3259423144f9271c7c0a2e8597f009c20bc397ba13b3217e61a70fc85a0a33ca"
     },
     {
       "step": 86000,
-      "image": "journey-86000.png",
+      "image": "journey-charmander-86000.png",
       "checkpoint_sha256": "483fda66e571efe08f603769ef528953a555c67c3e3c82a7ca7d12b6938432d0",
-      "image_sha256": "87fca1a6c72893c6d0340b5bbeb2c3f5e818ca7873c6f21bbf659181ebd9db5b"
+      "image_sha256": "337b40121ce31aa96ff71ed34ce347bd14ce4c8259cf63f59815bafab2e8b4f5"
     },
     {
       "step": 86250,
-      "image": "journey-86250.png",
+      "image": "journey-charmander-86250.png",
       "checkpoint_sha256": "a456802df27e51d8a6763ed1d52c20a91f51aeb9abf3c51cf95d1d5d1d3a255d",
-      "image_sha256": "d8229e2c3175026e4cd6ac09c199b1bb4ca799d6e1428eddea7e71f4f3dfcb44"
+      "image_sha256": "806cda165571b343be2094899dc5097488de4cc259183773189e60d4ca64970a"
     },
     {
       "step": 86500,
-      "image": "journey-86500.png",
+      "image": "journey-charmander-86500.png",
       "checkpoint_sha256": "8bbe0ba836dab4ce171f8385a85a60d1392a9e8986004a618f962c2728e27180",
-      "image_sha256": "0a580404a6db70fe88dc2a230d92facd9ff2d2d524e3ae9a0bc0499d9c63bb42"
+      "image_sha256": "2f6d635cd14f3869b88756bebc2ae4eef305ef2d5c6028e440ce32bec78e3cb5"
     },
     {
       "step": 86750,
-      "image": "journey-86750.png",
+      "image": "journey-charmander-86750.png",
       "checkpoint_sha256": "c8d8fe75910d8c2ba81395b3467f5b3ec0a0ae86c21d4fbe17b225c3dc091b2a",
-      "image_sha256": "ac365882e5286d6f525b679cfbba16eaa8810ebcb986bd2cd199033caf274345"
+      "image_sha256": "f33380dcc60ba02e4570bf4f87568f912896b9f01324bf408bd53823be9d936f"
     },
     {
       "step": 87000,
-      "image": "journey-87000.png",
+      "image": "journey-charmander-87000.png",
       "checkpoint_sha256": "b7be54d438a3a229f9045253c21bc35ecb775467537a5192c1cdfc392cf0a5cf",
-      "image_sha256": "3e6cdfd351dd0b214ddee92d667ddb9d67cefe00c0fcbfb7d4ddf3f98163964d"
+      "image_sha256": "5b9f81a49e0b642b3fb1c5922be618bd9fe447d9692268581ef546e743dd9ae4"
     },
     {
       "step": 87250,
-      "image": "journey-87250.png",
+      "image": "journey-charmander-87250.png",
       "checkpoint_sha256": "ae1374331020fe4863d3d9035e9dc63949e98cb10aab4b43e6061c9d707bc379",
-      "image_sha256": "220c47c5c807725f250cc5437b2d211d8202ed50a8bcc9cbb3eb00fec2210344"
+      "image_sha256": "b5b30baf4119cf6b5ebea3fcc34f07136d226b5aca0c78be703ecb860d3ad408"
     },
     {
       "step": 87500,
-      "image": "journey-87500.png",
+      "image": "journey-charmander-87500.png",
       "checkpoint_sha256": "4fc5c51c0eec417eb56e59b06d5a0e813ee8d7013aef08153f9eaa14f1c4687b",
-      "image_sha256": "bc253525059a2104e354d88f33f84611c62ccb54fb447aa90fc3362f1aff4002"
+      "image_sha256": "170255c4fbc10873edc84ceecc9553ec95746c5392490e52661ea4b8ee36b9ae"
     },
     {
       "step": 87750,
-      "image": "journey-87750.png",
+      "image": "journey-charmander-87750.png",
       "checkpoint_sha256": "eb77eb21c752ebbb424ff25c6f11defc01795a2fa0f15c65f11bf6934259c827",
-      "image_sha256": "74a35bc5adb986ea130c88a39760a9789a979bbc107deb1d713bd8764d1deaa9"
+      "image_sha256": "68489c4650a8f2665b5727e7508135ec1da0c9dcfbb519fa6a35c8772450433a"
     },
     {
       "step": 88000,
-      "image": "journey-88000.png",
+      "image": "journey-charmander-88000.png",
       "checkpoint_sha256": "6fc4a9e7f26865e56991efd2f91ce119db04c4d822a883567cdba8691ab51c23",
-      "image_sha256": "3d923111943d2862139137e2e1d2b4f0597e092d0b55656a81b468689ef83c74"
+      "image_sha256": "a186b2231fd54a9b76e6ac1cbc66a035132b59c4b36c6837fc0bbd613ea55ce6"
     },
     {
       "step": 88250,
-      "image": "journey-88250.png",
+      "image": "journey-charmander-88250.png",
       "checkpoint_sha256": "eec2fb6f2e209438e61df91d81ee31347b7f3b3c0218bbc4a6db36f2fc53959d",
-      "image_sha256": "1a1aa76d73454b29d70bb840d35e39046a01a9965f6f0c828b2d9f87df4b2c25"
+      "image_sha256": "a75c16daa04ded8215fc2462a0a0b73a9afc89c18466341008a9ba09dc61f6fe"
     },
     {
       "step": 88500,
-      "image": "journey-88500.png",
+      "image": "journey-charmander-88500.png",
       "checkpoint_sha256": "198796eb7409651679fbb255fb4eea25424f0a535c5cf1760a7846ee086699e7",
-      "image_sha256": "5540d10201f6b6d9fc349171bbffbb2e6ac6f212362e8e10beb3eac448fcc0f8"
+      "image_sha256": "bd87ed0af61d58dadecef3455ccd379a38a97062917a80e5dc010a24057643e3"
     },
     {
       "step": 88750,
-      "image": "journey-88750.png",
+      "image": "journey-charmander-88750.png",
       "checkpoint_sha256": "18d38918671d48b67a7414f739ac5d19136651b2164b813caf3c8fa76a0eee05",
-      "image_sha256": "4fe43381b10d6160f50ea1f6c54439279c9291d0391e1a1e6fd2b6a8b55e0067"
+      "image_sha256": "bd738dd15726d03f86405538f33f42896a4918cd0bb5afac4b6c835813ff70b2"
     },
     {
       "step": 89000,
-      "image": "journey-89000.png",
+      "image": "journey-charmander-89000.png",
       "checkpoint_sha256": "f3804955b3d8cab12d0282d9cca2164b4f73012ff489edd738b87d9d0c8b87a4",
-      "image_sha256": "fa7ea8aea5caaad49badb79d8c6579fa3fb2053edbacf07bd35d08a48fd7803b"
+      "image_sha256": "820b5c9ecd4152cc88ebb87fe9b22cc58e5d9671739a7ab738fa096521faf167"
     },
     {
       "step": 89250,
-      "image": "journey-89250.png",
+      "image": "journey-charmander-89250.png",
       "checkpoint_sha256": "ef5f4639cf6d17a43ae7e9f05dfb4c43866b8c0e51f62d2448a51083dc34f823",
-      "image_sha256": "f44d49893527a6c06890f4c896d0090f334e0db2316931a9a228821ae627e83e"
+      "image_sha256": "83149c42f888afa01482be8cd988db841061716f898381bd030995d58e19e76e"
     },
     {
       "step": 89500,
-      "image": "journey-89500.png",
+      "image": "journey-charmander-89500.png",
       "checkpoint_sha256": "84077f5b8b75bd6c397fcbd5775ee2808aa19299813dda9f56a4aad2d892ac29",
-      "image_sha256": "adc37196458c25d324354164be626481a92341b6e0cbe743e3ef531f9bee6bb3"
+      "image_sha256": "998b039a4bdd750da2c2aed80ea608986738ac7e4b29307eda177638ec3833a7"
     },
     {
       "step": 89750,
-      "image": "journey-89750.png",
+      "image": "journey-charmander-89750.png",
       "checkpoint_sha256": "4491446504785ffea528529aca130fbd4531a6efa6ab6eebeea9a9787ac460d8",
-      "image_sha256": "291936e5f2b4c159a84d6fe867d4096d17bf84f3fc9534d6a2b22b9212adeb4d"
+      "image_sha256": "3aada8e2bfff35f469ace60627ff796f82b04f71eb61e42ebacfe5839bab11ba"
     },
     {
       "step": 90000,
-      "image": "journey-90000.png",
+      "image": "journey-charmander-90000.png",
       "checkpoint_sha256": "5939f3475c5b400dee394c1baf56bd64c80acfcc4fe966ecf8bb19a8a19b787f",
-      "image_sha256": "294229e091a613a0740d0f24e92a1b54dc7de13c7bbc2c07a9e0b0979c969511"
+      "image_sha256": "604852c37cfbceb7803aefe31444192d10daf48377fb88014cdfc79bc2eb1da6"
     },
     {
       "step": 90250,
-      "image": "journey-90250.png",
+      "image": "journey-charmander-90250.png",
       "checkpoint_sha256": "5d850ac539675d2ee7ce6cb6f14703b4df6fbfc1df215e677780a9bd952b2242",
-      "image_sha256": "79320e8ac2c0c51ffb33566a5bdcd4f12c7ae514423dd7dd8ad68ddbf2857a9a"
+      "image_sha256": "e41f5febff0e32120dd4067170da5dfdfbde603ee3806865a1e945509ddd9b3a"
     },
     {
       "step": 90500,
-      "image": "journey-90500.png",
+      "image": "journey-charmander-90500.png",
       "checkpoint_sha256": "e026b7fe72540ba3611576056bafea54b8efdb4609c6a591b86549b572473268",
-      "image_sha256": "bfe8854f7f591025b79d517fad11d3e30e45affe3c4adc78c03fcdaa22154ec3"
+      "image_sha256": "a5fbfa10e9a1a249179bfc53c1f3f2295bc5d88682e2972d87896b500d74cbd5"
     },
     {
       "step": 90750,
-      "image": "journey-90750.png",
+      "image": "journey-charmander-90750.png",
       "checkpoint_sha256": "cb93c6decd32cb392fb757bdf13c02599f29bb845473d6ad0e9a0cce84e9e983",
-      "image_sha256": "15d393ec3448863d281591bca13d9a7d74f0126c5df43a5cbfd3815b463fd54c"
+      "image_sha256": "197690ed6709693b9c36539ce3613c2d25cfc8ffdb0dd1f6f5a25450f9602f1a"
     },
     {
       "step": 91000,
-      "image": "journey-91000.png",
+      "image": "journey-charmander-91000.png",
       "checkpoint_sha256": "10dd2f1910af6d942a70426cea75ee9593d62f6ad7becee18d51bdd8cdbac87f",
-      "image_sha256": "2f51ce4c5bd28f9b3151e592b3efd5eaef7233004e3fc44a9d90eaaa1d83988a"
+      "image_sha256": "b5c6ac118422cc670d194076f967c7a9e0a816fca73751309d9cd98fbeef8000"
     },
     {
       "step": 91250,
-      "image": "journey-91250.png",
+      "image": "journey-charmander-91250.png",
       "checkpoint_sha256": "93327ddc4caaab45a3699aec17b889570b5265ccd75f5e1573f0507643fc1d53",
-      "image_sha256": "e1ebcdc6505ea3486372077234393349c7c9766082e83fcd2bb3258a0d5e66a5"
+      "image_sha256": "c18b154389c5814ca562ce8c8b33ecb03ecddad84cce662d1fb377fb96f816ca"
     },
     {
       "step": 91500,
-      "image": "journey-91500.png",
+      "image": "journey-charmander-91500.png",
       "checkpoint_sha256": "6078019e782d3890ac81f3a3ae1290ae973f9f39e44fb386d08feb25ebe3cf00",
-      "image_sha256": "5e387091308d482696d7ea24226797ef2b914eb7597669ea3187088441cc45aa"
+      "image_sha256": "d10549b65208112e1d3727515c5b1aa893c6d4d9cf26c064d18703df971ad7ad"
     },
     {
       "step": 91750,
-      "image": "journey-91750.png",
+      "image": "journey-charmander-91750.png",
       "checkpoint_sha256": "e4cb518c8d400a0bed1280c2156f0018e18b1b67c3b89e188a1353b5996d070f",
-      "image_sha256": "3bca91fb409b2270aba449d6b8bd0783f5c5bc9abb7885e68fcd53167aeaded6"
+      "image_sha256": "7c94b53fa8218ff74fcf4a9206aef180c8e3a950e069963eb87311a235eddd8c"
     },
     {
       "step": 92000,
-      "image": "journey-92000.png",
+      "image": "journey-charmander-92000.png",
       "checkpoint_sha256": "aa38c8346316b44c98e5e09b539e871de1baeb272134d8198eadd54fa237af19",
-      "image_sha256": "85166fefac9d45f4bf7d7a51bc35a8ffeda012e342c290a10063ede0afea6afe"
+      "image_sha256": "f8f8ef926b9cabaf01e147a78c4389c145337f6a413ae520963b97a3efdf3db4"
     },
     {
       "step": 92250,
-      "image": "journey-92250.png",
+      "image": "journey-charmander-92250.png",
       "checkpoint_sha256": "9775f2162141212398d0df0402d4d2425fae8d41802b06d3d10b95da8cf64530",
-      "image_sha256": "87e38af313bd142bf5242af09a2a701a8209dad41f8032a8f5a2a6d20f5c28e2"
+      "image_sha256": "566fdafae71879c6df818ddfe27b2d6ef50e091209ba7509e87680010a7e5cc2"
     },
     {
       "step": 92500,
-      "image": "journey-92500.png",
+      "image": "journey-charmander-92500.png",
       "checkpoint_sha256": "60909ccf763e0a4b673d6b9fb051ec84fecb2d7d32d2099516a78a6605cb49fc",
-      "image_sha256": "613845e55bd5dacc75a3449573e4917806a604ac17a450f34cfc31ad3ffcc70c"
+      "image_sha256": "75fdd38f64074d88932a1847a7b91efe32d173d6b6932819b44463ef1388b59a"
     },
     {
       "step": 92750,
-      "image": "journey-92750.png",
+      "image": "journey-charmander-92750.png",
       "checkpoint_sha256": "ed93a6d75033b8422015034588d37aea17e695073efd5ba182a84ea49f432afa",
-      "image_sha256": "4b5a269ba19ba3a5820d253de8c726f45ea6b7328e941fbda9a40e6893ff4899"
+      "image_sha256": "f9f50e2202bffc75a23b4504b556584e39cd980345cf3171e7c63e004396966a"
     },
     {
       "step": 93000,
-      "image": "journey-93000.png",
+      "image": "journey-charmander-93000.png",
       "checkpoint_sha256": "df2b16461f1dfb944eac3d4a011e32563bc077d1db78bed5ca7716f62b7b5154",
-      "image_sha256": "a63ddd25fbf4c7723b58e225b6fb624f83a6c7f2f1451b2908ff5c5a27784532"
+      "image_sha256": "f393e35905ebc706377b95aa1fc5f328fa71ad73569e1118ad1fe06b99a9107c"
     },
     {
       "step": 93250,
-      "image": "journey-93250.png",
+      "image": "journey-charmander-93250.png",
       "checkpoint_sha256": "3fe358883a7351e4b4e1164180c0851150dcc7a96710318d3ed6aef25467b9dd",
-      "image_sha256": "d9025d79bc76abb6a201e677f2f4f4168f878af92bdb4bbee1f4256bc1b06f69"
+      "image_sha256": "92da1051ca2969789a389f2a036afdc520f10d569b700835f1c2fc815ac943ea"
     },
     {
       "step": 93500,
-      "image": "journey-93500.png",
+      "image": "journey-charmander-93500.png",
       "checkpoint_sha256": "373381def5306836f3ba409a846133e479949d7b31648d985d95aa1e1466c4c0",
-      "image_sha256": "0958254d861bfcf49b6a7b2b8b4cc693753514d07b67fac3c1a471c4ce2e2923"
+      "image_sha256": "a547eb32e29c98f89c8e5b822d6522deca82d88c424974b8acee19f8a128308b"
     },
     {
       "step": 93750,
-      "image": "journey-93750.png",
+      "image": "journey-charmander-93750.png",
       "checkpoint_sha256": "37136a12aa789c4d2956e83d306b2fc7b62d7fdaebad2d3100bba0532c106f1a",
-      "image_sha256": "868adfcd893f1943f4377997de5f438490ebbc12f76becdc321877a0ab051268"
+      "image_sha256": "eac376e0f05631eb8dbd6c7ff7ecbccad8492861557c7413e409a01006c40317"
     },
     {
       "step": 94000,
-      "image": "journey-94000.png",
+      "image": "journey-charmander-94000.png",
       "checkpoint_sha256": "d3a84a10e538cf0f1c91d434b172da16e859521eeaa24d1c866c419c98401c03",
-      "image_sha256": "6815c14d9c52d119e349d6f40e421939dc6d1087d210091e73e60804f0358eba"
+      "image_sha256": "1543d028679dbf1443bafd43ef055a23c5afcad293c6226661a88dce71285f9d"
     },
     {
       "step": 94250,
-      "image": "journey-94250.png",
+      "image": "journey-charmander-94250.png",
       "checkpoint_sha256": "b7fa0c39342f9d3a5830ee4e2bc36c12f2af0dda4a48d9785647333d71cf2a7a",
-      "image_sha256": "8c0dad95856d91b3329ad21c1f0e9d9414088eae3d7119e63fdd4fd537f64a18"
+      "image_sha256": "35363e3e2f8eb10b0f3f65e1cf7f2d179644199d346a546a107fb67ff2f9d1da"
     },
     {
       "step": 94500,
-      "image": "journey-94500.png",
+      "image": "journey-charmander-94500.png",
       "checkpoint_sha256": "cc2131a9e9f8545c9a07fa46105f054ebfc4f7b59e2e8ece346d80bec628042e",
-      "image_sha256": "fbd08f1dfe6ee5904de793c9a601e8ac012d40dc8aec603c8a7f6463cd3d663a"
+      "image_sha256": "5b7768b466b4a7e1976bc0fdf41c0562aba56256f47e0766fe58af14c066af85"
     },
     {
       "step": 94750,
-      "image": "journey-94750.png",
+      "image": "journey-charmander-94750.png",
       "checkpoint_sha256": "29528a1a8f51a5f1eac6a05f530385c263841d92ed6243d450e44ad292e8056b",
-      "image_sha256": "881d37e5b14f04ffdb607b2c7e1998f0b348f31b79d1f87f9d718b7c4c78292a"
+      "image_sha256": "bd6359ea25888311a5f45367be39f2c8179c59636e748eab599b5095b4802337"
     },
     {
       "step": 95000,
-      "image": "journey-95000.png",
+      "image": "journey-charmander-95000.png",
       "checkpoint_sha256": "cc19415378578fd2fe571bf0d2f55de31baaa770ddfe5da10c7628a2beca0001",
-      "image_sha256": "a6b14af7670ceec0a068abdb0dbc512f27849feb5614817a10ae98bc2b6beb22"
+      "image_sha256": "ac3852dc2f5cdeab6aae30f5e0c6d97b843dc871c53d7439adcaaa0404a1faad"
     },
     {
       "step": 95250,
-      "image": "journey-95250.png",
+      "image": "journey-charmander-95250.png",
       "checkpoint_sha256": "0a1cc313b340104c5ef52aa5484613f13dbdc5867fe351d69dadc88f93ec9d8c",
-      "image_sha256": "eb6452eaaa6a154555192ac6beb8b45dc289470733a124dba8623c81357abc40"
+      "image_sha256": "91f4906982de54407c74289c00ce4dd33cbc61033fab9073298281913a1922e8"
     },
     {
       "step": 95500,
-      "image": "journey-95500.png",
+      "image": "journey-charmander-95500.png",
       "checkpoint_sha256": "5a3ca8114e5030af125059d503cde88b75cee6afd592402b5650768f98b95693",
-      "image_sha256": "0c0b9991fbcead87df508038a49c1340d34440ecb771de213c3ca3f871f67184"
+      "image_sha256": "8202c981eb37619f721da45aade434845ba84945d42ee4502bf69724d7db39c2"
     },
     {
       "step": 95750,
-      "image": "journey-95750.png",
+      "image": "journey-charmander-95750.png",
       "checkpoint_sha256": "e08b5ae3209302984fdc4978409b2fe78e70a80bc52dd29dafe885637945547c",
-      "image_sha256": "7b9f040640a033159113715308d58e1533b6d746226e7aabd95a142d1b772871"
+      "image_sha256": "375d3ab50faa7d60242744ecc8b4b11c5abde82361a4d6274932ef7f15f6b14b"
     },
     {
       "step": 96000,
-      "image": "journey-96000.png",
+      "image": "journey-charmander-96000.png",
       "checkpoint_sha256": "f056d385f8d3e590676c35739734feaf8f7a6ca763a0399fb8e70ae212f701a3",
-      "image_sha256": "e589d0b49538ee948c71b0430d6952aa779134dc67fe9d96ecfbf959a346b0ab"
+      "image_sha256": "87857e6bb2b24c2f0f0e15fcf2d7cbca2963b6e413b2d56ae57981c3788a7885"
     },
     {
       "step": 96250,
-      "image": "journey-96250.png",
+      "image": "journey-charmander-96250.png",
       "checkpoint_sha256": "e92f1b1da0e302f24f642a4e25bc2bc855bbc6c2161ebd35281e9de10b2e6347",
-      "image_sha256": "1df0060e7fc27fe893fd2debd2e6a84fd458bf07063701362c01deee6e3fc27a"
+      "image_sha256": "ab11b779ba8a37c860269dac0457d3c6eba567289f64a2e90ec4eed2f1cdc70c"
     },
     {
       "step": 96500,
-      "image": "journey-96500.png",
+      "image": "journey-charmander-96500.png",
       "checkpoint_sha256": "71ef8ccab1c0588e72dcf494afcb1ffb2783b497f62201548e328d2903ebcc80",
-      "image_sha256": "76b92f2b88a1f0f9375cc4be245b5a4c95bec84c25294437513e5b16a3c7decc"
+      "image_sha256": "090138b98fe4d125526a67a4e91733c63632ef319cbbaed85d0fed2cb1427945"
     },
     {
       "step": 96750,
-      "image": "journey-96750.png",
+      "image": "journey-charmander-96750.png",
       "checkpoint_sha256": "6c1c91dfb7c5739e966991c8ff1ef120ff73cdec107c1b6008c7927a8cf6c267",
-      "image_sha256": "f79ad25129eeb74ba1e4846dc356b02acdf8d41780023457c3700b3864462a16"
+      "image_sha256": "e2368023aea3fb9502511a7a4c8707d47c2a634bcc1884413d58a2c7bb66e230"
     },
     {
       "step": 97000,
-      "image": "journey-97000.png",
+      "image": "journey-charmander-97000.png",
       "checkpoint_sha256": "06ca88ec9a7aafa9966fedaa87c4f1c1e72c3dde7a6489ea9224e84527b330d5",
-      "image_sha256": "f5c411c67692f5bcc72ee77853a93af73bb8036afcfea8a335374a725178553e"
+      "image_sha256": "0308f394336cbcb4f8b61bd3aaba88aad3f54f6c78c56bf50a7dfaa20289dae3"
     },
     {
       "step": 97250,
-      "image": "journey-97250.png",
+      "image": "journey-charmander-97250.png",
       "checkpoint_sha256": "c52eab90df156cedd5cf85509578152af1004519b96968c2e622bd975e1eff85",
-      "image_sha256": "43b9552d7ff62d761b0140c3cee320a4633d49e9bafaa1a1ca321a2fcf9dd9bf"
+      "image_sha256": "e249764929c283db21a84f378e833e5f7b5e74129165d39ecd6a50c4c4cd86d4"
     },
     {
       "step": 97500,
-      "image": "journey-97500.png",
+      "image": "journey-charmander-97500.png",
       "checkpoint_sha256": "2af4fb0e4c65d99aa8f662fcb73fb5b8d6be886cda3cdb26cba03912b3ce70dd",
-      "image_sha256": "19bea4dc325e4de91e574b8339d2a1ae653afe05553c3bae1e6c61c3f387f580"
+      "image_sha256": "c88ae44a155f3c4406be90e72d64da56924cb9a0ad7aad7295eccf3dbced2fa4"
     },
     {
       "step": 97750,
-      "image": "journey-97750.png",
+      "image": "journey-charmander-97750.png",
       "checkpoint_sha256": "431015eadb4a19f21a2ac0f29ad5b8fb54f676b7fa6be9aa4e7f47bbfbe1f09b",
-      "image_sha256": "5c239bf9c6436b304960412e9b9ad312ab244fd17fdcbeecdd21f814d0c8779a"
+      "image_sha256": "97389ee44eb06b24c970f579ee80ce4627351544fbac9c1ce0663fa80312e184"
     },
     {
       "step": 98000,
-      "image": "journey-98000.png",
+      "image": "journey-charmander-98000.png",
       "checkpoint_sha256": "0c10ea3bdbed90b117f6208812237e6d18af0ce7c3dc7199e7cc5364cdfd6bfd",
-      "image_sha256": "c6e7828dd07124a3c4b12bd2b378a3f8034809bb298f6ab4ecfb89d25c1b97e0"
+      "image_sha256": "f938f7f72af433546c3b308f029d2c90aba52d9944830672c86ea1ebe7cba2e6"
     },
     {
       "step": 98250,
-      "image": "journey-98250.png",
+      "image": "journey-charmander-98250.png",
       "checkpoint_sha256": "49a7a8e2734481c53d1d8e1e8f84e6b7dee3069b7f7e22ba5f8bdf1fac544640",
-      "image_sha256": "8135b064113a91e2ff03cff0e52882d4f86cc0fa4e2e335cc41dae65c11f5b36"
+      "image_sha256": "ce3c37234f3e7355273549439849f48d5a44924d7a3e7cb2a51b872423e8105f"
     },
     {
       "step": 98500,
-      "image": "journey-98500.png",
+      "image": "journey-charmander-98500.png",
       "checkpoint_sha256": "c09e59f2762575d7f8114f8058a4e289ed38680aa53d664462972f58a99975f3",
-      "image_sha256": "ffb37e1b7d135d5e0a34336d6690ae023b08ccc069f377297017d5138f61efdd"
+      "image_sha256": "ba937b7624787fd193ecc39f4243d7e9af38f934d0de7b2d7c4a5027033d2d4b"
     },
     {
       "step": 98750,
-      "image": "journey-98750.png",
+      "image": "journey-charmander-98750.png",
       "checkpoint_sha256": "c35837a8ac87fa8a401da196b4526b0dd0f52bf983d74d450db72742157e2e22",
-      "image_sha256": "65c443e8791dab398e8789f3cc921fb28e01449fbc1b9655c669c648a9dc5d3d"
+      "image_sha256": "3b03683c1beb64cd62eb32a887e72a0176d607c5f1118c5b1d4758575ce530c4"
     },
     {
       "step": 99000,
-      "image": "journey-99000.png",
+      "image": "journey-charmander-99000.png",
       "checkpoint_sha256": "19ec8b99cf64d8721a58ea56874a0c5de83197f265d17faa18b8b92589079b14",
-      "image_sha256": "7dc4df00358c439661fa0374670f548dfa8273efc45634d48c935fc7fc0c9ff7"
+      "image_sha256": "95d595deaee5a26b53b004b6c9a2f0877a6a5a645227b36272259d07d8de769b"
     },
     {
       "step": 99250,
-      "image": "journey-99250.png",
+      "image": "journey-charmander-99250.png",
       "checkpoint_sha256": "f22703f2652951fe7fda67307d47b792afb3079c4086d1d84b499795a5bb3990",
-      "image_sha256": "bc5e3dcb2683386fb1b30f6346ef4756eb8bc9990fb2168bccfb34bd2cbd0f98"
+      "image_sha256": "6e9f0bd99ef7d9dc0ec115e135799a3aa9663a1729ae162f5ac93912d03f35be"
     },
     {
       "step": 99500,
-      "image": "journey-99500.png",
+      "image": "journey-charmander-99500.png",
       "checkpoint_sha256": "0bd9a9378ff596e8b7db483ca2c6ebe00897ef32bd75dd1890e94e2f5b2bccb9",
-      "image_sha256": "d3573aeee49b5ecf9c5bef9176e6a7b7631f583988c7a9f001d1356b1302439a"
+      "image_sha256": "f21dd02d2713a71a8e90c924951dd5ba4b68b72a9a6c5ae82ec899a34d872513"
     },
     {
       "step": 99750,
-      "image": "journey-99750.png",
+      "image": "journey-charmander-99750.png",
       "checkpoint_sha256": "9b6925adc0e89aafc0467d355dae05e31433aaa76ba733e8ef8a371baf6bb9b8",
-      "image_sha256": "af1e4e8b63dca4079fc19a0f3f4219a61712f5ef672074a891ae0bf080c27d8a"
+      "image_sha256": "12f114275651b32ca98ee37ca9cc99cb40d42d6baa2eb34b14730d3bc5863207"
     },
     {
       "step": 100000,
-      "image": "journey-100000.png",
+      "image": "journey-charmander-100000.png",
       "checkpoint_sha256": "3d0e418f4478b56889cf2622723f03d5079c57d7bf4172d52f3d56eac41c5ea1",
-      "image_sha256": "2511ad29a4d673f49ad9d8936b4a2e790c347570e960dcedd5ebe8271fb2edba"
+      "image_sha256": "694212c72cdf2c0bf971552c2e390526eca059c967f7c619b12171713453ece5"
     },
     {
       "step": 101000,
-      "image": "journey-101000.png",
+      "image": "journey-charmander-101000.png",
       "checkpoint_sha256": "ab99f610b9bc2a8ec26f627573608b52d490065773ede28ab18bf5a940d11b41",
-      "image_sha256": "940e1d6cc0ba1bb0d82d46d82d24565615805bbf52422d9171d37c760516b365"
+      "image_sha256": "17406a79b5eef38a750dd0ce52e6a12a707d05fb48ad0eaf0370566a61cd3a3b"
     },
     {
       "step": 102000,
-      "image": "journey-102000.png",
+      "image": "journey-charmander-102000.png",
       "checkpoint_sha256": "bdb864da1c1df0be5e426814448ea3777c18bb595b3156179f125c47f0aea6ec",
-      "image_sha256": "488a388ccc9f132e8cb03d2e6dbb28817098ff0d37fb06a67296829362baf454"
+      "image_sha256": "b563b009e7e8e2f3203ea3db4710eb826f8f5062cd309a2c09e803cf092b1541"
     },
     {
       "step": 103000,
-      "image": "journey-103000.png",
+      "image": "journey-charmander-103000.png",
       "checkpoint_sha256": "39d48b207ab49b66c59bb9175263a16b1efa0bb97b8baa702a525b31dd167d29",
-      "image_sha256": "c91894f9bed87cd400a11f6ac44c226c224cd21f5b6a2c0efbc564c16d6e7b50"
+      "image_sha256": "f7e0a6894be453a2408a5985f6bf9c7afe4467f875b62d8e6fb0309099403b8f"
     },
     {
       "step": 104000,
-      "image": "journey-104000.png",
+      "image": "journey-charmander-104000.png",
       "checkpoint_sha256": "a5d33ce13b05a128bdfb2df7b3580e5d25e58f190a903a02b1cd9e8bd4bf72b2",
-      "image_sha256": "66695f42ccd85bef39ed8b44d9c3dfbdf94769668f331e6a3b888bf6a0737490"
+      "image_sha256": "cb9811a1c23c0bb664821d4b9efb1bed03cdd34c09351ea0316a648c1f3291e6"
     },
     {
       "step": 105000,
-      "image": "journey-105000.png",
+      "image": "journey-charmander-105000.png",
       "checkpoint_sha256": "3001b048088f0565beb8a55f0b970b56c52657bb080715165b18a52c64c0d316",
-      "image_sha256": "a889ceedd90b9b0caaaf23e599d418bbf467ec2a75c1036453cbac85c0cad13a"
+      "image_sha256": "60cca55c9f97f322653b97cabf9654ec396820a97e6199f3dc72a9a51b6bee04"
     },
     {
       "step": 106000,
-      "image": "journey-106000.png",
+      "image": "journey-charmander-106000.png",
       "checkpoint_sha256": "ebae64dfe661fb2e1312b4a5643047dbb26b876ec25993251e78920f03d05ef2",
-      "image_sha256": "45c478a1f1dd87a9448eaac532ebe4391c91e7048dfe469d40483d4a5d0ca20f"
+      "image_sha256": "c850c52e1f1dbc05065ebba57df662aff597b69efa1607d4cc82be28eacfe36f"
     },
     {
       "step": 107000,
-      "image": "journey-107000.png",
+      "image": "journey-charmander-107000.png",
       "checkpoint_sha256": "a9fdf35869f91a3f53bca064f1c04d6b173e1c26c5d2775670fd3f7c4d832744",
-      "image_sha256": "c2a3fb75a17b370e0a57bedb5dc9ffd252fd299cda8af106302d363e48a82d7b"
+      "image_sha256": "7b872d8e2276a240808ca29623cfe219b9167e2f96dcf589515f1f1171ccf3ab"
     },
     {
       "step": 108000,
-      "image": "journey-108000.png",
+      "image": "journey-charmander-108000.png",
       "checkpoint_sha256": "19b26ece9ac3c927db159a036cd7e3fb864e160b877ae2d47c9b7b0ec29d09ca",
-      "image_sha256": "d1ae34f386630cc1634da10e131b9e05668d54177e63a1bfb1503babf1734c57"
+      "image_sha256": "0f7d91d3c58e56771e9973f01f30dae9aebb6b1cbc129d3835ae7789bcd0db08"
     },
     {
       "step": 109000,
-      "image": "journey-109000.png",
+      "image": "journey-charmander-109000.png",
       "checkpoint_sha256": "279b8175cf64e437f08bd47b821e4b2e5d1c84643aba8eca7644c1a3074050fa",
-      "image_sha256": "5d2326d76f52ce1f55c9b19b754a4dfe54c1232ddf7b6b7f21f90e4716bd2ab5"
+      "image_sha256": "9a74faca51739d09a65240f7c2d1b37de597430efb14df4bf23746404990804d"
     },
     {
       "step": 110000,
-      "image": "journey-110000.png",
+      "image": "journey-charmander-110000.png",
       "checkpoint_sha256": "5bf99b38fada0772d15a90f98c813f8abe2c78f582745e062ec1b6791b0e19c0",
-      "image_sha256": "ddb97c808920e4396ab608dafb020052c348f6c13e7a99a9a7d51ab5beab84c7"
+      "image_sha256": "b4407b58c4c07ef325a41c894b7bed4e037d29248b9030da8dd25c5434c024e7"
     },
     {
       "step": 112000,
-      "image": "journey-112000.png",
+      "image": "journey-charmander-112000.png",
       "checkpoint_sha256": "a9b13045426d3d2fbe1c5823363e4d0e4cea49dea5650cc122a97b13d8f1be6f",
-      "image_sha256": "eb45c5867552cedd4b6f4d12a4e53803ab83675abd397e2ed9a3836dec9cc9ea"
+      "image_sha256": "8f8151c8732dd9d5c003113d53841c52372ccb71e12197958b79882db17af68d"
     },
     {
       "step": 113000,
-      "image": "journey-113000.png",
+      "image": "journey-charmander-113000.png",
       "checkpoint_sha256": "48b419a29ff84af5237d36776189a9cb6066c485cd122ab47be11042393d8440",
-      "image_sha256": "7e6dbfe386b2a48b4b772ed1168f8fa1e2645e45fa33be87c028410eee85178a"
+      "image_sha256": "3d2e645e34c621936be0390e3fb4d73c70cd92261e6a718f0e24fb9977a97561"
     },
     {
       "step": 114000,
-      "image": "journey-114000.png",
+      "image": "journey-charmander-114000.png",
       "checkpoint_sha256": "e3a5d1859727e06dbbd80d31a29201d125dcf810f2aa7dbb847225fff1271d3d",
-      "image_sha256": "ba5361fbb8ee4f5dbb7fba2e84bf6ba065aa910a208e59424fe4b65c1faf7145"
+      "image_sha256": "07e9a57612276cb5a531109963a0f7853125716497e767ac390fdbb371b9918a"
     },
     {
       "step": 115000,
-      "image": "journey-115000.png",
+      "image": "journey-charmander-115000.png",
       "checkpoint_sha256": "2f33a1748968229078ce9008b1a0bf7c0e6dc1d1e3a2aa65ec41e2fea9b850cd",
-      "image_sha256": "88463a48e4df5865a9c9368ea0d41c14fec2e1e04a5a82274a3193045c725ce3"
+      "image_sha256": "79ef9d362c4105e4289d91c3a9bfd19cfcfaa622199811b68c1886e7ec16397f"
     },
     {
       "step": 116000,
-      "image": "journey-116000.png",
+      "image": "journey-charmander-116000.png",
       "checkpoint_sha256": "bd700147563eb3547912f94f689abc2f07ab804d3e347abd494deeec82b5c14d",
-      "image_sha256": "d37410723c3c96d8de57adce2191894140ae3c33b6942c9b75f16bd288e9a57d"
+      "image_sha256": "1418da21ae31db9cd2b8ef8e3f24dace5702477526773d0ee0dd0315f2472883"
     },
     {
       "step": 117000,
-      "image": "journey-117000.png",
+      "image": "journey-charmander-117000.png",
       "checkpoint_sha256": "bb9d1e36840ed69fe6333347afd0f9675449951d5596159d16f41fc0c4035254",
-      "image_sha256": "696cd6855ffca470be431b483abc777f219e8eb6bfeed84d356d9da38319a531"
+      "image_sha256": "b8b60ededbfd35ce5354db0ed6c828eb6d3f6fb6c097dbeb86b49fa36aa87e0a"
     },
     {
       "step": 118000,
-      "image": "journey-118000.png",
+      "image": "journey-charmander-118000.png",
       "checkpoint_sha256": "678c949bb509a88ce6754a930bf1d0ff8e91f21d7ada3b193065b922dca87bb4",
-      "image_sha256": "251c605637afb56ba42e4e630fd7972b7c779046cb0e629639700417d9a2af69"
+      "image_sha256": "8ecd666bd4e1dd369cd7e3ccd961709af34a8a2203f89e3d636782e66895de53"
     },
     {
       "step": 119000,
-      "image": "journey-119000.png",
+      "image": "journey-charmander-119000.png",
       "checkpoint_sha256": "cdf089dca1d914d8104b62c26dc4767f5f8262b57ce5d27c19962d9f16fa05cb",
-      "image_sha256": "2cc9d8829bc24e367c2c91f9d5554cbc80845113fd2c07248604593a9ffe5c88"
+      "image_sha256": "0c5e2284a2c34a6dfe5fcde1fe46fb87c6eab473d56719ce718bb76d4f893d93"
     },
     {
       "step": 120000,
-      "image": "journey-120000.png",
+      "image": "journey-charmander-120000.png",
       "checkpoint_sha256": "b7ef360d8c09bb2e972bef8567b54045fc8afcc5e34ec08f58c17c5165ec0ac7",
-      "image_sha256": "f725733378c9955c7f8bbda38a3fb156d06e1625b13d9df0802bbe165604c317"
+      "image_sha256": "15fe294025489faf01a870efdf67be0f27ce29b2cadc33a32082ffb6db4fb275"
     },
     {
       "step": 121000,
-      "image": "journey-121000.png",
+      "image": "journey-charmander-121000.png",
       "checkpoint_sha256": "7d2014467d0facded161281fe05199aa8a4a957437cb49893004dffa9efe79ee",
-      "image_sha256": "3c79eb5c48efb62050f87d0190dee5c3ca8be4ac6d90c9bdf96bef88f8c61f55"
+      "image_sha256": "627466034057485f3f0298374748ea6f18b2fe21da097250c7b2c59a28cb91af"
     },
     {
       "step": 122000,
-      "image": "journey-122000.png",
+      "image": "journey-charmander-122000.png",
       "checkpoint_sha256": "068516ff7d9209da02371786028f8a28ed3c607198ec663901bd8f1e317045c9",
-      "image_sha256": "14eedd0e0ff849b9c7bb44086f71473fa4cddedb98d40a9b66e8207c4551dc3e"
+      "image_sha256": "84ba14a36df7714b5ae3d7b29fb7c28d067bc7517d74474ffeb4c8f0c8b83e09"
     }
   ],
   "complete": true

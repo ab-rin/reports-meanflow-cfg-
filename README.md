@@ -21,7 +21,7 @@ I compared the first checkpoint below 22 with the best checkpoint, using the sam
 | 64k EMA | 21.9181 | 166.92 |
 | 101k EMA | 20.3921 | 268.24 |
 
-That is **101.33 more active hours for 1.5261 lower FID**. The page lets you compare their images from two checkpoints. It also shows one fixed Pikachu seed at all 168 evaluated training checkpoints, the loss history, and all 168 recorded FID evaluations.
+That is **101.33 more active hours for 1.5261 lower FID**. The page lets you compare their images from two checkpoints. It also shows one fixed Charmander seed at all 168 evaluated training checkpoints, the loss history, and all 168 recorded FID evaluations.
 
 The train–validation FID is **not a hard lower bound**. A score below it does not prove worse generation, and these small galleries cannot establish a general visual ranking. The point is to put the number next to the images and the time spent getting it.
 

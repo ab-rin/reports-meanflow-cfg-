@@ -159,6 +159,11 @@ def main(args):
                 save(image, "study", filename)
                 grid.paste(image, ((i % 4) * 64, (i // 4) * 64))
             save(grid, "study", f"compare-{checkpoint['step']}-{seed}.png")
+    historical_record = ASSETS / "study/training-frames-pikachu.json"
+    if historical_record.exists():
+        for frame in json.loads(historical_record.read_text())["frames"]:
+            image = cutout(Image.open(ASSETS / "study" / frame["image"]), session, cache)
+            save(image, "study", frame["image"])
     frames = json.loads((ASSETS / "study/training-frames.json").read_text())["frames"]
     columns = 14
     atlas = Image.new("RGBA", (columns * 64, ((len(frames) + columns - 1) // columns) * 64))

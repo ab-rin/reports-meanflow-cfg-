@@ -41,7 +41,8 @@ if frame_record_path.exists():
         assert image.size == (64, 64)
         atlas.paste(image, ((i % columns) * 64, (i // columns) * 64))
     atlas.save(ASSETS / "study/training-atlas.png", optimize=True)
-    data["trainingFrames"] = {"steps": [row["step"] for row in frames], "columns": columns,
+    data["trainingFrames"] = {"species": frame_record["species"], "seed": frame_record["seed"],
+                              "steps": [row["step"] for row in frames], "columns": columns,
                               "atlas": "assets/study/training-atlas.png"}
 payload = json.dumps(data, separators=(",", ":"), ensure_ascii=True)
 assert "</script" not in payload.lower()
