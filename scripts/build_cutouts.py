@@ -11,6 +11,7 @@ from pathlib import Path
 from collections import deque
 
 import numpy as np
+import cv2
 from scipy.ndimage import binary_erosion, label
 from PIL import Image, ImageDraw
 import onnxruntime as ort
@@ -19,6 +20,8 @@ ROOT = Path(__file__).resolve().parents[1]
 ASSETS = ROOT / "docs/assets"
 OUTLINE_PATH = ROOT / "data/display-mask-outlines.json"
 OUTLINES = {row["rgb_sha256"]: row for row in json.loads(OUTLINE_PATH.read_text())["outlines"]} if OUTLINE_PATH.exists() else {}
+GUIDE_PATH = ROOT / "data/display-mask-guides.json"
+GUIDES = {row["rgb_sha256"]: row["outline_rgb_sha256"] for row in json.loads(GUIDE_PATH.read_text())["guides"]} if GUIDE_PATH.exists() else {}
 MODEL_MD5 = "7a35a0141cbbc80de11d9c9a28f52697"
 
 
@@ -116,11 +119,33 @@ def cutout(image, session, cache):
                 touches_edge = region[0].any() or region[-1].any() or region[:, 0].any() or region[:, -1].any()
                 if touches_edge and region.sum() < alpha.size * .1 and neural_alpha[region].mean() < 32:
                     alpha[region] = 0
+        alpha = guided_alpha(image, alpha, key)
         result = image.convert("RGBA")
         result.putalpha(Image.fromarray(alpha))
         assert np.array_equal(np.asarray(result)[:, :, :3], np.asarray(image))
         cache[key] = result
     return cache[key]
+
+
+def guided_alpha(image, alpha, key):
+    if key not in GUIDES:
+        return alpha
+    reference_key = GUIDES[key]
+    reference = Image.open(ASSETS / OUTLINES[reference_key]["source"]).convert("RGB")
+    if hashlib.sha256(reference.tobytes()).hexdigest() != reference_key:
+        raise ValueError("Foreground guide source changed")
+    def grayscale(source):
+        gray = cv2.cvtColor(np.asarray(source), cv2.COLOR_RGB2GRAY)
+        return cv2.resize(gray, (256, 256), interpolation=cv2.INTER_CUBIC)
+    flow = cv2.calcOpticalFlowFarneback(grayscale(image), grayscale(reference), None,
+                                      .5, 4, 41, 8, 7, 1.5, cv2.OPTFLOW_FARNEBACK_GAUSSIAN)
+    y, x = np.mgrid[:256, :256].astype(np.float32)
+    outline = np.asarray(outline_alpha(reference_key).resize((256, 256), Image.Resampling.LANCZOS))
+    warped = cv2.remap(outline, x + flow[:, :, 0], y + flow[:, :, 1], cv2.INTER_LINEAR,
+                       borderMode=cv2.BORDER_CONSTANT, borderValue=0)
+    mask = cv2.resize(warped, (64, 64), interpolation=cv2.INTER_AREA)
+    mask = cv2.dilate(mask, np.ones((3, 3), np.uint8))
+    return np.minimum(alpha, mask)
 
 
 def main(args):
@@ -164,14 +189,26 @@ def main(args):
         for frame in json.loads(historical_record.read_text())["frames"]:
             image = cutout(Image.open(ASSETS / "study" / frame["image"]), session, cache)
             save(image, "study", frame["image"])
-    frames = json.loads((ASSETS / "study/training-frames.json").read_text())["frames"]
+    frame_record = json.loads((ASSETS / "study/training-frames.json").read_text())
+    frames = frame_record["frames"]
     columns = 14
     atlas = Image.new("RGBA", (columns * 64, ((len(frames) + columns - 1) // columns) * 64))
+    count = len(frames) * len(frame_record["seeds"])
+    eight_atlas = Image.new("RGBA", (32 * 64, ((count + 31) // 32) * 64))
     for i, frame in enumerate(frames):
         image = cutout(Image.open(ASSETS / "study" / frame["image"]), session, cache)
         save(image, "study", frame["image"])
         atlas.paste(image, ((i % columns) * 64, (i // columns) * 64))
+        for j, sample in enumerate(frame["samples"]):
+            if sample["image"] != frame["image"]:
+                tile = cutout(Image.open(ASSETS / "study" / sample["image"]), session, cache)
+                save(tile, "study", sample["image"])
+            else:
+                tile = image
+            cell = i * len(frame_record["seeds"]) + j
+            eight_atlas.paste(tile, ((cell % 32) * 64, (cell // 32) * 64))
     save(atlas, "study", "training-atlas.png")
+    save(eight_atlas, "study", "training-eight-atlas.png")
     record = {
         "purpose": "Presentation-only foreground masks; not native generator output",
         "model": "BiRefNet-general; preprocessing follows rembg 2.0.67", "onnxruntime": ort.__version__,
@@ -179,12 +216,16 @@ def main(args):
         "device": args.device, "provider": session.get_providers()[0],
         "model_md5": MODEL_MD5, "model_sha256": file_hash(args.model),
         "rgb_policy": "Every source RGB byte is retained; only alpha is added. No repainting, resizing or recoloring.",
-        "alpha_policy": "BiRefNet alpha; flat pale backgrounds use edge-connected color masking with protected foreground interiors; reviewed polygon corrections for difficult backgrounds",
+        "alpha_policy": "BiRefNet alpha with protected foreground interiors on flat pale backgrounds; reviewed native outlines and optical-flow foreground guides refine difficult backgrounds.",
         "noise_policy": "Initial Gaussian noise is shown in full; foreground masks apply to the four subsequent states",
         "originals": "Original RGB images remain in assets/gallery and assets/study",
         "outline_corrections": len(OUTLINES),
         "outline_source": "data/display-mask-outlines.json",
         "outline_source_sha256": file_hash(OUTLINE_PATH),
+        "foreground_guides": len(GUIDES),
+        "opencv": cv2.__version__,
+        "guide_source": "data/display-mask-guides.json",
+        "guide_source_sha256": file_hash(GUIDE_PATH),
         "files": files,
     }
     (args.output / "manifest.json").write_text(json.dumps(record, indent=2) + "\n")

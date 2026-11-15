@@ -41,9 +41,21 @@ if frame_record_path.exists():
         assert image.size == (64, 64)
         atlas.paste(image, ((i % columns) * 64, (i // columns) * 64))
     atlas.save(ASSETS / "study/training-atlas.png", optimize=True)
-    data["trainingFrames"] = {"species": frame_record["species"], "seed": frame_record["seed"],
+    seeds = frame_record["seeds"]
+    columns = 32
+    count = len(frames) * len(seeds)
+    atlas = Image.new("RGB", (columns * 64, ((count + columns - 1) // columns) * 64))
+    for i, frame in enumerate(frames):
+        assert [sample["seed"] for sample in frame["samples"]] == seeds
+        for j, sample in enumerate(frame["samples"]):
+            image = Image.open(ASSETS / "study" / sample["image"]).convert("RGB")
+            assert image.size == (64, 64)
+            cell = i * len(seeds) + j
+            atlas.paste(image, ((cell % columns) * 64, (cell // columns) * 64))
+    atlas.save(ASSETS / "study/training-eight-atlas.png", optimize=True)
+    data["trainingFrames"] = {"species": frame_record["species"], "seed": frame_record["seed"], "seeds": seeds,
                               "steps": [row["step"] for row in frames], "columns": columns,
-                              "atlas": "assets/study/training-atlas.png"}
+                              "atlas": "assets/study/training-eight-atlas.png"}
 payload = json.dumps(data, separators=(",", ":"), ensure_ascii=True)
 assert "</script" not in payload.lower()
 (ASSETS / "project-data.js").write_text("window.PROJECT_DATA = " + payload + ";\n")

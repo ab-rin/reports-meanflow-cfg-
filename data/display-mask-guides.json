@@ -1,0 +1,835 @@
+{
+  "purpose": "Display-only foreground guides transferred from reviewed native outlines by optical flow; RGB and FID inputs remain unchanged.",
+  "guides": [
+    {
+      "source": "study/journey-charmander-256-1000.png",
+      "rgb_sha256": "aca8da18d419afc3009dbc444db3c3c149237b2931bbfe9a44e0b840999c647a",
+      "outline_rgb_sha256": "0350f87d6ee197d433fe23e3f14b2c690fdd8f77c7773f4134fd44bdf3c6d3fd"
+    },
+    {
+      "source": "study/journey-charmander-512-1000.png",
+      "rgb_sha256": "d9fb6a95785f3c6226f06dcaefe15b876680acf1e3d1532700c89613af56cca8",
+      "outline_rgb_sha256": "9b77612a33ccad05ae0e4c7db710c941c1b9e7f82ff0f1526841aeb2bac83d51"
+    },
+    {
+      "source": "study/journey-charmander-777-1000.png",
+      "rgb_sha256": "ef2b59b6435925851ccdde9e3d0b14f256cec764f40ceca360dcd540de52cc94",
+      "outline_rgb_sha256": "576db50ac587eca6f5c89ea9c389f58302a104243aa93e860e44930dc268ab72"
+    },
+    {
+      "source": "study/journey-charmander-7-2000.png",
+      "rgb_sha256": "6edc1b79fd0e8204604394232b1076ae8f7fca0158555cbfe0d59e135089d47b",
+      "outline_rgb_sha256": "a7c3cb287e3928d65613449273d5fecbbe1136adfb6774486c42f1891b90da77"
+    },
+    {
+      "source": "study/journey-charmander-256-2000.png",
+      "rgb_sha256": "0737a38c51f90d92cf75ca6a0602e161c23cee78312c32364000d3b8702a6674",
+      "outline_rgb_sha256": "0350f87d6ee197d433fe23e3f14b2c690fdd8f77c7773f4134fd44bdf3c6d3fd"
+    },
+    {
+      "source": "study/journey-charmander-512-2000.png",
+      "rgb_sha256": "bbcf31649b304b8d5649d0728ecfd16c3ab5c2b4bea10413a00e214ac7a1e5cb",
+      "outline_rgb_sha256": "9b77612a33ccad05ae0e4c7db710c941c1b9e7f82ff0f1526841aeb2bac83d51"
+    },
+    {
+      "source": "study/journey-charmander-777-2000.png",
+      "rgb_sha256": "5abc6a1ba6cba099bf95b17f5bf5ad2e73fce36ccf8ce55c55692823d5b6307f",
+      "outline_rgb_sha256": "7e69da20d86e063b845653eee37b603772f938c5ff21326eadcc2030df9a8fa4"
+    },
+    {
+      "source": "study/journey-charmander-7-3000.png",
+      "rgb_sha256": "5c1828b88e698578ea877d458cc20ca9f558b8919682a8fc72441901744f857a",
+      "outline_rgb_sha256": "a7c3cb287e3928d65613449273d5fecbbe1136adfb6774486c42f1891b90da77"
+    },
+    {
+      "source": "study/journey-charmander-256-3000.png",
+      "rgb_sha256": "8e4c43ee4f2e256133e810d30750c955f678fabec7efbbe853545c2c15ff59b6",
+      "outline_rgb_sha256": "0350f87d6ee197d433fe23e3f14b2c690fdd8f77c7773f4134fd44bdf3c6d3fd"
+    },
+    {
+      "source": "study/journey-charmander-512-3000.png",
+      "rgb_sha256": "1de855bd23366870b5292415462321a283274c0b49cc987b431de233098ab61f",
+      "outline_rgb_sha256": "9b77612a33ccad05ae0e4c7db710c941c1b9e7f82ff0f1526841aeb2bac83d51"
+    },
+    {
+      "source": "study/journey-charmander-777-3000.png",
+      "rgb_sha256": "bff0b7ba55b894b443a1e1974186f9c05c8987d3e5230359810cdaa6a234f619",
+      "outline_rgb_sha256": "7e69da20d86e063b845653eee37b603772f938c5ff21326eadcc2030df9a8fa4"
+    },
+    {
+      "source": "study/journey-charmander-256-4000.png",
+      "rgb_sha256": "6a4f921801b800e930c8a12bf50c6b29613351a4102d10cd9677bb4e9ddaa385",
+      "outline_rgb_sha256": "0350f87d6ee197d433fe23e3f14b2c690fdd8f77c7773f4134fd44bdf3c6d3fd"
+    },
+    {
+      "source": "study/journey-charmander-512-4000.png",
+      "rgb_sha256": "7c6bd9468e1f272210b28b8faceb959d74c59412ef1198c17ad7a5f67c375b88",
+      "outline_rgb_sha256": "9b77612a33ccad05ae0e4c7db710c941c1b9e7f82ff0f1526841aeb2bac83d51"
+    },
+    {
+      "source": "study/journey-charmander-777-4000.png",
+      "rgb_sha256": "5d1442b0e93a6095cea9841584ee1bbe733001ef584dc36e9bbe6214500b29d1",
+      "outline_rgb_sha256": "7e69da20d86e063b845653eee37b603772f938c5ff21326eadcc2030df9a8fa4"
+    },
+    {
+      "source": "study/journey-charmander-101-6000.png",
+      "rgb_sha256": "218388d8c43b03e174972f79bbd886fe57855119822238144e2140abf771164f",
+      "outline_rgb_sha256": "6d97bbbbdf053e389d2555014fc0f35780fc8160e94d98cdc3fd42a7572fb1b1"
+    },
+    {
+      "source": "study/journey-charmander-256-7000.png",
+      "rgb_sha256": "b7362c75302b39b2a153f0b8c4adc6a279fa11ff13b639054e1eb11d69b6ce50",
+      "outline_rgb_sha256": "0350f87d6ee197d433fe23e3f14b2c690fdd8f77c7773f4134fd44bdf3c6d3fd"
+    },
+    {
+      "source": "study/journey-charmander-256-8000.png",
+      "rgb_sha256": "3f663826b386a3f650127ece3edfacb3d8c9d7fe2077bd207e99d14d1d874cc8",
+      "outline_rgb_sha256": "0350f87d6ee197d433fe23e3f14b2c690fdd8f77c7773f4134fd44bdf3c6d3fd"
+    },
+    {
+      "source": "study/journey-charmander-256-9000.png",
+      "rgb_sha256": "a7d7a2e4d6fade3bbaf39dd757ff5f11778b29916c76c03129ef33c73f0d11e8",
+      "outline_rgb_sha256": "0350f87d6ee197d433fe23e3f14b2c690fdd8f77c7773f4134fd44bdf3c6d3fd"
+    },
+    {
+      "source": "study/journey-charmander-777-9000.png",
+      "rgb_sha256": "0ebc0afda2a18dcfca63fb53dd1b021f866391690382ee627738d8a4a727f511",
+      "outline_rgb_sha256": "7e69da20d86e063b845653eee37b603772f938c5ff21326eadcc2030df9a8fa4"
+    },
+    {
+      "source": "study/journey-charmander-777-10000.png",
+      "rgb_sha256": "c3f1eac82b3d1ad55295aada2f3c49e87d62236b60753d60041921db5b8a0f03",
+      "outline_rgb_sha256": "ef35aa803a49f933926cf78803ff4a5c83e91957dc0fc7a88ddc41b923a073cc"
+    },
+    {
+      "source": "study/journey-charmander-256-13000.png",
+      "rgb_sha256": "3c1ad8f5bf5279eb18f457e02250b1c150550bffddbd555e2505c90963e7aae2",
+      "outline_rgb_sha256": "f0f9f6bdc3d61010a1c2d6215152278253cd7385307293550d6465c9dae290bf"
+    },
+    {
+      "source": "study/journey-charmander-512-13000.png",
+      "rgb_sha256": "b9575cc06e1ccc86496cc58498c856c55d56ae9bf903cf29eb03f58168ef933f",
+      "outline_rgb_sha256": "9b77612a33ccad05ae0e4c7db710c941c1b9e7f82ff0f1526841aeb2bac83d51"
+    },
+    {
+      "source": "study/journey-charmander-512-14000.png",
+      "rgb_sha256": "bd54e53bbf9a674ec08ca33635a568cafb401e02ee08c47c63a4b0d7f382a46e",
+      "outline_rgb_sha256": "9b77612a33ccad05ae0e4c7db710c941c1b9e7f82ff0f1526841aeb2bac83d51"
+    },
+    {
+      "source": "study/journey-charmander-256-15000.png",
+      "rgb_sha256": "3f5984068165b957b55c45904d9ed884e890cb39026074b519f1bb4d6efdcc38",
+      "outline_rgb_sha256": "f0f9f6bdc3d61010a1c2d6215152278253cd7385307293550d6465c9dae290bf"
+    },
+    {
+      "source": "study/journey-charmander-256-17000.png",
+      "rgb_sha256": "9e3b7742f4caef87fb18f82ddd8439166af501fda9eee1ddb62886c63dffe2e7",
+      "outline_rgb_sha256": "f0f9f6bdc3d61010a1c2d6215152278253cd7385307293550d6465c9dae290bf"
+    },
+    {
+      "source": "study/journey-charmander-512-17000.png",
+      "rgb_sha256": "159816cad614f0d471caf540e62b731aa178dd452fde842d0f868725964e1393",
+      "outline_rgb_sha256": "a8b34ad0d222438f43275e4e61b1b14ef027d036b7bf93fa488cfe46040dfab0"
+    },
+    {
+      "source": "study/journey-charmander-256-18000.png",
+      "rgb_sha256": "128d3a2104e2f93b8a31b076fb46f9259b0849dd8a4ef00fb97164ad929bcd65",
+      "outline_rgb_sha256": "f0f9f6bdc3d61010a1c2d6215152278253cd7385307293550d6465c9dae290bf"
+    },
+    {
+      "source": "study/journey-charmander-256-22000.png",
+      "rgb_sha256": "e61ab7ffa1a969c8365eabe0b38b831633268cb3e6e167cebf41c5c6a4086ca6",
+      "outline_rgb_sha256": "f0f9f6bdc3d61010a1c2d6215152278253cd7385307293550d6465c9dae290bf"
+    },
+    {
+      "source": "study/journey-charmander-256-23000.png",
+      "rgb_sha256": "6627bd03eaf927a163a0bfe8f9d8f75680912e9342d2a7fcec64a5a67d52a7d9",
+      "outline_rgb_sha256": "f0f9f6bdc3d61010a1c2d6215152278253cd7385307293550d6465c9dae290bf"
+    },
+    {
+      "source": "study/journey-charmander-512-23000.png",
+      "rgb_sha256": "c3837fb13da465693dd114343d468dd05931c65706ee16afbf8fa665896e09bb",
+      "outline_rgb_sha256": "a8b34ad0d222438f43275e4e61b1b14ef027d036b7bf93fa488cfe46040dfab0"
+    },
+    {
+      "source": "study/journey-charmander-777-23000.png",
+      "rgb_sha256": "f0e0b2fa7443a713fab306a5411118af87ced1702bd732d1fb2381837abda4ad",
+      "outline_rgb_sha256": "106bcfafb020be268419db54c5de8bba4e9a426a6c3f4824b899e8631865336e"
+    },
+    {
+      "source": "study/journey-charmander-256-24000.png",
+      "rgb_sha256": "a98e0c4f908f1fdac4e3ba1ea245be71bceb1bbd3cbf62eaae07e1eb9c87af59",
+      "outline_rgb_sha256": "f0f9f6bdc3d61010a1c2d6215152278253cd7385307293550d6465c9dae290bf"
+    },
+    {
+      "source": "study/journey-charmander-777-25000.png",
+      "rgb_sha256": "59abf3b6c856ded21e37ee0c98552cca66ee2ce412c7cc4b51efcf1b237b9805",
+      "outline_rgb_sha256": "ef35aa803a49f933926cf78803ff4a5c83e91957dc0fc7a88ddc41b923a073cc"
+    },
+    {
+      "source": "study/journey-charmander-777-26000.png",
+      "rgb_sha256": "b61f459348b2f2df4486b23220d301afdbaeb8109ff822b02286b2b34f2fa0a2",
+      "outline_rgb_sha256": "cd290035d0ecb7cd5da3ba3f351fae551319f6cd21df68d21c5b8df4684f9253"
+    },
+    {
+      "source": "study/journey-charmander-777-27000.png",
+      "rgb_sha256": "f160169dc4c15cbe193c73bd5e907798b8b53ca24fb66cff0b87926822e547af",
+      "outline_rgb_sha256": "cd290035d0ecb7cd5da3ba3f351fae551319f6cd21df68d21c5b8df4684f9253"
+    },
+    {
+      "source": "study/journey-charmander-19-28000.png",
+      "rgb_sha256": "366a7611916837c091f9e246cbe4e11b961dfef50c304420ed5c51d7eacd4645",
+      "outline_rgb_sha256": "d527184e7bb9c5b036334464929d531880a21ef605f5b40d1a9d1d1718a7ee6b"
+    },
+    {
+      "source": "study/journey-charmander-777-31000.png",
+      "rgb_sha256": "c35c81ab670d92de8e4c8f3a0b253630472a24fa76f2655d2016f2d6ebf07304",
+      "outline_rgb_sha256": "cd290035d0ecb7cd5da3ba3f351fae551319f6cd21df68d21c5b8df4684f9253"
+    },
+    {
+      "source": "study/journey-charmander-777-46000.png",
+      "rgb_sha256": "6c7ef691a8908484627e96b3c1586107c654fa2d36fce776dd500b4c9cd0d5a9",
+      "outline_rgb_sha256": "cd290035d0ecb7cd5da3ba3f351fae551319f6cd21df68d21c5b8df4684f9253"
+    },
+    {
+      "source": "study/journey-charmander-777-47000.png",
+      "rgb_sha256": "a843857d23bcd76780df3fb77d42e49447565ad90ea6d49f56055ea6aa8541d5",
+      "outline_rgb_sha256": "cd290035d0ecb7cd5da3ba3f351fae551319f6cd21df68d21c5b8df4684f9253"
+    },
+    {
+      "source": "study/journey-charmander-777-49000.png",
+      "rgb_sha256": "d8188923cd49773d13c9e39b75c6a13f642fb8172bb761f19476af887c77eb08",
+      "outline_rgb_sha256": "cd290035d0ecb7cd5da3ba3f351fae551319f6cd21df68d21c5b8df4684f9253"
+    },
+    {
+      "source": "study/journey-charmander-777-50000.png",
+      "rgb_sha256": "3c49ae7d877443e4b2342e53b8fce498976212fa09e90eef90330b138bd15269",
+      "outline_rgb_sha256": "cd290035d0ecb7cd5da3ba3f351fae551319f6cd21df68d21c5b8df4684f9253"
+    },
+    {
+      "source": "study/journey-charmander-19-51000.png",
+      "rgb_sha256": "700f736d8f098fbcdc37202c8e463ded8082143bec96b62c331c64a1e3ec9a01",
+      "outline_rgb_sha256": "f069fe4ef108dc36dc07e62acd4ae1ed30e436f9646d0cef504255401f873e0a"
+    },
+    {
+      "source": "study/journey-charmander-777-53000.png",
+      "rgb_sha256": "af7c6e474bb564bc255c20c5f463bc780cc6a015923e9f84880eecabdb58089f",
+      "outline_rgb_sha256": "cd290035d0ecb7cd5da3ba3f351fae551319f6cd21df68d21c5b8df4684f9253"
+    },
+    {
+      "source": "study/journey-charmander-777-54000.png",
+      "rgb_sha256": "50680adb95c097e1505f08c67b6f13ab8f9bf497139ea3261d593440eea357f1",
+      "outline_rgb_sha256": "cd290035d0ecb7cd5da3ba3f351fae551319f6cd21df68d21c5b8df4684f9253"
+    },
+    {
+      "source": "study/journey-charmander-777-55000.png",
+      "rgb_sha256": "1d5798db4f0eaf03dadc00e54f33cf07657a7e4ec39536c1b20e85d67ae7afd0",
+      "outline_rgb_sha256": "106bcfafb020be268419db54c5de8bba4e9a426a6c3f4824b899e8631865336e"
+    },
+    {
+      "source": "study/journey-charmander-777-56000.png",
+      "rgb_sha256": "6427c7862ca746a35b8b067feb22c23bc940489a5136b2899530115413e68533",
+      "outline_rgb_sha256": "cd290035d0ecb7cd5da3ba3f351fae551319f6cd21df68d21c5b8df4684f9253"
+    },
+    {
+      "source": "study/journey-charmander-256-57000.png",
+      "rgb_sha256": "43f03fc84ed154e7138dc0383d20b6dddc5b0b07e9c46328a21d8f2704b030fe",
+      "outline_rgb_sha256": "f0f9f6bdc3d61010a1c2d6215152278253cd7385307293550d6465c9dae290bf"
+    },
+    {
+      "source": "study/journey-charmander-512-57000.png",
+      "rgb_sha256": "a033b6eb20b248d34fc18058454c931c46dac5ecf6fa21e1a569b4a53160dd8c",
+      "outline_rgb_sha256": "9b77612a33ccad05ae0e4c7db710c941c1b9e7f82ff0f1526841aeb2bac83d51"
+    },
+    {
+      "source": "study/journey-charmander-777-57000.png",
+      "rgb_sha256": "f10adb1e526aaa69411103e2ab1dee500dae9ad2f3e0e89bdedccfae6e7af84f",
+      "outline_rgb_sha256": "ef35aa803a49f933926cf78803ff4a5c83e91957dc0fc7a88ddc41b923a073cc"
+    },
+    {
+      "source": "study/journey-charmander-777-58000.png",
+      "rgb_sha256": "2558d77e61e38e381f852f744c2c3a716129d0dd4ed265f3b9e1a8ac8997c2cd",
+      "outline_rgb_sha256": "cd290035d0ecb7cd5da3ba3f351fae551319f6cd21df68d21c5b8df4684f9253"
+    },
+    {
+      "source": "study/journey-charmander-19-59000.png",
+      "rgb_sha256": "f53ef7227411cfa40cb70dc2dbae109a975c24ff2a63cf40c4cbe55923dbe885",
+      "outline_rgb_sha256": "f069fe4ef108dc36dc07e62acd4ae1ed30e436f9646d0cef504255401f873e0a"
+    },
+    {
+      "source": "study/journey-charmander-19-60000.png",
+      "rgb_sha256": "eaa3ce7704b8f1d9cf5e79f4067abc20919e5ff362318d38488741f619532146",
+      "outline_rgb_sha256": "f069fe4ef108dc36dc07e62acd4ae1ed30e436f9646d0cef504255401f873e0a"
+    },
+    {
+      "source": "study/journey-charmander-777-60000.png",
+      "rgb_sha256": "f90986ebd00e21c886654da2d12b7ede4407e166281b786e78bb942e178d81ce",
+      "outline_rgb_sha256": "cd290035d0ecb7cd5da3ba3f351fae551319f6cd21df68d21c5b8df4684f9253"
+    },
+    {
+      "source": "study/journey-charmander-777-61000.png",
+      "rgb_sha256": "f5c23578802484fbf6a365dbe0f28f5ddc1241d373b94bf003c29ce4b6405a72",
+      "outline_rgb_sha256": "cd290035d0ecb7cd5da3ba3f351fae551319f6cd21df68d21c5b8df4684f9253"
+    },
+    {
+      "source": "study/journey-charmander-101-63000.png",
+      "rgb_sha256": "e033ba52a5accf2e539611018cf187225ac5a20621a02ae550177bea5543329a",
+      "outline_rgb_sha256": "fee3aae9c4a67d81ae6e0dcf32a90ed928d9e562a434c2dc68392d3615121f08"
+    },
+    {
+      "source": "study/journey-charmander-777-63000.png",
+      "rgb_sha256": "1b8d959d05c6ce51277d2623e9214875d747b4b7fd7bd8e30b591eecb483ee63",
+      "outline_rgb_sha256": "106bcfafb020be268419db54c5de8bba4e9a426a6c3f4824b899e8631865336e"
+    },
+    {
+      "source": "study/journey-charmander-777-64000.png",
+      "rgb_sha256": "2d18f15d2f623e03ad96bbbe4ccb2175b479d07bc0dd30f3ac70462fc7e013a1",
+      "outline_rgb_sha256": "cd290035d0ecb7cd5da3ba3f351fae551319f6cd21df68d21c5b8df4684f9253"
+    },
+    {
+      "source": "study/journey-charmander-777-67000.png",
+      "rgb_sha256": "c75e36fdc6bdf97482191ff16aa671bebb7129a83e32b118b749ce0f9d2f3b8a",
+      "outline_rgb_sha256": "106bcfafb020be268419db54c5de8bba4e9a426a6c3f4824b899e8631865336e"
+    },
+    {
+      "source": "study/journey-charmander-777-68000.png",
+      "rgb_sha256": "903444d6ca2b2e0c08913a8cc0929243c835d8aa58c0eea01a5957c745d27e4f",
+      "outline_rgb_sha256": "106bcfafb020be268419db54c5de8bba4e9a426a6c3f4824b899e8631865336e"
+    },
+    {
+      "source": "study/journey-charmander-777-69000.png",
+      "rgb_sha256": "bc987ee6f9b70dab819116dff3ec3193c46c9f80cbbf13a1d5dc0b35fd4f2cec",
+      "outline_rgb_sha256": "b6bef4951164c09ddf51fe0c24e3d7d839764682aa5cb8e6c54504d43ea209d6"
+    },
+    {
+      "source": "study/journey-charmander-777-71000.png",
+      "rgb_sha256": "f2228ca910e780bf2c43a438c284373f817b104e69374ff0e169f42468751cd4",
+      "outline_rgb_sha256": "106bcfafb020be268419db54c5de8bba4e9a426a6c3f4824b899e8631865336e"
+    },
+    {
+      "source": "study/journey-charmander-777-73000.png",
+      "rgb_sha256": "6aa8c98244a619657d59a1dd35ef9550d9658a8268c117e53e1e9185c9a35e51",
+      "outline_rgb_sha256": "cd290035d0ecb7cd5da3ba3f351fae551319f6cd21df68d21c5b8df4684f9253"
+    },
+    {
+      "source": "study/journey-charmander-777-74000.png",
+      "rgb_sha256": "0ff6bd093943336ca28b1719cfa8115d110a90e2f8a8b02204aed25c008f00de",
+      "outline_rgb_sha256": "7f45b9b38df5beede663fe303ec320ca855e4e0b6759b46548593d027d7e5d8d"
+    },
+    {
+      "source": "study/journey-charmander-19-75000.png",
+      "rgb_sha256": "c8614a56b2a580c4045f2daa836511645a3af689412fd3cb894698b7fcff8429",
+      "outline_rgb_sha256": "f069fe4ef108dc36dc07e62acd4ae1ed30e436f9646d0cef504255401f873e0a"
+    },
+    {
+      "source": "study/journey-charmander-777-75000.png",
+      "rgb_sha256": "75afe1b286c42a55b61f00f6b4a0cce7cb12b773ff5a1e5dacb69097436ba0a9",
+      "outline_rgb_sha256": "7f45b9b38df5beede663fe303ec320ca855e4e0b6759b46548593d027d7e5d8d"
+    },
+    {
+      "source": "study/journey-charmander-19-76000.png",
+      "rgb_sha256": "364ac604b948f3ff863b534c21a8bafe5d45fab5ba19e6554fe9d1ff78b7a813",
+      "outline_rgb_sha256": "f069fe4ef108dc36dc07e62acd4ae1ed30e436f9646d0cef504255401f873e0a"
+    },
+    {
+      "source": "study/journey-charmander-19-78000.png",
+      "rgb_sha256": "995e8dda23c167bb00eee20652d0ca8c55beaa2ce9185c4f0c3bab220e22fc7f",
+      "outline_rgb_sha256": "f069fe4ef108dc36dc07e62acd4ae1ed30e436f9646d0cef504255401f873e0a"
+    },
+    {
+      "source": "study/journey-charmander-777-78000.png",
+      "rgb_sha256": "539f7b83af9b72577d01eb0b1823800a3e8326d37f725bec847b6cd7d5324fba",
+      "outline_rgb_sha256": "106bcfafb020be268419db54c5de8bba4e9a426a6c3f4824b899e8631865336e"
+    },
+    {
+      "source": "study/journey-charmander-777-79000.png",
+      "rgb_sha256": "c2661ce5d8491874a8de72dd60168ca510ec1fa4cf905bf377b021e5976384ad",
+      "outline_rgb_sha256": "576db50ac587eca6f5c89ea9c389f58302a104243aa93e860e44930dc268ab72"
+    },
+    {
+      "source": "study/journey-charmander-101-80000.png",
+      "rgb_sha256": "42585a403a97fffe2b1c632578d72c4c24e1cf0ee82403568926f5a6472bc13d",
+      "outline_rgb_sha256": "fee3aae9c4a67d81ae6e0dcf32a90ed928d9e562a434c2dc68392d3615121f08"
+    },
+    {
+      "source": "study/journey-charmander-256-80000.png",
+      "rgb_sha256": "daecc48f9d6f4d0ba77a222b6747ecb26042b098cd481d370690c181804449eb",
+      "outline_rgb_sha256": "f0f9f6bdc3d61010a1c2d6215152278253cd7385307293550d6465c9dae290bf"
+    },
+    {
+      "source": "study/journey-charmander-512-80000.png",
+      "rgb_sha256": "8837a1effc1034f3b804cd2e4d916b6ddbdf0c886351760ea6c28e5a228932c0",
+      "outline_rgb_sha256": "a8b34ad0d222438f43275e4e61b1b14ef027d036b7bf93fa488cfe46040dfab0"
+    },
+    {
+      "source": "study/journey-charmander-101-81000.png",
+      "rgb_sha256": "2c550b7a774c74df2de34938bb1f7d212c92968acdd7a075de93805658725539",
+      "outline_rgb_sha256": "fee3aae9c4a67d81ae6e0dcf32a90ed928d9e562a434c2dc68392d3615121f08"
+    },
+    {
+      "source": "study/journey-charmander-256-81000.png",
+      "rgb_sha256": "8f14c9593f977f908c78789170784c96f38dc66270d56674bdaa9f551e00cf18",
+      "outline_rgb_sha256": "f0f9f6bdc3d61010a1c2d6215152278253cd7385307293550d6465c9dae290bf"
+    },
+    {
+      "source": "study/journey-charmander-512-81000.png",
+      "rgb_sha256": "c817e4f9855fdd64a6166b634ca5fb18854b7dc2a5faa87f48c76a4e808f998b",
+      "outline_rgb_sha256": "9b77612a33ccad05ae0e4c7db710c941c1b9e7f82ff0f1526841aeb2bac83d51"
+    },
+    {
+      "source": "study/journey-charmander-777-81000.png",
+      "rgb_sha256": "d9c0e3205f8d05b6862be01c50cb6e01955d3768deae3ab47970c4e354d57d79",
+      "outline_rgb_sha256": "576db50ac587eca6f5c89ea9c389f58302a104243aa93e860e44930dc268ab72"
+    },
+    {
+      "source": "study/journey-charmander-101-82000.png",
+      "rgb_sha256": "4d52d7d14acb9874eeebb15e888e0b35de1656496191478cacbfa85a345086e5",
+      "outline_rgb_sha256": "fee3aae9c4a67d81ae6e0dcf32a90ed928d9e562a434c2dc68392d3615121f08"
+    },
+    {
+      "source": "study/journey-charmander-101-83000.png",
+      "rgb_sha256": "48d329e5f078e39ecc827b6974210e564083c861b83feb3a9f1a85a7ce2d63c8",
+      "outline_rgb_sha256": "fee3aae9c4a67d81ae6e0dcf32a90ed928d9e562a434c2dc68392d3615121f08"
+    },
+    {
+      "source": "study/journey-charmander-101-84000.png",
+      "rgb_sha256": "7a07376383a16146ea4343612ba8cccb40e6d098608dd02c39a0a21d0271ad73",
+      "outline_rgb_sha256": "fee3aae9c4a67d81ae6e0dcf32a90ed928d9e562a434c2dc68392d3615121f08"
+    },
+    {
+      "source": "study/journey-charmander-101-84500.png",
+      "rgb_sha256": "115dad4a6e3775ccc2cb38dc74372dbf48a95bb91cd57cfbc0fa2c44ada57d4c",
+      "outline_rgb_sha256": "fee3aae9c4a67d81ae6e0dcf32a90ed928d9e562a434c2dc68392d3615121f08"
+    },
+    {
+      "source": "study/journey-charmander-101-84750.png",
+      "rgb_sha256": "f00ce38606e75d226b802d8add1f70a91920153371ceadbf4c2530582bc34b82",
+      "outline_rgb_sha256": "fee3aae9c4a67d81ae6e0dcf32a90ed928d9e562a434c2dc68392d3615121f08"
+    },
+    {
+      "source": "study/journey-charmander-101-85000.png",
+      "rgb_sha256": "31fb2a8fbbd9e3087ee986a6a9e51ff298f2817f76a168fdfbf6ec73460ba3d0",
+      "outline_rgb_sha256": "fee3aae9c4a67d81ae6e0dcf32a90ed928d9e562a434c2dc68392d3615121f08"
+    },
+    {
+      "source": "study/journey-charmander-101-85250.png",
+      "rgb_sha256": "557c24ff42f2cbfc7a69ba0dd7a279e18990fe3dbb4e67ae7a31f9a29cdb8d04",
+      "outline_rgb_sha256": "fee3aae9c4a67d81ae6e0dcf32a90ed928d9e562a434c2dc68392d3615121f08"
+    },
+    {
+      "source": "study/journey-charmander-101-85500.png",
+      "rgb_sha256": "51b3e05e5f101d2ae4d909f21dc4f5bd4bc8c10acc10d93c5643df281ed4a0e7",
+      "outline_rgb_sha256": "fee3aae9c4a67d81ae6e0dcf32a90ed928d9e562a434c2dc68392d3615121f08"
+    },
+    {
+      "source": "study/journey-charmander-101-86000.png",
+      "rgb_sha256": "78aa238d34e5771081c6332898fc5b3e485cc2d33f9524601fe32b924a28f59a",
+      "outline_rgb_sha256": "fee3aae9c4a67d81ae6e0dcf32a90ed928d9e562a434c2dc68392d3615121f08"
+    },
+    {
+      "source": "study/journey-charmander-101-86250.png",
+      "rgb_sha256": "fff2134bd05b94185b5be0472d239c6f0485e2dd6cf8e8cbb49f45a2336d1a67",
+      "outline_rgb_sha256": "fee3aae9c4a67d81ae6e0dcf32a90ed928d9e562a434c2dc68392d3615121f08"
+    },
+    {
+      "source": "study/journey-charmander-512-86250.png",
+      "rgb_sha256": "7a7e63583eeba5921f52d3de85c42d5dacee2c00f7171c8f592760652a92eacf",
+      "outline_rgb_sha256": "9b77612a33ccad05ae0e4c7db710c941c1b9e7f82ff0f1526841aeb2bac83d51"
+    },
+    {
+      "source": "study/journey-charmander-101-86500.png",
+      "rgb_sha256": "82a67dcb20224f19d093c404c5bbae5ed0ad8ea8ff7922bffea07b671107707d",
+      "outline_rgb_sha256": "fee3aae9c4a67d81ae6e0dcf32a90ed928d9e562a434c2dc68392d3615121f08"
+    },
+    {
+      "source": "study/journey-charmander-512-86500.png",
+      "rgb_sha256": "1a4930ced46d5bd7748e16ad07bb1758b78306e1e15a6fde41371bd70d3ad514",
+      "outline_rgb_sha256": "9b77612a33ccad05ae0e4c7db710c941c1b9e7f82ff0f1526841aeb2bac83d51"
+    },
+    {
+      "source": "study/journey-charmander-101-86750.png",
+      "rgb_sha256": "5a99c9c1eccf2eb9bb52c0a436a16ba36ecfee2990d27435c03a476e8148bc61",
+      "outline_rgb_sha256": "fee3aae9c4a67d81ae6e0dcf32a90ed928d9e562a434c2dc68392d3615121f08"
+    },
+    {
+      "source": "study/journey-charmander-512-86750.png",
+      "rgb_sha256": "c1cc853f5e0a5d27bd8e9ae48564639960e4ab336cfea72749c210244a36d4d5",
+      "outline_rgb_sha256": "9b77612a33ccad05ae0e4c7db710c941c1b9e7f82ff0f1526841aeb2bac83d51"
+    },
+    {
+      "source": "study/journey-charmander-101-87750.png",
+      "rgb_sha256": "b7bbea231c188e17b40e59013744b0980235bf62411bc18b63f21d99c0c6ac5e",
+      "outline_rgb_sha256": "fee3aae9c4a67d81ae6e0dcf32a90ed928d9e562a434c2dc68392d3615121f08"
+    },
+    {
+      "source": "study/journey-charmander-101-88000.png",
+      "rgb_sha256": "3adc4dbf425f8a6ba2a834026b1e8c9b5aa4c643516002c178677dfa78ceed4c",
+      "outline_rgb_sha256": "fee3aae9c4a67d81ae6e0dcf32a90ed928d9e562a434c2dc68392d3615121f08"
+    },
+    {
+      "source": "study/journey-charmander-512-88000.png",
+      "rgb_sha256": "274d8765c993f0bd3fd5c4f627927d57a222ab5d28014cf5a962e8b35d2d539f",
+      "outline_rgb_sha256": "772e14193d98c6c8f0a712fc889d794249f8484c9b9cf21c8ef9091c9991324c"
+    },
+    {
+      "source": "study/journey-charmander-777-88000.png",
+      "rgb_sha256": "d398e809c47fb9a68ff36b6eac7658bdd82dfe8721b5d8d55712752f0d6d80fc",
+      "outline_rgb_sha256": "106bcfafb020be268419db54c5de8bba4e9a426a6c3f4824b899e8631865336e"
+    },
+    {
+      "source": "study/journey-charmander-101-88250.png",
+      "rgb_sha256": "b0be0449cb17a4b2aad0414ca7bd8b0b58245ca9fc48bb6527cf988d2d2cc1cf",
+      "outline_rgb_sha256": "fee3aae9c4a67d81ae6e0dcf32a90ed928d9e562a434c2dc68392d3615121f08"
+    },
+    {
+      "source": "study/journey-charmander-777-88250.png",
+      "rgb_sha256": "f92e21bcd7da94b4d688603f59f3446cb173428f83fedd23840503a4ce6f3406",
+      "outline_rgb_sha256": "b6bef4951164c09ddf51fe0c24e3d7d839764682aa5cb8e6c54504d43ea209d6"
+    },
+    {
+      "source": "study/journey-charmander-101-88500.png",
+      "rgb_sha256": "cfc5c274f6827dc9177fe85881465e1669ec572c37c51e9346c2ac79f11598f9",
+      "outline_rgb_sha256": "fee3aae9c4a67d81ae6e0dcf32a90ed928d9e562a434c2dc68392d3615121f08"
+    },
+    {
+      "source": "study/journey-charmander-512-88500.png",
+      "rgb_sha256": "8120e1095c93c4d4dbe5e1c06a695dca090865f43cd941ee177a1762a920d5e5",
+      "outline_rgb_sha256": "772e14193d98c6c8f0a712fc889d794249f8484c9b9cf21c8ef9091c9991324c"
+    },
+    {
+      "source": "study/journey-charmander-512-88750.png",
+      "rgb_sha256": "6c1745a95d1080f6193dad03924ef27dd196848246bd00df57fb8e4c52889bdc",
+      "outline_rgb_sha256": "772e14193d98c6c8f0a712fc889d794249f8484c9b9cf21c8ef9091c9991324c"
+    },
+    {
+      "source": "study/journey-charmander-512-89000.png",
+      "rgb_sha256": "2a8a0e50f74c2a91cf90716e60aaeef26e76d4266950491c6402d8fafe426675",
+      "outline_rgb_sha256": "772e14193d98c6c8f0a712fc889d794249f8484c9b9cf21c8ef9091c9991324c"
+    },
+    {
+      "source": "study/journey-charmander-512-89250.png",
+      "rgb_sha256": "56d3abbde125929dc3af282941010e3dde75b1713c8b299367ba7fc54a5d1688",
+      "outline_rgb_sha256": "772e14193d98c6c8f0a712fc889d794249f8484c9b9cf21c8ef9091c9991324c"
+    },
+    {
+      "source": "study/journey-charmander-512-89500.png",
+      "rgb_sha256": "b8ab747b6f15b599db4d275bf198ec6a5e5f50e47ac45efbd51839e27b495167",
+      "outline_rgb_sha256": "772e14193d98c6c8f0a712fc889d794249f8484c9b9cf21c8ef9091c9991324c"
+    },
+    {
+      "source": "study/journey-charmander-777-89500.png",
+      "rgb_sha256": "717a786d3462b50a8ea87465b7a3bd81f7bba12558ded2e93bafc433a89d0ee3",
+      "outline_rgb_sha256": "b6bef4951164c09ddf51fe0c24e3d7d839764682aa5cb8e6c54504d43ea209d6"
+    },
+    {
+      "source": "study/journey-charmander-777-90000.png",
+      "rgb_sha256": "8ac8350d7063265019bab92211c8bc1cccc3399e21fe2fb15550179eac96c518",
+      "outline_rgb_sha256": "b6bef4951164c09ddf51fe0c24e3d7d839764682aa5cb8e6c54504d43ea209d6"
+    },
+    {
+      "source": "study/journey-charmander-777-90500.png",
+      "rgb_sha256": "cf24c69d6c1679498dffa714d043495f19c797801a77047074d0797dc5875f74",
+      "outline_rgb_sha256": "b6bef4951164c09ddf51fe0c24e3d7d839764682aa5cb8e6c54504d43ea209d6"
+    },
+    {
+      "source": "study/journey-charmander-777-90750.png",
+      "rgb_sha256": "2a7134262e5e8854200420a829ef1180aca382137f348abc00731d74467fa2b4",
+      "outline_rgb_sha256": "b6bef4951164c09ddf51fe0c24e3d7d839764682aa5cb8e6c54504d43ea209d6"
+    },
+    {
+      "source": "study/journey-charmander-512-91000.png",
+      "rgb_sha256": "9ba19a944e49bc83844925668a0c81f116a67c0a3b160d883e8604fd8d550d88",
+      "outline_rgb_sha256": "772e14193d98c6c8f0a712fc889d794249f8484c9b9cf21c8ef9091c9991324c"
+    },
+    {
+      "source": "study/journey-charmander-777-91000.png",
+      "rgb_sha256": "f3b13fb4a2af8ff08f79a8d122aeb443c1258dc5520150e7c07458421a9db8c1",
+      "outline_rgb_sha256": "b6bef4951164c09ddf51fe0c24e3d7d839764682aa5cb8e6c54504d43ea209d6"
+    },
+    {
+      "source": "study/journey-charmander-512-91250.png",
+      "rgb_sha256": "2c6c7b6f38786c42f66103b3d42f7fe54287e785a44a1fe96573a76d2c6843d9",
+      "outline_rgb_sha256": "9b77612a33ccad05ae0e4c7db710c941c1b9e7f82ff0f1526841aeb2bac83d51"
+    },
+    {
+      "source": "study/journey-charmander-512-91500.png",
+      "rgb_sha256": "ecb76be40f15ead4548795b0409569acf5d57d950a4dbf12ffa0fb654c9cdfaa",
+      "outline_rgb_sha256": "a8b34ad0d222438f43275e4e61b1b14ef027d036b7bf93fa488cfe46040dfab0"
+    },
+    {
+      "source": "study/journey-charmander-512-91750.png",
+      "rgb_sha256": "8b9f8a7c9d110f861fbf42a42c4a5646f99e0bed73903b83a401d8ba21356f86",
+      "outline_rgb_sha256": "772e14193d98c6c8f0a712fc889d794249f8484c9b9cf21c8ef9091c9991324c"
+    },
+    {
+      "source": "study/journey-charmander-777-91750.png",
+      "rgb_sha256": "3890b3f7696722f18256040a651f9ca15e356be8625282748432870834f140a7",
+      "outline_rgb_sha256": "b6bef4951164c09ddf51fe0c24e3d7d839764682aa5cb8e6c54504d43ea209d6"
+    },
+    {
+      "source": "study/journey-charmander-512-92000.png",
+      "rgb_sha256": "62f91ee4c42c9e55ecfdcee5ec595c3164fe175b5c258228454a2f690b791b1d",
+      "outline_rgb_sha256": "772e14193d98c6c8f0a712fc889d794249f8484c9b9cf21c8ef9091c9991324c"
+    },
+    {
+      "source": "study/journey-charmander-777-92000.png",
+      "rgb_sha256": "810298b6b4cbb75404fe96bdbd108ca51b985796334e5e5dd97210faf27afb2d",
+      "outline_rgb_sha256": "b6bef4951164c09ddf51fe0c24e3d7d839764682aa5cb8e6c54504d43ea209d6"
+    },
+    {
+      "source": "study/journey-charmander-777-92250.png",
+      "rgb_sha256": "447cf6df7373033fd01a4e7e81961343febd484a064dade7a013ac81615d5a43",
+      "outline_rgb_sha256": "b6bef4951164c09ddf51fe0c24e3d7d839764682aa5cb8e6c54504d43ea209d6"
+    },
+    {
+      "source": "study/journey-charmander-777-92500.png",
+      "rgb_sha256": "db9dfe7974f5709ece1dd6cd44e8f0df23b528ac9b3096fadc673692f41e4be7",
+      "outline_rgb_sha256": "b6bef4951164c09ddf51fe0c24e3d7d839764682aa5cb8e6c54504d43ea209d6"
+    },
+    {
+      "source": "study/journey-charmander-777-92750.png",
+      "rgb_sha256": "c9ba2d158f2b8f1dae95c3c44ca1304d9902283df2d81190ea94a9fa580473c7",
+      "outline_rgb_sha256": "b6bef4951164c09ddf51fe0c24e3d7d839764682aa5cb8e6c54504d43ea209d6"
+    },
+    {
+      "source": "study/journey-charmander-777-93000.png",
+      "rgb_sha256": "6e963e803d603ae18afd626ca975689026ae13b30ceb3d1b52aef06a2bf968fd",
+      "outline_rgb_sha256": "576db50ac587eca6f5c89ea9c389f58302a104243aa93e860e44930dc268ab72"
+    },
+    {
+      "source": "study/journey-charmander-777-93250.png",
+      "rgb_sha256": "ddd5458ab27d351bb1ed0d8153510fe66925a4bbbb5f30de0407440b597bd94c",
+      "outline_rgb_sha256": "576db50ac587eca6f5c89ea9c389f58302a104243aa93e860e44930dc268ab72"
+    },
+    {
+      "source": "study/journey-charmander-777-93500.png",
+      "rgb_sha256": "bc52696098eb48512d1f673c7e65eb5b555714c9e56c509de87e5560ab34d86e",
+      "outline_rgb_sha256": "576db50ac587eca6f5c89ea9c389f58302a104243aa93e860e44930dc268ab72"
+    },
+    {
+      "source": "study/journey-charmander-777-93750.png",
+      "rgb_sha256": "0e890466e7db927c25e0238181e3ffbce05597837ea4736155d6ef5614b6a3e8",
+      "outline_rgb_sha256": "ef35aa803a49f933926cf78803ff4a5c83e91957dc0fc7a88ddc41b923a073cc"
+    },
+    {
+      "source": "study/journey-charmander-777-94000.png",
+      "rgb_sha256": "92e4a482debfc7fa6b03f3c7bfa713bcb72d9dd435fb510c83716b061cf9c11f",
+      "outline_rgb_sha256": "ef35aa803a49f933926cf78803ff4a5c83e91957dc0fc7a88ddc41b923a073cc"
+    },
+    {
+      "source": "study/journey-charmander-777-94250.png",
+      "rgb_sha256": "89874e224f8cdb4ffad47e4410a5648eb19437e29f9591d925514583e4dbda39",
+      "outline_rgb_sha256": "ef35aa803a49f933926cf78803ff4a5c83e91957dc0fc7a88ddc41b923a073cc"
+    },
+    {
+      "source": "study/journey-charmander-777-94500.png",
+      "rgb_sha256": "aed2ff71a809f61a7b9ffedb0060e5a11653bc220f300bef4b8df76391d775e6",
+      "outline_rgb_sha256": "106bcfafb020be268419db54c5de8bba4e9a426a6c3f4824b899e8631865336e"
+    },
+    {
+      "source": "study/journey-charmander-777-94750.png",
+      "rgb_sha256": "1b94027220160457d7bf9b48d01ddb4b82f7c4344dd894f2e60864deac147f19",
+      "outline_rgb_sha256": "106bcfafb020be268419db54c5de8bba4e9a426a6c3f4824b899e8631865336e"
+    },
+    {
+      "source": "study/journey-charmander-777-95000.png",
+      "rgb_sha256": "5b44352c92c82b1a7d834f7eb51939510bf37e39bd62953bbfaaa891ca96161f",
+      "outline_rgb_sha256": "7f45b9b38df5beede663fe303ec320ca855e4e0b6759b46548593d027d7e5d8d"
+    },
+    {
+      "source": "study/journey-charmander-777-95250.png",
+      "rgb_sha256": "bd1ba55e37cd94d5b7ad6c0d07233e2517e1062ed6e3fba77ceaff78765b8334",
+      "outline_rgb_sha256": "7f45b9b38df5beede663fe303ec320ca855e4e0b6759b46548593d027d7e5d8d"
+    },
+    {
+      "source": "study/journey-charmander-777-95750.png",
+      "rgb_sha256": "b150680b2044516d934b43ee68bcd3d2393174437d83bfa9c5a6e7e6a74ee7b7",
+      "outline_rgb_sha256": "7f45b9b38df5beede663fe303ec320ca855e4e0b6759b46548593d027d7e5d8d"
+    },
+    {
+      "source": "study/journey-charmander-777-96000.png",
+      "rgb_sha256": "72f719ef6e87be721086df06f347ecab5fd21900235f8a0c35437fc3e190870a",
+      "outline_rgb_sha256": "7f45b9b38df5beede663fe303ec320ca855e4e0b6759b46548593d027d7e5d8d"
+    },
+    {
+      "source": "study/journey-charmander-777-96250.png",
+      "rgb_sha256": "2263e57ffed626f60837d77e5dc50ca825d903217e4df09a1cb35f7ae45e4115",
+      "outline_rgb_sha256": "7f45b9b38df5beede663fe303ec320ca855e4e0b6759b46548593d027d7e5d8d"
+    },
+    {
+      "source": "study/journey-charmander-777-96500.png",
+      "rgb_sha256": "245eeff25109832690b0406a49ab21a30d7044106dceef85739c8b3862803f49",
+      "outline_rgb_sha256": "7f45b9b38df5beede663fe303ec320ca855e4e0b6759b46548593d027d7e5d8d"
+    },
+    {
+      "source": "study/journey-charmander-777-97000.png",
+      "rgb_sha256": "2c7a6f71258b2f45a935c5e18e446487a2548d9d379d0a9f5b6c7d776467c082",
+      "outline_rgb_sha256": "7f45b9b38df5beede663fe303ec320ca855e4e0b6759b46548593d027d7e5d8d"
+    },
+    {
+      "source": "study/journey-charmander-777-97500.png",
+      "rgb_sha256": "ce77a346cbad3dd48af64d261f6477b3599dad3020582ce5880a2243797c2fec",
+      "outline_rgb_sha256": "7f45b9b38df5beede663fe303ec320ca855e4e0b6759b46548593d027d7e5d8d"
+    },
+    {
+      "source": "study/journey-charmander-777-97750.png",
+      "rgb_sha256": "05ceb7495969afbebf7b864eb00fe997d7ccf47b8fdf4b7e5af60ee2d98b198a",
+      "outline_rgb_sha256": "7f45b9b38df5beede663fe303ec320ca855e4e0b6759b46548593d027d7e5d8d"
+    },
+    {
+      "source": "study/journey-charmander-777-98000.png",
+      "rgb_sha256": "bee269d3383e4c721b6f4baddecbb8b7eed4ebf6ce34eadf864cf03e0c0741be",
+      "outline_rgb_sha256": "7f45b9b38df5beede663fe303ec320ca855e4e0b6759b46548593d027d7e5d8d"
+    },
+    {
+      "source": "study/journey-charmander-777-98250.png",
+      "rgb_sha256": "836a1cf2a1759f3d922d874541e5a4921093dc528906e1796cb86d74fb6b951b",
+      "outline_rgb_sha256": "ef35aa803a49f933926cf78803ff4a5c83e91957dc0fc7a88ddc41b923a073cc"
+    },
+    {
+      "source": "study/journey-charmander-777-98500.png",
+      "rgb_sha256": "56ef7919d81cc791ec7aa1936cda1f1eebc3bd213f0ae4c15d93243610cfd3b1",
+      "outline_rgb_sha256": "7f45b9b38df5beede663fe303ec320ca855e4e0b6759b46548593d027d7e5d8d"
+    },
+    {
+      "source": "study/journey-charmander-777-98750.png",
+      "rgb_sha256": "54a62e5bfe6887473d09a4dcc259757468616f5267c5571c1fe619e024be81b5",
+      "outline_rgb_sha256": "7f45b9b38df5beede663fe303ec320ca855e4e0b6759b46548593d027d7e5d8d"
+    },
+    {
+      "source": "study/journey-charmander-777-99000.png",
+      "rgb_sha256": "8b53f4ce04cb0a7cd3f0a4a29d3fdea14de265edc3df3cbf274b9afe0e7ea408",
+      "outline_rgb_sha256": "7f45b9b38df5beede663fe303ec320ca855e4e0b6759b46548593d027d7e5d8d"
+    },
+    {
+      "source": "study/journey-charmander-777-99250.png",
+      "rgb_sha256": "7fafea0f0bd027074c45c8f445e282eb6bfdeabfa37a57a0a44204ed8f610b45",
+      "outline_rgb_sha256": "7f45b9b38df5beede663fe303ec320ca855e4e0b6759b46548593d027d7e5d8d"
+    },
+    {
+      "source": "study/journey-charmander-777-99500.png",
+      "rgb_sha256": "24904d8b745bb7ed0fd542b445a6bbf95663a146513c7488de559fc07af86aa9",
+      "outline_rgb_sha256": "7f45b9b38df5beede663fe303ec320ca855e4e0b6759b46548593d027d7e5d8d"
+    },
+    {
+      "source": "study/journey-charmander-777-99750.png",
+      "rgb_sha256": "2b039681953a2d129b30841afdfb2cbc8f10a6f2ba43fa854bcc04c70bb8ba7c",
+      "outline_rgb_sha256": "7f45b9b38df5beede663fe303ec320ca855e4e0b6759b46548593d027d7e5d8d"
+    },
+    {
+      "source": "study/journey-charmander-777-100000.png",
+      "rgb_sha256": "b92f3092deab1a6ff35b2e918d4c3de781cbdebbca3bcbbe9946f25245a30933",
+      "outline_rgb_sha256": "7f45b9b38df5beede663fe303ec320ca855e4e0b6759b46548593d027d7e5d8d"
+    },
+    {
+      "source": "study/journey-charmander-777-102000.png",
+      "rgb_sha256": "1b19bad5bf6f036b89df1378ac97db9d9033b954a2ccae688e3b47940e9dd18d",
+      "outline_rgb_sha256": "7f45b9b38df5beede663fe303ec320ca855e4e0b6759b46548593d027d7e5d8d"
+    },
+    {
+      "source": "study/journey-charmander-777-103000.png",
+      "rgb_sha256": "5d5001b6716359080f0ca73350bf6dc255d9b57c64fa9a9cddb7bc9713b5ce6c",
+      "outline_rgb_sha256": "7f45b9b38df5beede663fe303ec320ca855e4e0b6759b46548593d027d7e5d8d"
+    },
+    {
+      "source": "study/journey-charmander-777-104000.png",
+      "rgb_sha256": "af83f5b990f017c4bf8be4e2bb302b11de2dd85457038bea04860cd91291aecc",
+      "outline_rgb_sha256": "7f45b9b38df5beede663fe303ec320ca855e4e0b6759b46548593d027d7e5d8d"
+    },
+    {
+      "source": "study/journey-charmander-777-105000.png",
+      "rgb_sha256": "192316e9f7c7fe50d8b1c89362e0b9400d831e65fb89cf37a5d9e09a0ab4a87c",
+      "outline_rgb_sha256": "106bcfafb020be268419db54c5de8bba4e9a426a6c3f4824b899e8631865336e"
+    },
+    {
+      "source": "study/journey-charmander-19-106000.png",
+      "rgb_sha256": "bc092ee3f7b0a819dc901de84fa1de3344a05964f80759d15f5c700e35fd9805",
+      "outline_rgb_sha256": "d527184e7bb9c5b036334464929d531880a21ef605f5b40d1a9d1d1718a7ee6b"
+    },
+    {
+      "source": "study/journey-charmander-777-106000.png",
+      "rgb_sha256": "e26c674813af72081679fe0f0d12b07d453850fb4a073262369d08881a9c7e08",
+      "outline_rgb_sha256": "106bcfafb020be268419db54c5de8bba4e9a426a6c3f4824b899e8631865336e"
+    },
+    {
+      "source": "study/journey-charmander-19-108000.png",
+      "rgb_sha256": "8c5c69d32345c62a1da4f7b23923fdd654144eb0efc48017d2baa114e76e8b82",
+      "outline_rgb_sha256": "f069fe4ef108dc36dc07e62acd4ae1ed30e436f9646d0cef504255401f873e0a"
+    },
+    {
+      "source": "study/journey-charmander-101-109000.png",
+      "rgb_sha256": "e0c02e2a6cf06b8ff86261d637c2583ac4c040d0adc31f915067397a5cc8b9c6",
+      "outline_rgb_sha256": "fee3aae9c4a67d81ae6e0dcf32a90ed928d9e562a434c2dc68392d3615121f08"
+    },
+    {
+      "source": "study/journey-charmander-777-110000.png",
+      "rgb_sha256": "3d957b56d08d475c613d078d5b85b0107a3aa9249ac5129a8827ab3d6a4ce216",
+      "outline_rgb_sha256": "106bcfafb020be268419db54c5de8bba4e9a426a6c3f4824b899e8631865336e"
+    },
+    {
+      "source": "study/journey-charmander-101-112000.png",
+      "rgb_sha256": "5fc1cd3341045d1db599d4df33b290829eac3d969d9750935c974802bfe0b3b5",
+      "outline_rgb_sha256": "fee3aae9c4a67d81ae6e0dcf32a90ed928d9e562a434c2dc68392d3615121f08"
+    },
+    {
+      "source": "study/journey-charmander-777-112000.png",
+      "rgb_sha256": "01b9ba3f0b35b10430393be65d82742cf8b21339d58b83d019bda5e456eaf901",
+      "outline_rgb_sha256": "b6bef4951164c09ddf51fe0c24e3d7d839764682aa5cb8e6c54504d43ea209d6"
+    },
+    {
+      "source": "study/journey-charmander-101-113000.png",
+      "rgb_sha256": "26830d38dc2505a887cb9cf54568e34adeb667c33cb8be6a9d8f12322994e3c2",
+      "outline_rgb_sha256": "022c4ef3825a462a09c99c4c9a33140bc506e998fcbbffe87006ad89defd24ff"
+    },
+    {
+      "source": "study/journey-charmander-256-113000.png",
+      "rgb_sha256": "b1eda88b0ca8ebd2fb9f97854096e44348bf82160063bb29f846530af41ce326",
+      "outline_rgb_sha256": "f0f9f6bdc3d61010a1c2d6215152278253cd7385307293550d6465c9dae290bf"
+    },
+    {
+      "source": "study/journey-charmander-777-113000.png",
+      "rgb_sha256": "f7d221eb8ee873b8dd103d3eed19cb64922ecdfc1413279f1d0bd1caaaf2f6b8",
+      "outline_rgb_sha256": "b6bef4951164c09ddf51fe0c24e3d7d839764682aa5cb8e6c54504d43ea209d6"
+    },
+    {
+      "source": "study/journey-charmander-512-114000.png",
+      "rgb_sha256": "a2928dc0e8da758c39febff10343e3659ea97d004c38801278cbbd00e584efd3",
+      "outline_rgb_sha256": "9b77612a33ccad05ae0e4c7db710c941c1b9e7f82ff0f1526841aeb2bac83d51"
+    },
+    {
+      "source": "study/journey-charmander-777-114000.png",
+      "rgb_sha256": "d78a0812a0f34eb52fdf4471843aef9c56b39ade04cc0a3553d062f552cd9f41",
+      "outline_rgb_sha256": "b6bef4951164c09ddf51fe0c24e3d7d839764682aa5cb8e6c54504d43ea209d6"
+    },
+    {
+      "source": "study/journey-charmander-777-115000.png",
+      "rgb_sha256": "f832ddd539cb883c7a00d4c10682df936a517c93fe6c7f0b91c51389eb3bb3a9",
+      "outline_rgb_sha256": "b6bef4951164c09ddf51fe0c24e3d7d839764682aa5cb8e6c54504d43ea209d6"
+    },
+    {
+      "source": "study/journey-charmander-777-116000.png",
+      "rgb_sha256": "775cb85c2cfbd64e426257a462783fabe72b969db8830137846bdb4b10d1c645",
+      "outline_rgb_sha256": "b6bef4951164c09ddf51fe0c24e3d7d839764682aa5cb8e6c54504d43ea209d6"
+    },
+    {
+      "source": "study/journey-charmander-777-117000.png",
+      "rgb_sha256": "1b2115ba2873e5f2245a5f06189593fc0da584ce935399496f7f84e7b85f0750",
+      "outline_rgb_sha256": "b6bef4951164c09ddf51fe0c24e3d7d839764682aa5cb8e6c54504d43ea209d6"
+    },
+    {
+      "source": "study/journey-charmander-512-118000.png",
+      "rgb_sha256": "54fac9ee350e0570327810789c4d5eb02f843cc29a42311b78976e4cad813614",
+      "outline_rgb_sha256": "772e14193d98c6c8f0a712fc889d794249f8484c9b9cf21c8ef9091c9991324c"
+    },
+    {
+      "source": "study/journey-charmander-777-118000.png",
+      "rgb_sha256": "bb4fd30bfa7dd79b5ba8129aba4fc959ef8fbf754a20b89c6e5e3d31ae1d16b9",
+      "outline_rgb_sha256": "b6bef4951164c09ddf51fe0c24e3d7d839764682aa5cb8e6c54504d43ea209d6"
+    },
+    {
+      "source": "study/journey-charmander-777-120000.png",
+      "rgb_sha256": "03d361ece2a1f5358cc5e4363807e3a548c0db311eb75c9e60224f5a50905a61",
+      "outline_rgb_sha256": "106bcfafb020be268419db54c5de8bba4e9a426a6c3f4824b899e8631865336e"
+    }
+  ]
+}

@@ -356,9 +356,20 @@
   });
   reducedMotion.addEventListener("change", () => { if (reducedMotion.matches) stopDiagram(); });
 
+  const trainingCanvases = data.trainingFrames.seeds.map((seed, index) => {
+    const canvas = document.createElement("canvas");
+    canvas.width = canvas.height = 64;
+    canvas.setAttribute("role", "img");
+    canvas.dataset.seed = seed;
+    canvas.title = `Seed ${seed}`;
+    if (index === 0) canvas.id = "training-image";
+    $("training-samples").append(canvas);
+    return canvas;
+  });
   const trainingAtlas = new Image();
   $("replay-chart").disabled = true;
-  trainingAtlas.onload = () => { $("replay-chart").disabled = false; drawFID(); };
+  $("training-step").disabled = true;
+  trainingAtlas.onload = () => { $("replay-chart").disabled = false; $("training-step").disabled = false; drawFID(); };
   trainingAtlas.src = displayPath(data.trainingFrames.atlas);
   let chartZoom = false;
   let chartTimer = null;
@@ -370,8 +381,8 @@
     chart.replaceChildren(svg("title", {}, "Validation FID during training"),
       svg("desc", {}, "Measured uniform-four-call validation scores. Context lines show the course target and real-data reference, not lower bounds."));
     const width = Math.max(280, chart.clientWidth);
-    chart.setAttribute("viewBox", "0 0 " + width + " 360");
-    const left = 45, right = width - 15, top = 25, bottom = 300;
+    chart.setAttribute("viewBox", "0 0 " + width + " 280");
+    const left = 36, right = width - 12, top = 25, bottom = 225;
     const xmax = Math.max(110000, data.history.at(-1)[0]);
     const xmin = chartZoom ? 60000 : 0;
     const ymin = chartZoom ? 19 : 15, ymax = chartZoom ? 28 : 135;
@@ -386,10 +397,10 @@
       chart.append(svg("line", { x1: left, x2: right, y1: y(value), y2: y(value), class: "chart-grid" }),
         svg("text", { x: left - 15, y: y(value) + 4, "text-anchor": "end", class: "chart-axis" }, value));
     });
-    [60000, 80000, 100000, 120000].concat(chartZoom ? [] : [0, 20000, 40000]).sort((a, b) => a - b).filter((v) => v <= xmax).forEach((step) => {
-      chart.append(svg("text", { x: x(step), y: 327, "text-anchor": "middle", class: "chart-axis" }, `${step / 1000}k`));
+    (chartZoom ? [60000, 80000, 100000, 120000] : [0, 40000, 80000, 120000]).filter((v) => v <= xmax).forEach((step) => {
+      chart.append(svg("text", { x: x(step), y: 250, "text-anchor": "middle", class: "chart-axis" }, `${step / 1000}k`));
     });
-    chart.append(svg("text", { x: right, y: 352, "text-anchor": "end", class: "chart-axis" }, "optimizer updates"),
+    chart.append(svg("text", { x: right, y: 276, "text-anchor": "end", class: "chart-axis" }, "updates"),
       svg("text", { x: left, y: 13, "text-anchor": "start", class: "chart-axis" }, "FID ↓"));
     [[22, "#8799a5", "7 5"], [20.82, "#b4b285", "2 5"]].forEach(([value, color, dash]) => chart.append(svg("line", {
       x1: left, x2: right, y1: y(value), y2: y(value), stroke: color, "stroke-dasharray": dash, "stroke-width": 1.2
@@ -403,16 +414,18 @@
         svg("circle", { cx: x(point[0]), cy: y(point[1]), r: 5, fill: "#47675b", stroke: "#fafbf9", "stroke-width": 2 }));
     }
     const snapshot = data.trainingFrames.steps[chartIndex];
-    const canvas = $("training-image");
-    if (trainingAtlas.complete && trainingAtlas.naturalWidth) {
-      const column = chartIndex % data.trainingFrames.columns;
-      const row = Math.floor(chartIndex / data.trainingFrames.columns);
-      const context = canvas.getContext("2d");
-      context.clearRect(0, 0, 64, 64);
-      context.drawImage(trainingAtlas, column * 64, row * 64, 64, 64, 0, 0, 64, 64);
-    }
-    canvas.setAttribute("aria-label", `${data.trainingFrames.species} at ${snapshot.toLocaleString()} training updates, seed ${data.trainingFrames.seed}`);
-    canvas.dataset.checkpointStep = snapshot;
+    trainingCanvases.forEach((canvas, index) => {
+      if (trainingAtlas.complete && trainingAtlas.naturalWidth) {
+        const cell = chartIndex * trainingCanvases.length + index;
+        const column = cell % data.trainingFrames.columns;
+        const row = Math.floor(cell / data.trainingFrames.columns);
+        const context = canvas.getContext("2d");
+        context.clearRect(0, 0, 64, 64);
+        context.drawImage(trainingAtlas, column * 64, row * 64, 64, 64, 0, 0, 64, 64);
+      }
+      canvas.setAttribute("aria-label", `${data.trainingFrames.species} at ${snapshot.toLocaleString()} training updates, seed ${data.trainingFrames.seeds[index]}`);
+      canvas.dataset.checkpointStep = snapshot;
+    });
     $("training-image-caption").textContent = `${snapshot / 1000}k updates`;
     $("training-readout").textContent = `${point[0].toLocaleString()} updates · ${point[1].toFixed(2)} FID`;
     $("training-step").value = chartIndex;
@@ -596,6 +609,7 @@
     showSpecimen(specimenIndex, false);
     stopChart();
     $("replay-chart").disabled = true;
+    $("training-step").disabled = true;
     trainingAtlas.src = displayPath(data.trainingFrames.atlas);
   }));
   $("copy-command").addEventListener("click", async (event) => {
