@@ -1,151 +1,99 @@
-# MeanFlow with classifier-free guidance
+# Four-evaluation MeanFlow for FastGen
 
-> Historical report, preserved from the original repository. The [project page](docs/index.html) and [new measurements](docs/assets/study/study.json) add the later 122k continuation, checkpoint comparison, and real-data baseline checks.
+Team 06 — four-NFE submission — 7 November 2026
 
-This repository contains the training code, sampling code, and results for a class-conditional Pokémon generator. The model learns average velocity with the original MeanFlow objective and incorporates classifier-free guidance during training.
+`lucky_dragon`, `bright_koala`, `calm_panda`
 
-The selected **101,000-update EMA checkpoint** reaches **19.3469 ± 0.1662 FID** over five generation seeds using four evaluations and the schedule **[1, 0.6, 0.3, 0.018, 0]**. The uncertainty is the sample standard deviation over noise seeds with a fixed validation reference. The earlier power schedule, ρ = 2, scored 19.8764 on seed 1234; the training-history plots below retain those original measurements.
+[Submitted PDF](report/report_for_submission.pdf) · [LaTeX source](report/report_for_submission.tex) · [Build notes](report/BUILD.txt)
 
-[Source code and commands](code/README.md) · [Checkpoint download](https://github.com/ab-rin/reports-meanflow-cfg-/releases/download/meanflow-cfg-101k/ema_0101000.ckpt) · [Reproduction notes](REPRODUCING.md)
+> Markdown adaptation of the submitted report. The PDF and source files are preserved unchanged.
 
-Results use the course evaluator and are local measurements, not an official TA score. The checkpoint and schedule were selected using validation FID.
+## Overview
 
-## What we trained
+We use MeanFlow with built-in classifier-free guidance for class-conditional $64\times64$ RGB Pokémon generation in FastGen \[1,2,5\]. The model learns the average velocity over a time interval, allowing each network evaluation to move directly to the next sampling time. Our submission uses the exponential moving average (EMA) checkpoint at update **101,800** and four network evaluations (4 NFE). It achieves a mean validation FID of **19.0036** with sample standard deviation **0.0828** across five generation seeds.
 
-| Setting | Value |
-|:--|:--|
-| Task | Class-conditional Pokémon generation, 64 × 64 RGB |
-| Data | 17,079 training images; 151 classes; 3,020 validation images |
-| Model | Pixel-space MeanFlow U-Net, 56,010,243 parameters |
-| Objective | Original MeanFlow with built-in classifier-free guidance |
-| Guidance | Fixed scale 2.0; label dropout 0.1 during training |
-| Initialization | Random initialization, seed 42; no external pretrained generator |
-| Optimizer | Adam, learning rate 0.0003; 500-update warmup |
-| EMA | Decay 0.999 |
-| Effective batch | 512 images per optimizer update |
-| GPU microbatch | 16 initially, then 32 with gradient accumulation adjusted |
-| Hardware | One NVIDIA GRID A100D-20C, 20 GB |
-| Peak training allocation | 12.43 GB recorded by PyTorch |
-| Software | Python 3.12.3, PyTorch 2.6.0+cu124, torchvision 0.21.0+cu124 |
+## Model and training objective
 
-The network is a Song U-Net with three resolution levels (64, 32, and 16 pixels), base width 128 and channel multipliers [2, 2, 2]. It receives the noisy image, start time $t$, interval length $t-r$, and a 151-dimensional class label. The [backbone configuration](code/src/original_meanflow/recipe.py) and [U-Net implementation](code/src/original_meanflow/unet.py) are included.
+We adapt the Song U-Net in the MeanFlow authors’ PyTorch implementation, with architecture and augmentation code derived from EDM \[2,3\]. The backbone has **56,010,243 parameters**, base width 128, channel multipliers $(2,2,2)$, four encoder blocks per resolution, attention at $16\times16$, GroupNorm \[4\], and dropout 0.2. It predicts interval-average velocity $u_\theta(z,t,r,c)$, conditioned on the start time $t$, interval length $t-r$, and one of 151 classes.
 
-## Training algorithm
-
-![MeanFlow training computation](assets/algorithm.svg)
-
-Let $x$ be an augmented, normalized training image with class $c$, and let $\epsilon$ be independent Gaussian noise. Time runs from a clean image at 0 to noise at 1. We train on interpolated inputs:
+For a training image $x$ and independent Gaussian noise $\epsilon$, we form $z=(1-t)x+t\epsilon$ and $v=\epsilon-x$. Two independent draws from $\operatorname{sigmoid}(\mathcal N(-2,2^2))$ are ordered to obtain $r\leq t$; 25% of examples use $r=t$. We drop the class label with probability 0.1. Dropped-label examples use $g=v$; retained-label examples use guidance scale 2, giving $g=2v-u_\theta(z,t,t,\varnothing)$. The unconditional boundary estimate is detached and evaluated with dropout disabled. The target and loss are
 
 $$
-z_t=(1-t)x+t\epsilon,\qquad v=\epsilon-x.
+y=\operatorname{sg}\!\left[g-(t-r)\left(\partial_tu_\theta+\partial_zu_\theta\,g\right)\right],
 $$
 
-The network $u_\theta(z_t,t,r,c)$ predicts the average velocity over the interval from $t$ to $r$. Learning this average lets the sampler take a large step with one network evaluation.
-
-**1. Sample times and labels.** Draw two values from sigmoid(Normal(−2, 2²)) and sort them so $r\le t$. Set $r=t$ for 25% of examples. Drop the class label with probability 0.1; a dropped label is an all-zero class vector, not class ID 0. Training also applies the geometric augmentation implemented in the [training loop](code/train.py).
-
-**2. Build the guided velocity target.** For labeled examples, use guidance scale $w=2$:
-
 $$
-v_g=w(\epsilon-x)+(1-w)\,u_\theta(z_t,t,t,\varnothing).
+L=\frac{1}{B}\sum_{i=1}^{B}\frac{E_i}{(\operatorname{sg}[E_i]+10^{-3})^{0.75}},
+ \quad E_i=\|u_{\theta,i}-y_i\|_2^2.
 $$
 
-The null-label prediction comes from the current network in evaluation mode, with gradients disabled. For dropped-label examples, use $v_g=\epsilon-x$. Thus the null branch learns the unconditional field, while the class-conditioned branch learns the guided field. There is no external teacher in this training run.
+Here $\operatorname{sg}$ denotes stop-gradient, and $E_i$ sums squared error over all channels and pixels. The Jacobian-vector product holds $r$ fixed and uses $g$ as the spatial tangent. This trains the interval prediction and its guided boundary velocity within the same model.
 
-**3. Compute the MeanFlow target.** A Jacobian-vector product (JVP) gives the derivative with spatial direction $v_g$, increasing $t$, and holding $r$ fixed:
+## Four-evaluation sampling
 
-$$
-D u_\theta=\frac{\partial u_\theta}{\partial t}
-+\frac{\partial u_\theta}{\partial z_t}v_g,\qquad
-u_{\mathrm{target}}=\mathrm{stopgrad}\!\left[v_g-(t-r)D u_\theta\right].
-$$
-
-The prediction and JVP use the same label and dropout realization. The target is detached before backpropagation. When $r=t$, the correction vanishes and the example reduces to velocity regression.
-
-**4. Optimize the prediction.** With $e=u_\theta-u_{\mathrm{target}}$, the implementation uses an adaptively weighted squared error:
+Starting from $x_1\sim\mathcal N(0,I)$, we apply
 
 $$
-\mathcal L=\mathbb E\left[
-\frac{\lVert e\rVert_2^2}
-{\left(\mathrm{stopgrad}(\lVert e\rVert_2^2)+10^{-3}\right)^{0.75}}
-\right].
+x_r=x_t-(t-r)u_\theta(x_t,t,r,c),
 $$
 
-The norm sums over all image channels and pixels. Adam updates the model after gradient accumulation; the saved sampling checkpoint uses an exponential moving average of the parameters.
+$$
+(t_0,t_1,t_2,t_3,t_4)=(1,0.6103515625,0.31640625,0.015625,0).
+$$
 
-The complete objective is in [cfg_meanflow.py](code/src/cfg_meanflow.py). Its [JVP helper](code/src/imf_objective.py) lives in a file named `imf_objective.py`, but the active loss above is **original MeanFlow**, with guided velocity in both the target and JVP direction. The iMF objectives elsewhere in that helper file are inactive.
+Each interval requires one backbone call. Guidance is learned in the training target, so the four conditional calls complete generation. We clamp the final image to $[-1,1]$.
 
-## Sampling algorithm
+## Training and compute
 
-![Four-step MeanFlow sampling](assets/four_calls.svg)
+Training starts from random weights with seed 42 and uses all **17,079 official training images**. Images are decoded as RGB, resized to $64\times64$, and normalized to $[-1,1]$. We retain horizontal flips and the upstream scale, anisotropy, and translation augmentation (base probability 0.12). Adam uses $(\beta_1,\beta_2)=(0.9,0.999)$, $\epsilon=10^{-8}$, zero weight decay, and no gradient clipping. The learning rate warms from $10^{-8}$ to $3\times10^{-4}$ over 500 updates and remains constant. Effective batch size is 512 through gradient accumulation: microbatch 16 through update 84,276, then 32 through update 100,000. The packaged continuation engine runs the final 1,800 updates with microbatch 32, restoring the model, EMA, optimizer, sampler, and random-number states. EMA updates every step with decay $\min(0.999,(s+1)/(s+10))$, where $s$ is the completed update count.
 
-Start from Gaussian noise and apply the same EMA network over four intervals. For each interval, subtract the predicted displacement:
+We train in FP32 with TF32 and compiled JVPs on one NVIDIA GRID A100D-20C (20 GB); evaluation disables TF32. Through update 101,800, logs record **270.12 h** of active training and 276.31 h including evaluation and checkpoint overhead, excluding restart downtime. Exact-state checkpoint recovery required an additional 4.25 h of replay. Peak allocated training memory was **12.431 GB**, measured with `torch.cuda.max_memory_allocated()`.
 
-```python
-times = [1.0, 0.6, 0.3, 0.018, 0.0]
-x = torch.randn(batch_size, 3, 64, 64, device=device)
-for t, r in zip(times[:-1], times[1:]):
-    t_batch = x.new_full((batch_size,), t)
-    r_batch = x.new_full((batch_size,), r)
-    u = model(x, t_batch, r=r_batch, category=category)
-    x = x - (t - r) * u
-x = x.clamp(-1, 1)
-```
+![Weighted MeanFlow training loss through update 101,800](report/report_for_submission_assets/training_loss.png)
 
-| Call | Start t | End r | Update size t − r |
-|:--:|--:|--:|--:|
-| 1 | 1.000 | 0.600 | 0.400 |
-| 2 | 0.600 | 0.300 | 0.300 |
-| 3 | 0.300 | 0.018 | 0.282 |
-| 4 | 0.018 | 0.000 | 0.018 |
+*Figure 1. Logged weighted MeanFlow training loss through update 101,800, with a moving mean over 100 records (approximately 1,000 updates).*
 
-The runnable implementation is [best_sampler.py](code/best_sampler.py). Guidance is already learned by the conditional network, so these four evaluations include guidance. The original [model.py](code/model.py) retains its uniform sampling default for compatibility with the recorded training evaluations; use `sample_best_four` to select the schedule above.
+## Evaluation and selection
 
-The schedule was chosen after training. In five paired confirmation runs it improved FID over the ρ = 2 schedule in all five cases, by an average of 0.3871. The exact times and per-seed scores are in [data/best_schedule.json](data/best_schedule.json). These runs use the same validation reference as selection, so they do not constitute a new held-out test set.
+We first compared six checkpoints from updates 101,300 to 101,800 using two generation seeds and sampling times $(1,0.6,0.3,0.018,0)$. Update 101,800 had the lowest mean validation FID, 19.1919. We then fixed this checkpoint, screened 24 four-call schedules on one seed, and evaluated the five shortlisted schedules on five fresh shared seeds, 610301101–610301105. Each run generated 3,020 images (20 per class) in batches of 32 and used the same 3,020 official validation images with Clean-FID \[6\]. Matching noise streams across schedules enabled paired comparisons; the screening seed is excluded from the table.
 
-## Training history
+| NFE | Sampling times | Mean FID ↓ | Sample SD |
+|:--:|:---|---:|---:|
+| 4 | $(1,0.6103515625,0.31640625,0.015625,0)$ | **19.0036** | 0.0828 |
+| 4 | $(1,0.6,0.3,0.018,0)$ | 19.0724 | 0.0960 |
+| 4 | $(1,0.6,0.3375,0.03,0)$ | 19.2492 | 0.1075 |
+| 4 | $(1,0.6,0.3,0.03,0)$ | 19.2669 | 0.1042 |
+| 4 | $(1,0.6,0.2625,0.03,0)$ | 19.2821 | 0.1071 |
+| 3 | $(1,0.65,0.2,0)$ | 19.6399 | 0.1002 |
 
-The table and graph retain the historical evaluations, before the later explicit-schedule search; their sampling schedules are identified below. The selected checkpoint weights are unchanged.
+*Table 1. Five-seed validation results at EMA update 101,800. The first row is the submitted schedule; the last row is the best tested three-call schedule under the same evaluation protocol.*
 
-| Run | Training hardware | Retained updates | Selected update | Time to selected | Total active time | FID ↓ | Schedule |
-|:--|:--|--:|--:|--:|--:|--:|:--|
-| Original MeanFlow, no CFG | 1 × A100 20 GB | 26,320 | 26,000 | 52.08 h | 52.65 h | 26.1075 | Uniform |
-| Earlier MeanFlow CFG | RTX PRO 6000 + 7 × RTX 3090 | 70,000 | 62,000 | Not retained | Not retained | 21.4730 | ρ = 2 |
-| **MeanFlow CFG, 101k EMA** | **1 × A100 20 GB** | **110,600** | **101,000** | **268.24 h** | **290.79 h** | **19.8764** | **ρ = 2** |
+The submitted schedule improves mean FID by 0.0688 over the previous four-call schedule and scores lower on all five paired seeds. The best tested three-call schedule is 0.6363 FID higher, supporting our choice of four evaluations. The gain from adjusting four-call times is small, while reducing to three calls produces a larger quality loss in this comparison. These validation scores informed checkpoint and schedule selection. The standard deviations describe generation-seed variation on a fixed validation reference; checkpoint ranking was performed under the earlier schedule.
 
-All three runs use 56,010,243 parameters and effective batch 512. The older eight-GPU run is included as historical context; its FID is a local rescore of the archived weights. Its training duration was not retained. The local CFG target was 125,000 updates, but the last valid saved state is 110,600.
+## Generated samples
 
-Active training time excludes FID evaluation, checkpoint writing, and time while the process was stopped. These runs use different training budgets and hardware, so the table records experiment history rather than a controlled comparison of algorithms.
+Figure 2 shows archived early samples alongside samples from the submitted model. At update 1,000, class colors and rough shapes are visible, with substantial geometry and texture artifacts. The final samples have clearer silhouettes and more consistent class details, although some outlines and textures remain uneven. The panels use different classes and seeds and show the first images in their recorded grids.
 
-![Four-call validation FID during training](assets/fid_history.svg)
+![Eight early samples at update 1,000 and sixteen submitted-checkpoint samples at update 101,800](report/report_for_submission_assets/generated_samples.png)
 
-The dense curve uses uniform intervals. The three marked nonuniform evaluations use the historical ρ = 2 schedule on the same local run. The older 62k checkpoint belongs to a separate run and is excluded from this curve.
+*Figure 2. (a) Eight early samples, seed 1234, classes $0,10,\ldots,70$, uniform times $(1,.75,.5,.25,0)$. (b) First 16 samples from the final preview, seed 610301101, using the submitted schedule; sample index zero for the first 16 classes in the recorded 64-class preview.*
 
-## Evaluation details
+## Reproducibility
 
-Each evaluation generates 20 images per class, for 3,020 images total, with batch size 32. FID uses all 3,020 course validation images. Evaluation ran in FP32 with TF32 disabled. Training used FP32 with TF32 enabled. The historical table uses seed 1234; the five confirmation seeds are listed in the schedule metadata.
+The submitted `team_06` package contains the EMA weights in `checkpoints/few_nfe.ckpt`, the four-call sampler, training code, and source licenses. The training driver executes the recorded stages from random initialization through update 101,800. Archived checks confirm strict checkpoint loading, the parameter count, and four backbone calls per sampling batch. A local run of the unchanged course evaluator at seed 610301101 reproduced FID 19.11308, with identical generated PNGs and a FID difference below $4\times10^{-7}$ from the saved confirmation run.
 
-In the historical seed-1234 comparison, switching from uniform intervals to ρ = 2 reduced FID by **0.5156**, or **2.53%**. This is separate from the later five-seed schedule comparison above.
+The [README comparison](README.md#cumbersome-process-of-fine-tuning-was-not-really-fruitful) and [released weights](README.md#weights) cover the earlier 64k and 101k checkpoints. The submitted 101,800-update checkpoint described here is a separate artifact.
 
-With the historical ρ = 2 schedule, generation and PNG export took **71.28 seconds** (about **42.4 images/second**). Including FID computation took **89.03 seconds**. These are batch-throughput measurements, not single-image latency. Recorded peak allocation during this evaluation was 2.304 GB.
+## References and code attribution
 
-The checkpoint is `ema_0101000.ckpt` (224,175,708 bytes), available in the [GitHub Release](https://github.com/ab-rin/reports-meanflow-cfg-/releases/tag/meanflow-cfg-101k). Its identity and historical measurements are in [data/selected_result.json](data/selected_result.json).
+1. Z. Geng, M. Deng, X. Bai, J. Z. Kolter, K. He. *Mean Flows for One-step Generative Modeling*. 2025. <https://arxiv.org/abs/2505.13447>.
 
-## Files and provenance
+2. Gsunshine. *py-meanflow*, revision `1f6d72d9`, CC BY-NC-SA 4.0. <https://github.com/Gsunshine/py-meanflow>. Built-in guidance: <https://github.com/Gsunshine/meanflow/blob/main/meanflow.py>.
 
-- [code/README.md](code/README.md): training, sampling, data preparation, and CPU checks.
-- [code/train.py](code/train.py): the training loop, optimizer, gradient accumulation, and EMA.
-- [code/src/cfg_meanflow.py](code/src/cfg_meanflow.py): the implemented MeanFlow CFG loss.
-- [code/best_sampler.py](code/best_sampler.py): the explicit four-step sampler.
-- [data/best_schedule.json](data/best_schedule.json): the latest selected schedule and paired confirmation scores.
-- [data/run_history.json](data/run_history.json): training budgets, timing definitions, and original evidence paths.
-- [data/fid_history.csv](data/fid_history.csv): the four-call observations used in the graph.
-- [data/meanflow_cfg_nfe4_rho2.csv](data/meanflow_cfg_nfe4_rho2.csv): the three measured nonuniform-schedule results.
-- [data/comparison.csv](data/comparison.csv): the validation scores compared in the table.
-- [data/selected_result.json](data/selected_result.json): checkpoint identity and historical ρ = 2 evaluation.
-- [Reproduction notes](REPRODUCING.md): how to select the sampler explicitly without changing course files.
-- [plot_figures.py](plot_figures.py): redraws the figures from the included measurements.
+3. T. Karras et al. *Elucidating the Design Space of Diffusion-Based Generative Models*. NeurIPS 2022. <https://arxiv.org/abs/2206.00364>; architecture and augmentation code: <https://github.com/NVlabs/edm>.
 
-The original experiment paths in the JSON files refer to the local FastGen project. They are retained as provenance; the runnable code is under `code/`.
+4. Y. Wu, K. He. *Group Normalization*. ECCV 2018. <https://arxiv.org/abs/1803.08494>.
 
-Method: [Mean Flows for One-step Generative Modeling](https://arxiv.org/abs/2505.13447), including built-in guidance. Backbone source: [Gsunshine/py-meanflow](https://github.com/Gsunshine/py-meanflow/tree/1f6d72d94247c8fdeb89489acca1a8007a6baf6c), licensed CC BY-NC-SA 4.0. Task and evaluator: [KAIST FastGen Challenge](https://generative-models.kaist.ac.kr/fastgen/).
+5. KAIST Visual AI Group. *FastGen Challenge* and starter code. <https://generative-models.kaist.ac.kr/fastgen/>; <https://github.com/KAIST-Visual-AI-Group/AIC313-Project-FastGen>.
+
+6. G. Parmar et al. *Clean-FID*, implementation v0.1.35. <https://github.com/GaParmar/clean-fid>. M. Heusel et al. *FID*. NeurIPS 2017. <https://arxiv.org/abs/1706.08500>.
