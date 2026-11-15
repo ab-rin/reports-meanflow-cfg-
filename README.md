@@ -36,20 +36,21 @@ I compared the first checkpoint below 22 with the best checkpoint, using the sam
 
 That is **101.33 more active hours for 1.5261 lower FID**.
 
-Here you can see the difference between the two checkpoints:
-
-| Training updates | Pikachu | Bulbasaur | Charmander | Squirtle |
-| --- | :---: | :---: | :---: | :---: |
-| **64,000** | <img src="docs/assets/study/compare-64000-pikachu-42.png" width="128" alt="Pikachu at 64,000 updates, seed 42"> | <img src="docs/assets/study/compare-64000-bulbasaur-42.png" width="128" alt="Bulbasaur at 64,000 updates, seed 42"> | <img src="docs/assets/study/compare-64000-charmander-42.png" width="128" alt="Charmander at 64,000 updates, seed 42"> | <img src="docs/assets/study/compare-64000-squirtle-42.png" width="128" alt="Squirtle at 64,000 updates, seed 42"> |
-| **101,000** | <img src="docs/assets/study/compare-101000-pikachu-42.png" width="128" alt="Pikachu at 101,000 updates, seed 42"> | <img src="docs/assets/study/compare-101000-bulbasaur-42.png" width="128" alt="Bulbasaur at 101,000 updates, seed 42"> | <img src="docs/assets/study/compare-101000-charmander-42.png" width="128" alt="Charmander at 101,000 updates, seed 42"> | <img src="docs/assets/study/compare-101000-squirtle-42.png" width="128" alt="Squirtle at 101,000 updates, seed 42"> |
-
-*Same classes, seed 42, and four equal sampling steps at both checkpoints. Original generated images, with backgrounds preserved.*
-
 Tuning the sampling times kept the 101k weights fixed, and both versions use four model calls.
 
 | Checkpoint | Sampling: noise → image | Validation FID ↓ | Tuning time |
 | --- | :---: | ---: | ---: |
 | **101k** | **1 → 0.6 → 0.3 → 0.018 → 0**<br><img src="docs/assets/gallery/pikachu-42-steps.png" width="320" alt="Real Pikachu sampling states at times 1, 0.6, 0.3, 0.018, and 0; 101k EMA, seed 42"> | 19.3469 ± 0.1662 | [~49 min (estimated)](data/sampling_search_cost.json) |
+
+Here you can see the difference between the two checkpoints and the effect of tuned sampling:
+
+| Checkpoint / sampling | Pikachu | Bulbasaur | Charmander | Squirtle |
+| --- | :---: | :---: | :---: | :---: |
+| **64k**<br>Uniform | <img src="docs/assets/readme-comparison/64000-uniform4-pikachu-42.png" width="128" alt="Pikachu at 64k, uniform sampling, seed 42"> | <img src="docs/assets/readme-comparison/64000-uniform4-bulbasaur-42.png" width="128" alt="Bulbasaur at 64k, uniform sampling, seed 42"> | <img src="docs/assets/readme-comparison/64000-uniform4-charmander-42.png" width="128" alt="Charmander at 64k, uniform sampling, seed 42"> | <img src="docs/assets/readme-comparison/64000-uniform4-squirtle-42.png" width="128" alt="Squirtle at 64k, uniform sampling, seed 42"> |
+| **101k**<br>Uniform | <img src="docs/assets/readme-comparison/101000-uniform4-pikachu-42.png" width="128" alt="Pikachu at 101k, uniform sampling, seed 42"> | <img src="docs/assets/readme-comparison/101000-uniform4-bulbasaur-42.png" width="128" alt="Bulbasaur at 101k, uniform sampling, seed 42"> | <img src="docs/assets/readme-comparison/101000-uniform4-charmander-42.png" width="128" alt="Charmander at 101k, uniform sampling, seed 42"> | <img src="docs/assets/readme-comparison/101000-uniform4-squirtle-42.png" width="128" alt="Squirtle at 101k, uniform sampling, seed 42"> |
+| **101k + tuned sampling** | <img src="docs/assets/readme-comparison/101000-tuned4-pikachu-42.png" width="128" alt="Pikachu at 101k, tuned sampling, seed 42"> | <img src="docs/assets/readme-comparison/101000-tuned4-bulbasaur-42.png" width="128" alt="Bulbasaur at 101k, tuned sampling, seed 42"> | <img src="docs/assets/readme-comparison/101000-tuned4-charmander-42.png" width="128" alt="Charmander at 101k, tuned sampling, seed 42"> | <img src="docs/assets/readme-comparison/101000-tuned4-squirtle-42.png" width="128" alt="Squirtle at 101k, tuned sampling, seed 42"> |
+
+*Same classes and identical initial noise from seed 42 in all three rows; CPU FP32 and four calls per image. The first two rows use uniform times; the third changes only the sampling times from the 101k row. Original generated images, with backgrounds preserved. [Generation record](docs/assets/readme-comparison/comparison.json) · [Reproduce these images](scripts/export_readme_comparison.py)*
 
 The train–validation FID is **not a hard lower bound**. A score below it does not prove worse generation, and these small galleries cannot establish a general visual ranking. The point is to put the number next to the images and the time spent getting it.
 
