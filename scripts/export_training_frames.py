@@ -1,4 +1,4 @@
-"""Export eight fixed Charmander seeds from every evaluated EMA checkpoint.
+"""Export eight fixed Pokémon classes from every evaluated EMA checkpoint.
 
 Uses existing weights and model source. Never downloads or writes into the run.
 The output must be a fresh directory and contains images plus public provenance.
@@ -14,7 +14,9 @@ import torch
 from torchvision.transforms.functional import to_pil_image
 
 MODEL_SHA256 = "6eb5125a45a11d6c3e5a676717e786f3351533575c17f7505c46524b1b631fca"
-SEEDS = [7, 19, 42, 73, 101, 256, 512, 777]
+SPECIES = [("Charmander", 14), ("Bulbasaur", 9), ("Squirtle", 129), ("Pikachu", 103),
+           ("Eevee", 30), ("Gengar", 40), ("Jigglypuff", 57), ("Snorlax", 127)]
+SEED = 42
 
 
 def sha(path):
@@ -43,9 +45,9 @@ def main(args):
     torch.backends.cudnn.benchmark = False
     torch.backends.cudnn.deterministic = True
     model = ModelFewNFE(device="cpu").to(args.device).eval()
-    category = torch.tensor([14], device=args.device)
     record = {
-        "species": "Charmander", "class_id": 14, "seed": 42, "seeds": SEEDS,
+        "species": "Charmander", "class_id": 14, "seed": SEED,
+        "series": [{"species": name, "class_id": category, "seed": SEED} for name, category in SPECIES],
         "times": [1., .75, .5, .25, 0.], "nfe": 4,
         "precision": "FP32; TF32 disabled", "device": args.device,
         "torch": torch.__version__, "model_sha256": MODEL_SHA256,
@@ -59,16 +61,18 @@ def main(args):
             raise ValueError(f"Checkpoint metadata mismatch at {step}")
         model.load_state_dict(checkpoint["state_dict"], strict=True)
         samples = []
-        for seed in SEEDS:
-            torch.manual_seed(seed)
+        for name, class_id in SPECIES:
+            torch.manual_seed(SEED)
+            category = torch.tensor([class_id], device=args.device)
             pixels = model.sample((1, 3, 64, 64), device=args.device, category=category)[0]
             if not torch.isfinite(pixels).all():
-                raise ValueError(f"Non-finite image at {step}, seed {seed}")
+                raise ValueError(f"Non-finite image at {step}, class {name}")
             image = to_pil_image(((pixels.float().cpu() + 1) / 2).clamp(0, 1)).convert("RGB")
-            name = f"journey-charmander-{step}.png" if seed == 42 else f"journey-charmander-{seed}-{step}.png"
-            image.save(args.output / name)
-            samples.append({"seed": seed, "image": name, "image_sha256": sha(args.output / name)})
-        primary = next(sample for sample in samples if sample["seed"] == 42)
+            filename = f"journey-{step}.png" if name == "Pikachu" else f"journey-{name.lower()}-{step}.png"
+            image.save(args.output / filename)
+            samples.append({"species": name, "class_id": class_id, "seed": SEED,
+                            "image": filename, "image_sha256": sha(args.output / filename)})
+        primary = samples[0]
         record["frames"].append({"step": step, "image": primary["image"], "image_sha256": primary["image_sha256"],
                                   "samples": samples, "checkpoint_sha256": sha(path)})
         (args.output / "training-frames.json").write_text(json.dumps(record, indent=2) + "\n")

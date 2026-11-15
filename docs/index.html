@@ -9,9 +9,9 @@
   <meta property="og:description" content="A course project by ab-rin. Play with the samples, compare checkpoints, and inspect the experiments.">
   <title>Pokémon &amp; MeanFlow — ab-rin</title>
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="style.css?v=eight-training-1">
-  <script src="assets/project-data.js?v=eight-training-1" defer></script>
-  <script src="app.js?v=eight-training-1" defer></script>
+  <link rel="stylesheet" href="style.css?v=eight-species-1">
+  <script src="assets/project-data.js?v=eight-species-1" defer></script>
+  <script src="app.js?v=eight-species-1" defer></script>
 </head>
 <body class="pixelated">
 <a class="skip-link" href="#main">Skip to content</a>
@@ -83,12 +83,12 @@
   <div class="chart-panel training-panel">
     <div class="training-view">
       <div class="training-curve"><div class="chart-toolbar"><h3>Validation FID</h3><button id="zoom-chart" class="quiet-button" aria-pressed="false" type="button">Zoom near 22</button></div><svg id="fid-chart" viewBox="0 0 360 280" role="img" aria-label="Validation FID during training"></svg></div>
-      <figure class="training-snapshot"><div class="chart-toolbar"><h3>Charmander</h3><button id="replay-chart" class="button" type="button">↻ Replay training</button></div><div id="training-samples" class="training-samples" role="group" aria-label="Eight fixed Charmander seeds at the selected checkpoint"></div><figcaption id="training-image-caption" class="sr-only">122k updates</figcaption></figure>
+      <figure class="training-snapshot"><div class="chart-toolbar"><h3>Pokémon</h3><button id="replay-chart" class="button" type="button">↻ Replay training</button></div><div id="training-samples" class="training-samples" role="group" aria-label="Eight different Pokémon at the selected checkpoint"></div><figcaption id="training-image-caption" class="sr-only">122k updates</figcaption></figure>
     </div>
     <div class="chart-scrubber"><label for="training-step">updates</label><input id="training-step" type="range" min="0" max="167" value="167"><output id="training-readout" for="training-step"></output></div>
     <div class="chart-legend"><span><i class="line-key"></i> measured FID</span><span><i class="line-key dashed"></i> course target: 22</span><span><i class="line-key baseline"></i> course real-data reference: 20.82</span></div>
   </div>
-  <details><summary>Chart notes &amp; data</summary><p>168 measured FIDs and eight matched Charmander samples per checkpoint. Seeds 7, 19, 42, 73, 101, 256, 512, and 777 stay in the same positions throughout training. Every slider position shows that checkpoint’s actual outputs with four equal sampling intervals. The images are packed losslessly into one sheet for smooth playback. Display masks hide backgrounds; “Show backgrounds” restores the original RGB frames. There is no image interpolation or image-quality filtering. The reference lines are context, not lower bounds. <a href="assets/study/fid_history.csv">Download FID history ↗</a></p></details>
+  <details><summary>Chart notes &amp; data</summary><p>168 measured FIDs and eight different Pokémon per checkpoint: Charmander, Bulbasaur, Squirtle, Pikachu, Eevee, Gengar, Jigglypuff, and Snorlax. Each keeps seed 42 and the same position throughout training. Every slider position shows that checkpoint’s actual outputs with four equal sampling intervals. The images are packed losslessly into one sheet for smooth playback. Display masks hide backgrounds; “Show backgrounds” restores the original RGB frames. There is no image interpolation or image-quality filtering. The reference lines are context, not lower bounds. <a href="assets/study/fid_history.csv">Download FID history ↗</a></p></details>
   <div id="loss-panel"></div>
   <div class="schedule-study">
     <div><h3>Moving the four steps.</h3><p>After training, I kept the 101k weights fixed and changed the sampling times. The selected schedule improved FID in all five paired confirmation runs.</p><div class="schedule-options" role="group" aria-label="Sampling schedule"><button data-schedule="uniform" aria-pressed="false">uniform</button><button data-schedule="rho2" aria-pressed="false">ρ = 2</button><button data-schedule="tuned" aria-pressed="true">tuned</button></div><div id="schedule-bars" aria-label="Sampling time intervals"></div><p class="caption" id="schedule-times"></p></div>

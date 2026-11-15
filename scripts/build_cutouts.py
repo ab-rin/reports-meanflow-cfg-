@@ -160,7 +160,8 @@ def main(args):
     def save(image, kind, name):
         destination = args.output / kind / name
         image.save(destination, optimize=True)
-        files.append(f"{kind}/{name}")
+        if f"{kind}/{name}" not in files:
+            files.append(f"{kind}/{name}")
 
     gallery = json.loads((ASSETS / "gallery/gallery.json").read_text())
     for i, sample in enumerate(gallery["samples"]):
@@ -189,11 +190,18 @@ def main(args):
         for frame in json.loads(historical_record.read_text())["frames"]:
             image = cutout(Image.open(ASSETS / "study" / frame["image"]), session, cache)
             save(image, "study", frame["image"])
+    historical_seeds = ASSETS / "study/training-frames-charmander-seeds.json"
+    if historical_seeds.exists():
+        for frame in json.loads(historical_seeds.read_text())["frames"]:
+            for sample in frame["samples"]:
+                if sample["image"] != frame["image"]:
+                    image = cutout(Image.open(ASSETS / "study" / sample["image"]), session, cache)
+                    save(image, "study", sample["image"])
     frame_record = json.loads((ASSETS / "study/training-frames.json").read_text())
     frames = frame_record["frames"]
     columns = 14
     atlas = Image.new("RGBA", (columns * 64, ((len(frames) + columns - 1) // columns) * 64))
-    count = len(frames) * len(frame_record["seeds"])
+    count = len(frames) * len(frame_record["series"])
     eight_atlas = Image.new("RGBA", (32 * 64, ((count + 31) // 32) * 64))
     for i, frame in enumerate(frames):
         image = cutout(Image.open(ASSETS / "study" / frame["image"]), session, cache)
@@ -205,7 +213,7 @@ def main(args):
                 save(tile, "study", sample["image"])
             else:
                 tile = image
-            cell = i * len(frame_record["seeds"]) + j
+            cell = i * len(frame_record["series"]) + j
             eight_atlas.paste(tile, ((cell % 32) * 64, (cell // 32) * 64))
     save(atlas, "study", "training-atlas.png")
     save(eight_atlas, "study", "training-eight-atlas.png")

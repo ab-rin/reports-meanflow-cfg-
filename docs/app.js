@@ -356,12 +356,13 @@
   });
   reducedMotion.addEventListener("change", () => { if (reducedMotion.matches) stopDiagram(); });
 
-  const trainingCanvases = data.trainingFrames.seeds.map((seed, index) => {
+  const trainingCanvases = data.trainingFrames.series.map((sample, index) => {
     const canvas = document.createElement("canvas");
     canvas.width = canvas.height = 64;
     canvas.setAttribute("role", "img");
-    canvas.dataset.seed = seed;
-    canvas.title = `Seed ${seed}`;
+    canvas.dataset.seed = sample.seed;
+    canvas.dataset.species = sample.species;
+    canvas.title = sample.species;
     if (index === 0) canvas.id = "training-image";
     $("training-samples").append(canvas);
     return canvas;
@@ -423,7 +424,7 @@
         context.clearRect(0, 0, 64, 64);
         context.drawImage(trainingAtlas, column * 64, row * 64, 64, 64, 0, 0, 64, 64);
       }
-      canvas.setAttribute("aria-label", `${data.trainingFrames.species} at ${snapshot.toLocaleString()} training updates, seed ${data.trainingFrames.seeds[index]}`);
+      canvas.setAttribute("aria-label", `${data.trainingFrames.series[index].species} at ${snapshot.toLocaleString()} training updates, seed ${data.trainingFrames.series[index].seed}`);
       canvas.dataset.checkpointStep = snapshot;
     });
     $("training-image-caption").textContent = `${snapshot / 1000}k updates`;
