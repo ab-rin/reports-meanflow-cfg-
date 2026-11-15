@@ -1,16 +1,18 @@
 # Pokémon from noise
 
-I trained a Pokémon generator from scratch for KAIST’s [FastGen course project](https://generative-models.kaist.ac.kr/fastgen/). It uses MeanFlow with guidance built into training, so an image takes four network calls.
+I trained a Pokémon generator for KAIST’s [FastGen course project](https://generative-models.kaist.ac.kr/fastgen/). It uses MeanFlow with guidance built into training, so an image takes four network calls.
 
-[**Explore the project page →**](https://ab-rin.github.io/reports-meanflow-cfg-/) · [Code](code/) · [Weights](#weights) · [Technical report](REPORT.md)
+[Explore the project page (In development)] || [Code](code/) || [Weights](#weights) || [Technical report](REPORT.md)
 
 ![Six Pokémon generated in four actual model calls, starting from noise.](docs/assets/four-calls.gif)
 
 *101k EMA, seed 42. Five recorded states, with no interpolated frames. Backgrounds are masked for display; the page also offers the untouched frames. The page includes all 192 samples across 12 species and 16 seeds.*
 
-## Why I wanted to look beyond the score
+## Cumbersome process of fine-tuning was not really fruitful
 
-We were evaluated on FID. I spent a lot of time getting it lower, eventually reaching **19.3469 ± 0.1662** over five generation seeds. But the course’s real train–validation reference was **20.82**. Going below that felt counterintuitive. What was the extra training changing in the images?
+We were evaluated on FID. I spent a lot of time getting it lower, eventually reaching **19.3469 ± 0.1662** over five generation seeds. But using 3,020 training images and 3020 images from validation set, balanced at 20 per class, gave **20.86 ± 0.35** over three subsets. 
+
+Going below that felt counterintuitive. What was the extra training changing in the images?
 
 I compared the first checkpoint below 22 with the best checkpoint, using the same classes, noise, and four equal sampling steps:
 
@@ -19,9 +21,7 @@ I compared the first checkpoint below 22 with the best checkpoint, using the sam
 | 64k EMA | 21.9181 | 166.92 |
 | 101k EMA | 20.3921 | 268.24 |
 
-That is **101.33 more active hours for 1.5261 lower FID**. The page lets you compare their images before revealing the scores. It also shows one fixed Pikachu seed at all 168 evaluated training checkpoints, the loss history, and all 168 recorded FID evaluations.
-
-The baseline check matters too. Using 3,020 real training images, balanced at 20 per class, gave **20.86 ± 0.35** over three subsets. Using all 17,079 training images gave **15.71** against the same 3,020 validation images. Both sample count and class balance change here. This is not an exact reconstruction of the course’s baseline.
+That is **101.33 more active hours for 1.5261 lower FID**. The page lets you compare their images from two checkpoints. It also shows one fixed Pikachu seed at all 168 evaluated training checkpoints, the loss history, and all 168 recorded FID evaluations.
 
 The train–validation FID is **not a hard lower bound**. A score below it does not prove worse generation, and these small galleries cannot establish a general visual ranking. The point is to put the number next to the images and the time spent getting it.
 
