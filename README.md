@@ -52,8 +52,6 @@ Here you can see the difference between the two checkpoints and the effect of tu
 
 *Same classes and identical initial noise from seed 42 in all three rows; CPU FP32 and four calls per image. The first two rows use uniform times; the third changes only the sampling times from the 101k row. Original generated images, with backgrounds preserved. [Generation record](docs/assets/readme-comparison/comparison.json) · [Reproduce these images](scripts/export_readme_comparison.py)*
 
-The train–validation FID is **not a hard lower bound**. A score below it does not prove worse generation, and these small galleries cannot establish a general visual ranking. The point is to put the number next to the images and the time spent getting it.
-
 [Comparison data and hashes](docs/assets/study/study.json) · [Baseline subsets](docs/assets/study/baseline-sensitivity.json) · [FID bias paper](https://arxiv.org/abs/1911.07023)
 
 ## The model
@@ -64,9 +62,7 @@ The train–validation FID is **not a hard lower bound**. A score below it does 
 - Adam at 3e−4, effective batch 512, 500-update warmup, EMA decay 0.999.
 - One A100 20 GB. The 101k checkpoint took 268.24 active training hours.
 
-After training, I kept the 101k weights fixed and tuned the sampling times. **[1, 0.6, 0.3, 0.018, 0]** improved FID in all five paired confirmation runs against the ρ = 2 schedule. This is where the 19.3469 result comes from; the checkpoint comparison above uses uniform steps instead.
-
-± denotes sample SD across generation seeds with a fixed validation reference. The same reference was reused for checkpoint and schedule selection. These are local measurements, not official TA scores.
+± denotes sample SD across generation seeds with a fixed validation reference. The same reference was reused for checkpoint and schedule selection.
 
 ## Weights
 
@@ -96,6 +92,4 @@ The [training code](code/README.md), [full technical report](REPORT.md), and [pa
 
 ## Credits
 
-Method: [Geng et al., Mean Flows for One-step Generative Modeling](https://arxiv.org/abs/2505.13447). Backbone: [Gsunshine/py-meanflow](https://github.com/Gsunshine/py-meanflow), pinned in the source and licensed under [CC BY-NC-SA 4.0](code/src/original_meanflow/LICENSE). My contribution is the task implementation, training, sampling experiments, and analysis.
-
-Page design references: [Jermaine Antwi](https://antwi.dev/) and [Jade Franson](https://www.jadefranson.com/). The page code is original; their assets were not copied. EB Garamond and IBM Plex Mono are self-hosted under the SIL Open Font License. Pokémon belongs to its respective rights holders; this is an unaffiliated course project.
+Method: [Geng et al., Mean Flows for One-step Generative Modeling](https://arxiv.org/abs/2505.13447). Backbone: [Gsunshine/py-meanflow](https://github.com/Gsunshine/py-meanflow), pinned in the source and licensed under [CC BY-NC-SA 4.0](code/src/original_meanflow/LICENSE). My contribution is the task implementation, training, sampling experiments, and analysis in the given dataset.
