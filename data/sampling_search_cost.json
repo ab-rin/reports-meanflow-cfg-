@@ -1,0 +1,83 @@
+{
+  "checkpoint_step": 101000,
+  "checkpoint_sha256": "ab99f610b9bc2a8ec26f627573608b52d490065773ede28ab18bf5a940d11b41",
+  "selected_times": [
+    1.0,
+    0.6,
+    0.3,
+    0.018,
+    0.0
+  ],
+  "selected_candidate_id": "refine_t3_minus",
+  "screening_seed": 1234,
+  "screening_candidates": [
+    "baseline",
+    "high_low_low",
+    "joint_high",
+    "joint_low",
+    "late_long",
+    "low_high_high",
+    "middle_dense",
+    "refine_t1_minus",
+    "refine_t1_plus",
+    "refine_t2_minus",
+    "refine_t2_plus",
+    "refine_t3_minus",
+    "refine_t3_plus",
+    "rho_1",
+    "rho_1_5",
+    "rho_2_5",
+    "rho_3",
+    "t1_high",
+    "t1_low",
+    "t2_high",
+    "t2_low",
+    "t3_high",
+    "t3_low"
+  ],
+  "screening_evaluations": 23,
+  "confirmation_seeds": [
+    2026102801,
+    2026102802,
+    2026102803,
+    2026102804,
+    2026102805
+  ],
+  "confirmation_candidates": [
+    "baseline",
+    "refine_t3_minus"
+  ],
+  "confirmation_evaluations": 10,
+  "total_evaluations": 33,
+  "preserved_run": {
+    "candidate_id": "high_low_low",
+    "seed": 1234,
+    "times": [
+      1.0,
+      0.675,
+      0.175,
+      0.03125,
+      0.0
+    ],
+    "generation_seconds": 73.85994072002359,
+    "scoring_seconds": 15.791048214072362,
+    "generated_count": 3020,
+    "nfe": 4
+  },
+  "hardware": "GRID A100D-20C",
+  "samples_per_evaluation": 3020,
+  "estimated_evaluation_minutes": 49.30804391375277,
+  "estimate_method": "33 evaluations multiplied by one preserved run\u2019s generation_seconds + scoring_seconds, divided by 60.",
+  "measured_total_search_wall_seconds": null,
+  "limitations": "Single-run extrapolation, not a measured total. Excludes setup, cached reference preparation, human iteration, pauses, failures and retries; per-run durations may vary. Source rescore audit enumerates the original evaluations but does not time their original execution.",
+  "source_files": [
+    {
+      "name": "rescore_results.json",
+      "sha256": "aa3dd13852c7db3b6615cbc250232f0412c045068cd3025dc93f8aa2018777ff"
+    },
+    {
+      "name": "selected_candidate_original_result.json",
+      "sha256": "ec76f8ffee2400f3b3eb3911280eadb4fa3889aa0aba057ec0d629b5914009ee"
+    }
+  ]
+}

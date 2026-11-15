@@ -16,18 +16,18 @@ We use MeanFlow with built-in classifier-free guidance for class-conditional $64
 
 We adapt the Song U-Net in the MeanFlow authors’ PyTorch implementation, with architecture and augmentation code derived from EDM \[2,3\]. The backbone has **56,010,243 parameters**, base width 128, channel multipliers $(2,2,2)$, four encoder blocks per resolution, attention at $16\times16$, GroupNorm \[4\], and dropout 0.2. It predicts interval-average velocity $u_\theta(z,t,r,c)$, conditioned on the start time $t$, interval length $t-r$, and one of 151 classes.
 
-For a training image $x$ and independent Gaussian noise $\epsilon$, we form $z=(1-t)x+t\epsilon$ and $v=\epsilon-x$. Two independent draws from $\operatorname{sigmoid}(\mathcal N(-2,2^2))$ are ordered to obtain $r\leq t$; 25% of examples use $r=t$. We drop the class label with probability 0.1. Dropped-label examples use $g=v$; retained-label examples use guidance scale 2, giving $g=2v-u_\theta(z,t,t,\varnothing)$. The unconditional boundary estimate is detached and evaluated with dropout disabled. The target and loss are
+For a training image $x$ and independent Gaussian noise $\epsilon$, we form $z=(1-t)x+t\epsilon$ and $v=\epsilon-x$. Two independent draws from $\mathrm{sigmoid}(\mathcal N(-2,2^2))$ are ordered to obtain $r\leq t$; 25% of examples use $r=t$. We drop the class label with probability 0.1. Dropped-label examples use $g=v$; retained-label examples use guidance scale 2, giving $g=2v-u_\theta(z,t,t,\varnothing)$. The unconditional boundary estimate is detached and evaluated with dropout disabled. The target and loss are
 
 $$
-y=\operatorname{sg}\!\left[g-(t-r)\left(\partial_tu_\theta+\partial_zu_\theta\,g\right)\right],
+y=\mathrm{sg}\!\left[g-(t-r)\left(\partial_tu_\theta+\partial_zu_\theta\,g\right)\right],
 $$
 
 $$
-L=\frac{1}{B}\sum_{i=1}^{B}\frac{E_i}{(\operatorname{sg}[E_i]+10^{-3})^{0.75}},
+L=\frac{1}{B}\sum_{i=1}^{B}\frac{E_i}{(\mathrm{sg}[E_i]+10^{-3})^{0.75}},
  \quad E_i=\|u_{\theta,i}-y_i\|_2^2.
 $$
 
-Here $\operatorname{sg}$ denotes stop-gradient, and $E_i$ sums squared error over all channels and pixels. The Jacobian-vector product holds $r$ fixed and uses $g$ as the spatial tangent. This trains the interval prediction and its guided boundary velocity within the same model.
+Here $\mathrm{sg}$ denotes stop-gradient, and $E_i$ sums squared error over all channels and pixels. The Jacobian-vector product holds $r$ fixed and uses $g$ as the spatial tangent. This trains the interval prediction and its guided boundary velocity within the same model.
 
 ## Four-evaluation sampling
 

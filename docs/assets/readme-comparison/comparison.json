@@ -1,0 +1,204 @@
+{
+  "seed": 42,
+  "initial_noise_sha256": "f45b2dd8cd4f4566db83aabca2a8b6e43a38d1ec3ae804dc8c4a17542e859abb",
+  "device": "cpu",
+  "torch": "2.6.0",
+  "precision": "FP32",
+  "nfe": 4,
+  "selection": "First four species from the existing study; no image filtering",
+  "verification": "Identical initial noise and four calls for every image; tuned row matches published gallery pixels",
+  "samples": [
+    {
+      "checkpoint_step": 64000,
+      "checkpoint_sha256": "8ba96595edd883380a489060d5aa58bd346242ae8279c6491b8fcc80d520ec14",
+      "schedule": "uniform4",
+      "times": [
+        1.0,
+        0.75,
+        0.5,
+        0.25,
+        0.0
+      ],
+      "species": "Pikachu",
+      "class_id": 103,
+      "image": "64000-uniform4-pikachu-42.png",
+      "image_sha256": "0e4aa04d7750e05407fc28beaf37639715b5216182b78243470711418bfded22"
+    },
+    {
+      "checkpoint_step": 64000,
+      "checkpoint_sha256": "8ba96595edd883380a489060d5aa58bd346242ae8279c6491b8fcc80d520ec14",
+      "schedule": "uniform4",
+      "times": [
+        1.0,
+        0.75,
+        0.5,
+        0.25,
+        0.0
+      ],
+      "species": "Bulbasaur",
+      "class_id": 9,
+      "image": "64000-uniform4-bulbasaur-42.png",
+      "image_sha256": "f3e595a4ae7ad9cd63059dcca797323ccf4f4507e2a7f91aa541fc9ac9c8af9e"
+    },
+    {
+      "checkpoint_step": 64000,
+      "checkpoint_sha256": "8ba96595edd883380a489060d5aa58bd346242ae8279c6491b8fcc80d520ec14",
+      "schedule": "uniform4",
+      "times": [
+        1.0,
+        0.75,
+        0.5,
+        0.25,
+        0.0
+      ],
+      "species": "Charmander",
+      "class_id": 14,
+      "image": "64000-uniform4-charmander-42.png",
+      "image_sha256": "bce654ff8f31debb1f6f815d73804cbadb37a47cdcf89994df4d446cb36ccfa4"
+    },
+    {
+      "checkpoint_step": 64000,
+      "checkpoint_sha256": "8ba96595edd883380a489060d5aa58bd346242ae8279c6491b8fcc80d520ec14",
+      "schedule": "uniform4",
+      "times": [
+        1.0,
+        0.75,
+        0.5,
+        0.25,
+        0.0
+      ],
+      "species": "Squirtle",
+      "class_id": 129,
+      "image": "64000-uniform4-squirtle-42.png",
+      "image_sha256": "d846db120efa08ef4a128d705026e093443c514eb0ff69ee60414db5748a0a08"
+    },
+    {
+      "checkpoint_step": 101000,
+      "checkpoint_sha256": "ab99f610b9bc2a8ec26f627573608b52d490065773ede28ab18bf5a940d11b41",
+      "schedule": "uniform4",
+      "times": [
+        1.0,
+        0.75,
+        0.5,
+        0.25,
+        0.0
+      ],
+      "species": "Pikachu",
+      "class_id": 103,
+      "image": "101000-uniform4-pikachu-42.png",
+      "image_sha256": "4060a0a138bcb18770f44381a8c1e18d267752b635f2233f0dfdb4e821d2e394"
+    },
+    {
+      "checkpoint_step": 101000,
+      "checkpoint_sha256": "ab99f610b9bc2a8ec26f627573608b52d490065773ede28ab18bf5a940d11b41",
+      "schedule": "uniform4",
+      "times": [
+        1.0,
+        0.75,
+        0.5,
+        0.25,
+        0.0
+      ],
+      "species": "Bulbasaur",
+      "class_id": 9,
+      "image": "101000-uniform4-bulbasaur-42.png",
+      "image_sha256": "75b4372a56218cc45ab876ea3722c2f8d7e8055c5298da9842722a3a2124b9b9"
+    },
+    {
+      "checkpoint_step": 101000,
+      "checkpoint_sha256": "ab99f610b9bc2a8ec26f627573608b52d490065773ede28ab18bf5a940d11b41",
+      "schedule": "uniform4",
+      "times": [
+        1.0,
+        0.75,
+        0.5,
+        0.25,
+        0.0
+      ],
+      "species": "Charmander",
+      "class_id": 14,
+      "image": "101000-uniform4-charmander-42.png",
+      "image_sha256": "9c2eeaf1ad7b8d17a9ec2cb972126bdddc777750dceec7023f33fda297462fb4"
+    },
+    {
+      "checkpoint_step": 101000,
+      "checkpoint_sha256": "ab99f610b9bc2a8ec26f627573608b52d490065773ede28ab18bf5a940d11b41",
+      "schedule": "uniform4",
+      "times": [
+        1.0,
+        0.75,
+        0.5,
+        0.25,
+        0.0
+      ],
+      "species": "Squirtle",
+      "class_id": 129,
+      "image": "101000-uniform4-squirtle-42.png",
+      "image_sha256": "d4c53b11986125b1c2282c614262cef8d4867e012b2010a3697af59a7b421880"
+    },
+    {
+      "checkpoint_step": 101000,
+      "checkpoint_sha256": "ab99f610b9bc2a8ec26f627573608b52d490065773ede28ab18bf5a940d11b41",
+      "schedule": "tuned4",
+      "times": [
+        1.0,
+        0.6,
+        0.3,
+        0.018,
+        0.0
+      ],
+      "species": "Pikachu",
+      "class_id": 103,
+      "image": "101000-tuned4-pikachu-42.png",
+      "image_sha256": "c12efd242aae751e754966a3295897a0802259b8cd72e9b3723dc3e35813b810"
+    },
+    {
+      "checkpoint_step": 101000,
+      "checkpoint_sha256": "ab99f610b9bc2a8ec26f627573608b52d490065773ede28ab18bf5a940d11b41",
+      "schedule": "tuned4",
+      "times": [
+        1.0,
+        0.6,
+        0.3,
+        0.018,
+        0.0
+      ],
+      "species": "Bulbasaur",
+      "class_id": 9,
+      "image": "101000-tuned4-bulbasaur-42.png",
+      "image_sha256": "85390ac8397134c7420f9980f364d816a242bc393e14b3ce0d009537bb3bcdc6"
+    },
+    {
+      "checkpoint_step": 101000,
+      "checkpoint_sha256": "ab99f610b9bc2a8ec26f627573608b52d490065773ede28ab18bf5a940d11b41",
+      "schedule": "tuned4",
+      "times": [
+        1.0,
+        0.6,
+        0.3,
+        0.018,
+        0.0
+      ],
+      "species": "Charmander",
+      "class_id": 14,
+      "image": "101000-tuned4-charmander-42.png",
+      "image_sha256": "d62b3ad9ebd9d6c66b6037c1a5e1b0ea0bdf7319fc7c027f9a521ed5cbdd2f12"
+    },
+    {
+      "checkpoint_step": 101000,
+      "checkpoint_sha256": "ab99f610b9bc2a8ec26f627573608b52d490065773ede28ab18bf5a940d11b41",
+      "schedule": "tuned4",
+      "times": [
+        1.0,
+        0.6,
+        0.3,
+        0.018,
+        0.0
+      ],
+      "species": "Squirtle",
+      "class_id": 129,
+      "image": "101000-tuned4-squirtle-42.png",
+      "image_sha256": "cbc8cb971f7e192e99ff6ea2d8fbbff9655898bf4be8ecf55d296015e60c373e"
+    }
+  ]
+}
