@@ -23,9 +23,7 @@ The reported FID compares **3,020 generated images, 20 per class**, against the 
 
 ## Training and Fine-tuning
 
-We were evaluated on FID. I spent a lot of time getting it lower, eventually reaching **19.3469 ± 0.1662** over five generation seeds. But using 3,020 training images and 3020 images from validation set, balanced at 20 per class, gave **20.86 ± 0.35** over three subsets. 
-
-Going below that felt counterintuitive. What was the extra training changing in the images?
+We were evaluated on FID. I spent a lot of time getting it lower, eventually reaching **19.3469 ± 0.1662** over five generation seeds. But using 3,020 training images and 3020 images from validation set, balanced at 20 per class, gave **20.86 ± 0.35** over three subsets. However, with fine-tuning we could go below that.
 
 I compared the first checkpoint below 22 with the best checkpoint, using the same classes, noise, and four equal sampling steps:
 
