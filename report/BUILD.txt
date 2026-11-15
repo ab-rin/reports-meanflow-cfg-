@@ -1,0 +1,17 @@
+report_for_submission - LaTeX source
+
+Compile from this folder:
+  tectonic report_for_submission.tex
+
+Alternatively:
+  pdflatex -interaction=nonstopmode -halt-on-error report_for_submission.tex
+  pdflatex -interaction=nonstopmode -halt-on-error report_for_submission.tex
+
+Keep report_for_submission_assets beside the .tex file.
+The checked PDF is two A4 pages, including references.
+
+The report describes the final team_06 four-NFE implementation and the
+EMA checkpoint at update 101800. Experimental results and original sample
+grids come from the supplied 101800 evidence bundle. The training-loss plot
+uses the same logged values with a shortened axis label to prevent clipping.
+The sample grids are unmodified; LaTeX displays their first two rows.
